@@ -15,7 +15,6 @@ def process_dataset(filepath, target_col, task_type, drop_cols=None):
     y = df[target_col]
     X = df.drop(columns=[target_col])
 
-    # 【终极防坑修复】：强制规范化非数值列，防止 Sklearn 底层强转 float
     cat_cols_raw = X.select_dtypes(exclude=['number']).columns.tolist()
     for col in cat_cols_raw:
         X[col] = X[col].astype(object)
@@ -66,15 +65,12 @@ def process_dataset(filepath, target_col, task_type, drop_cols=None):
     }
 
 
-# ==========================================
-# 核心配置字典 (更新了 Diamonds，删除了 Boston)
-# ==========================================
 datasets_config = {
     "diamonds": {
         "filepath": "data/Diamonds Prices2022.csv",
         "target": "price",
         "task": "regression",
-        "drop": ["Unnamed: 0"]  # 必须删掉这个无用的序号列
+        "drop": ["Unnamed: 0"]
     },
     "superconductivity": {
         "filepath": "data/train.csv",
@@ -129,7 +125,7 @@ def get_dataset(name):
 
 
 if __name__ == "__main__":
-    print("--- 自动化数据清洗已完成 ---")
+    print("--- finished ---")
     for name in datasets_config.keys():
         if name in processed_data:
             X_tr = processed_data[name]['X_train']
