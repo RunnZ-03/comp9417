@@ -1,0 +1,10 @@
+{
+    "dataset": "superconductivity",
+    "task_type": "regression",
+    "metrics": {
+        "rmse": 9.453961738831039
+    },
+    "train_time": 1.5825800895690918,
+    "infer_time_per_sample": 1.2261767177729783e-06,
+    "feature_importance_top5": "Could not extract AGOP"
+}

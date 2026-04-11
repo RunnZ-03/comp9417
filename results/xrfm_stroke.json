@@ -1,0 +1,11 @@
+{
+    "dataset": "stroke",
+    "task_type": "classification",
+    "metrics": {
+        "accuracy": 0.9412915851272016,
+        "auc": 0.7605246913580248
+    },
+    "train_time": 0.260939359664917,
+    "infer_time_per_sample": 1.3761557711547136e-06,
+    "feature_importance_top5": "Could not extract AGOP"
+}

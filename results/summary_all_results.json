@@ -1,0 +1,55 @@
+[
+    {
+        "dataset": "diamonds",
+        "task_type": "regression",
+        "metrics": {
+            "rmse": 1496.723217234009
+        },
+        "train_time": 246.76458978652954,
+        "infer_time_per_sample": 8.574938882390566e-05,
+        "feature_importance_top5": "Could not extract AGOP"
+    },
+    {
+        "dataset": "superconductivity",
+        "task_type": "regression",
+        "metrics": {
+            "rmse": 9.453961738831039
+        },
+        "train_time": 1.5825800895690918,
+        "infer_time_per_sample": 1.2261767177729783e-06,
+        "feature_importance_top5": "Could not extract AGOP"
+    },
+    {
+        "dataset": "shoppers",
+        "task_type": "classification",
+        "metrics": {
+            "accuracy": 0.8896999188969992,
+            "auc": 0.9018330888042527
+        },
+        "train_time": 0.7093820571899414,
+        "infer_time_per_sample": 1.7012606185331446e-05,
+        "feature_importance_top5": "Could not extract AGOP"
+    },
+    {
+        "dataset": "stroke",
+        "task_type": "classification",
+        "metrics": {
+            "accuracy": 0.9412915851272016,
+            "auc": 0.7605246913580248
+        },
+        "train_time": 0.260939359664917,
+        "infer_time_per_sample": 1.3761557711547136e-06,
+        "feature_importance_top5": "Could not extract AGOP"
+    },
+    {
+        "dataset": "hr_attrition",
+        "task_type": "classification",
+        "metrics": {
+            "accuracy": 0.8673469387755102,
+            "auc": 0.7631148247049704
+        },
+        "train_time": 0.07224655151367188,
+        "infer_time_per_sample": 3.6898113432384673e-06,
+        "feature_importance_top5": "Could not extract AGOP"
+    }
+]

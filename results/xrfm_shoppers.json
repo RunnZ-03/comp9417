@@ -1,0 +1,11 @@
+{
+    "dataset": "shoppers",
+    "task_type": "classification",
+    "metrics": {
+        "accuracy": 0.8896999188969992,
+        "auc": 0.9018330888042527
+    },
+    "train_time": 0.7093820571899414,
+    "infer_time_per_sample": 1.7012606185331446e-05,
+    "feature_importance_top5": "Could not extract AGOP"
+}

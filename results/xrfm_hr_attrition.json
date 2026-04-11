@@ -1,0 +1,11 @@
+{
+    "dataset": "hr_attrition",
+    "task_type": "classification",
+    "metrics": {
+        "accuracy": 0.8673469387755102,
+        "auc": 0.7631148247049704
+    },
+    "train_time": 0.07224655151367188,
+    "infer_time_per_sample": 3.6898113432384673e-06,
+    "feature_importance_top5": "Could not extract AGOP"
+}

@@ -1,0 +1,10 @@
+{
+    "dataset": "diamonds",
+    "task_type": "regression",
+    "metrics": {
+        "rmse": 1496.723217234009
+    },
+    "train_time": 246.76458978652954,
+    "infer_time_per_sample": 8.574938882390566e-05,
+    "feature_importance_top5": "Could not extract AGOP"
+}
