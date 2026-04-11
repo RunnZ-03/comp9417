@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import os
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
@@ -64,34 +65,36 @@ def process_dataset(filepath, target_col, task_type, drop_cols=None):
         'features': feat_names
     }
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, "data")
 
 datasets_config = {
     "diamonds": {
-        "filepath": "data/Diamonds Prices2022.csv",
+        "filepath": os.path.join(DATA_DIR, "Diamonds Prices2022.csv"),
         "target": "price",
         "task": "regression",
         "drop": ["Unnamed: 0"]
     },
     "superconductivity": {
-        "filepath": "data/train.csv",
+        "filepath": os.path.join(DATA_DIR, "train.csv"),
         "target": "critical_temp",
         "task": "regression",
         "drop": None
     },
     "stroke": {
-        "filepath": "data/healthcare-dataset-stroke-data.csv",
+        "filepath": os.path.join(DATA_DIR, "healthcare-dataset-stroke-data.csv"),
         "target": "stroke",
         "task": "classification",
         "drop": ["id"]
     },
     "shoppers": {
-        "filepath": "data/10.0online_shoppers_intention.csv",
+        "filepath": os.path.join(DATA_DIR, "10.0online_shoppers_intention.csv"),
         "target": "Revenue",
         "task": "classification",
         "drop": None
     },
     "hr_attrition": {
-        "filepath": "data/WA_Fn-UseC_-HR-Employee-Attrition.csv",
+        "filepath": os.path.join(DATA_DIR, "WA_Fn-UseC_-HR-Employee-Attrition.csv"),
         "target": "Attrition",
         "task": "classification",
         "drop": ["EmployeeNumber", "EmployeeCount", "Over18", "StandardHours"]
