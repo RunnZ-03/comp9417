@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/jiangxueyao/Desktop/9417/group/**)",
+      "Bash(python -c ':*)"
+    ]
+  }
+}
