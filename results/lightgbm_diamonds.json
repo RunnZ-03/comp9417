@@ -1,0 +1,40 @@
+{
+    "model": "lightgbm",
+    "dataset": "diamonds",
+    "task_type": "regression",
+    "n_train": 32365,
+    "n_val": 10789,
+    "n_test": 10789,
+    "n_features": 26,
+    "train_time": 0.3246462345123291,
+    "infer_time_total": 0.027217864990234375,
+    "infer_time_per_sample": 2.5227421438719413e-06,
+    "val_metrics": {
+        "rmse": 551.5198313803555
+    },
+    "test_metrics": {
+        "rmse": 535.9882106651397
+    },
+    "feature_importance_top5": [
+        [
+            "num__carat",
+            1247
+        ],
+        [
+            "num__y",
+            1148
+        ],
+        [
+            "num__z",
+            960
+        ],
+        [
+            "num__x",
+            858
+        ],
+        [
+            "num__depth",
+            855
+        ]
+    ]
+}

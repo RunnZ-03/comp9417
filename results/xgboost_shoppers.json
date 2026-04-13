@@ -1,0 +1,42 @@
+{
+    "model": "xgboost",
+    "dataset": "shoppers",
+    "task_type": "classification",
+    "n_train": 7398,
+    "n_val": 2466,
+    "n_test": 2466,
+    "n_features": 29,
+    "train_time": 0.12277507781982422,
+    "infer_time_total": 0.004649162292480469,
+    "infer_time_per_sample": 1.885305065888268e-06,
+    "val_metrics": {
+        "accuracy": 0.9075425790754258,
+        "auc": 0.9413582418024139
+    },
+    "test_metrics": {
+        "accuracy": 0.9022708840227088,
+        "auc": 0.9300692888223412
+    },
+    "feature_importance_top5": [
+        [
+            "num__PageValues",
+            0.2942504584789276
+        ],
+        [
+            "cat__Month_Nov",
+            0.07999274134635925
+        ],
+        [
+            "cat__Month_May",
+            0.05745093151926994
+        ],
+        [
+            "cat__Month_Mar",
+            0.05072915554046631
+        ],
+        [
+            "num__ExitRates",
+            0.03211117535829544
+        ]
+    ]
+}

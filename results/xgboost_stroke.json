@@ -1,0 +1,42 @@
+{
+    "model": "xgboost",
+    "dataset": "stroke",
+    "task_type": "classification",
+    "n_train": 3066,
+    "n_val": 1022,
+    "n_test": 1022,
+    "n_features": 21,
+    "train_time": 0.04897117614746094,
+    "infer_time_total": 0.0005280971527099609,
+    "infer_time_per_sample": 5.167291122406663e-07,
+    "val_metrics": {
+        "accuracy": 0.9510763209393346,
+        "auc": 0.8481069958847737
+    },
+    "test_metrics": {
+        "accuracy": 0.9500978473581213,
+        "auc": 0.8342386831275721
+    },
+    "feature_importance_top5": [
+        [
+            "num__age",
+            0.12138362973928452
+        ],
+        [
+            "cat__ever_married_No",
+            0.06595909595489502
+        ],
+        [
+            "num__heart_disease",
+            0.06114639714360237
+        ],
+        [
+            "num__hypertension",
+            0.06112651526927948
+        ],
+        [
+            "cat__work_type_children",
+            0.05985848605632782
+        ]
+    ]
+}

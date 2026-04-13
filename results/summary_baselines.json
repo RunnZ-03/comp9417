@@ -1,0 +1,414 @@
+[
+    {
+        "model": "xgboost",
+        "dataset": "diamonds",
+        "task_type": "regression",
+        "n_train": 32365,
+        "n_val": 10789,
+        "n_test": 10789,
+        "n_features": 26,
+        "train_time": 0.7574100494384766,
+        "infer_time_total": 0.009505033493041992,
+        "infer_time_per_sample": 8.809930014868841e-07,
+        "val_metrics": {
+            "rmse": 557.4383492376481
+        },
+        "test_metrics": {
+            "rmse": 540.4523933251645
+        },
+        "feature_importance_top5": [
+            [
+                "num__y",
+                0.39950159192085266
+            ],
+            [
+                "num__carat",
+                0.1703067272901535
+            ],
+            [
+                "cat__clarity_I1",
+                0.06372728943824768
+            ],
+            [
+                "num__z",
+                0.0602746419608593
+            ],
+            [
+                "cat__clarity_SI2",
+                0.04287967085838318
+            ]
+        ]
+    },
+    {
+        "model": "xgboost",
+        "dataset": "superconductivity",
+        "task_type": "regression",
+        "n_train": 12757,
+        "n_val": 4253,
+        "n_test": 4253,
+        "n_features": 81,
+        "train_time": 1.6251933574676514,
+        "infer_time_total": 0.0059909820556640625,
+        "infer_time_per_sample": 1.4086484965116535e-06,
+        "val_metrics": {
+            "rmse": 10.223913929622778
+        },
+        "test_metrics": {
+            "rmse": 9.338226556750787
+        },
+        "feature_importance_top5": [
+            [
+                "num__range_ThermalConductivity",
+                0.747911810874939
+            ],
+            [
+                "num__range_atomic_radius",
+                0.044481903314590454
+            ],
+            [
+                "num__wtd_gmean_ThermalConductivity",
+                0.028923993930220604
+            ],
+            [
+                "num__wtd_std_ElectronAffinity",
+                0.013519846834242344
+            ],
+            [
+                "num__wtd_std_ThermalConductivity",
+                0.012979522347450256
+            ]
+        ]
+    },
+    {
+        "model": "xgboost",
+        "dataset": "shoppers",
+        "task_type": "classification",
+        "n_train": 7398,
+        "n_val": 2466,
+        "n_test": 2466,
+        "n_features": 29,
+        "train_time": 0.12277507781982422,
+        "infer_time_total": 0.004649162292480469,
+        "infer_time_per_sample": 1.885305065888268e-06,
+        "val_metrics": {
+            "accuracy": 0.9075425790754258,
+            "auc": 0.9413582418024139
+        },
+        "test_metrics": {
+            "accuracy": 0.9022708840227088,
+            "auc": 0.9300692888223412
+        },
+        "feature_importance_top5": [
+            [
+                "num__PageValues",
+                0.2942504584789276
+            ],
+            [
+                "cat__Month_Nov",
+                0.07999274134635925
+            ],
+            [
+                "cat__Month_May",
+                0.05745093151926994
+            ],
+            [
+                "cat__Month_Mar",
+                0.05072915554046631
+            ],
+            [
+                "num__ExitRates",
+                0.03211117535829544
+            ]
+        ]
+    },
+    {
+        "model": "xgboost",
+        "dataset": "stroke",
+        "task_type": "classification",
+        "n_train": 3066,
+        "n_val": 1022,
+        "n_test": 1022,
+        "n_features": 21,
+        "train_time": 0.04897117614746094,
+        "infer_time_total": 0.0005280971527099609,
+        "infer_time_per_sample": 5.167291122406663e-07,
+        "val_metrics": {
+            "accuracy": 0.9510763209393346,
+            "auc": 0.8481069958847737
+        },
+        "test_metrics": {
+            "accuracy": 0.9500978473581213,
+            "auc": 0.8342386831275721
+        },
+        "feature_importance_top5": [
+            [
+                "num__age",
+                0.12138362973928452
+            ],
+            [
+                "cat__ever_married_No",
+                0.06595909595489502
+            ],
+            [
+                "num__heart_disease",
+                0.06114639714360237
+            ],
+            [
+                "num__hypertension",
+                0.06112651526927948
+            ],
+            [
+                "cat__work_type_children",
+                0.05985848605632782
+            ]
+        ]
+    },
+    {
+        "model": "xgboost",
+        "dataset": "hr_attrition",
+        "task_type": "classification",
+        "n_train": 882,
+        "n_val": 294,
+        "n_test": 294,
+        "n_features": 51,
+        "train_time": 0.10596299171447754,
+        "infer_time_total": 0.0005030632019042969,
+        "infer_time_per_sample": 1.7110993262050914e-06,
+        "val_metrics": {
+            "accuracy": 0.8707482993197279,
+            "auc": 0.8048066155568955
+        },
+        "test_metrics": {
+            "accuracy": 0.8469387755102041,
+            "auc": 0.7481264536135757
+        },
+        "feature_importance_top5": [
+            [
+                "cat__OverTime_No",
+                0.04786830395460129
+            ],
+            [
+                "num__TotalWorkingYears",
+                0.04402614384889603
+            ],
+            [
+                "cat__OverTime_Yes",
+                0.041512079536914825
+            ],
+            [
+                "num__StockOptionLevel",
+                0.03772689774632454
+            ],
+            [
+                "num__JobLevel",
+                0.03369547054171562
+            ]
+        ]
+    },
+    {
+        "model": "lightgbm",
+        "dataset": "diamonds",
+        "task_type": "regression",
+        "n_train": 32365,
+        "n_val": 10789,
+        "n_test": 10789,
+        "n_features": 26,
+        "train_time": 0.3246462345123291,
+        "infer_time_total": 0.027217864990234375,
+        "infer_time_per_sample": 2.5227421438719413e-06,
+        "val_metrics": {
+            "rmse": 551.5198313803555
+        },
+        "test_metrics": {
+            "rmse": 535.9882106651397
+        },
+        "feature_importance_top5": [
+            [
+                "num__carat",
+                1247
+            ],
+            [
+                "num__y",
+                1148
+            ],
+            [
+                "num__z",
+                960
+            ],
+            [
+                "num__x",
+                858
+            ],
+            [
+                "num__depth",
+                855
+            ]
+        ]
+    },
+    {
+        "model": "lightgbm",
+        "dataset": "superconductivity",
+        "task_type": "regression",
+        "n_train": 12757,
+        "n_val": 4253,
+        "n_test": 4253,
+        "n_features": 81,
+        "train_time": 0.9586331844329834,
+        "infer_time_total": 0.02910017967224121,
+        "infer_time_per_sample": 6.8422712608138285e-06,
+        "val_metrics": {
+            "rmse": 9.935165928426102
+        },
+        "test_metrics": {
+            "rmse": 9.208903761584628
+        },
+        "feature_importance_top5": [
+            [
+                "num__wtd_entropy_ThermalConductivity",
+                599
+            ],
+            [
+                "num__wtd_std_ThermalConductivity",
+                546
+            ],
+            [
+                "num__wtd_entropy_fie",
+                524
+            ],
+            [
+                "num__wtd_range_atomic_radius",
+                510
+            ],
+            [
+                "num__wtd_entropy_ElectronAffinity",
+                498
+            ]
+        ]
+    },
+    {
+        "model": "lightgbm",
+        "dataset": "shoppers",
+        "task_type": "classification",
+        "n_train": 7398,
+        "n_val": 2466,
+        "n_test": 2466,
+        "n_features": 29,
+        "train_time": 0.09342503547668457,
+        "infer_time_total": 0.0030770301818847656,
+        "infer_time_per_sample": 1.2477819066848197e-06,
+        "val_metrics": {
+            "accuracy": 0.910786699107867,
+            "auc": 0.9431105606415372
+        },
+        "test_metrics": {
+            "accuracy": 0.9038929440389294,
+            "auc": 0.9305949844740782
+        },
+        "feature_importance_top5": [
+            [
+                "num__ExitRates",
+                413
+            ],
+            [
+                "num__ProductRelated_Duration",
+                399
+            ],
+            [
+                "num__ProductRelated",
+                331
+            ],
+            [
+                "num__Administrative_Duration",
+                275
+            ],
+            [
+                "num__PageValues",
+                245
+            ]
+        ]
+    },
+    {
+        "model": "lightgbm",
+        "dataset": "stroke",
+        "task_type": "classification",
+        "n_train": 3066,
+        "n_val": 1022,
+        "n_test": 1022,
+        "n_features": 21,
+        "train_time": 0.03345918655395508,
+        "infer_time_total": 0.0006299018859863281,
+        "infer_time_per_sample": 6.163423541940588e-07,
+        "val_metrics": {
+            "accuracy": 0.9510763209393346,
+            "auc": 0.838065843621399
+        },
+        "test_metrics": {
+            "accuracy": 0.9500978473581213,
+            "auc": 0.8231069958847737
+        },
+        "feature_importance_top5": [
+            [
+                "num__avg_glucose_level",
+                333
+            ],
+            [
+                "num__bmi",
+                321
+            ],
+            [
+                "num__age",
+                195
+            ],
+            [
+                "cat__work_type_Private",
+                30
+            ],
+            [
+                "cat__smoking_status_never smoked",
+                27
+            ]
+        ]
+    },
+    {
+        "model": "lightgbm",
+        "dataset": "hr_attrition",
+        "task_type": "classification",
+        "n_train": 882,
+        "n_val": 294,
+        "n_test": 294,
+        "n_features": 51,
+        "train_time": 0.02994704246520996,
+        "infer_time_total": 0.00045013427734375,
+        "infer_time_per_sample": 1.5310689705569728e-06,
+        "val_metrics": {
+            "accuracy": 0.8639455782312925,
+            "auc": 0.7739684727366699
+        },
+        "test_metrics": {
+            "accuracy": 0.8469387755102041,
+            "auc": 0.78861228357309
+        },
+        "feature_importance_top5": [
+            [
+                "num__MonthlyIncome",
+                105
+            ],
+            [
+                "num__DistanceFromHome",
+                85
+            ],
+            [
+                "num__Age",
+                81
+            ],
+            [
+                "num__DailyRate",
+                72
+            ],
+            [
+                "num__MonthlyRate",
+                69
+            ]
+        ]
+    }
+]

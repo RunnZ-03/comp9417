@@ -1,0 +1,40 @@
+{
+    "model": "xgboost",
+    "dataset": "superconductivity",
+    "task_type": "regression",
+    "n_train": 12757,
+    "n_val": 4253,
+    "n_test": 4253,
+    "n_features": 81,
+    "train_time": 1.6251933574676514,
+    "infer_time_total": 0.0059909820556640625,
+    "infer_time_per_sample": 1.4086484965116535e-06,
+    "val_metrics": {
+        "rmse": 10.223913929622778
+    },
+    "test_metrics": {
+        "rmse": 9.338226556750787
+    },
+    "feature_importance_top5": [
+        [
+            "num__range_ThermalConductivity",
+            0.747911810874939
+        ],
+        [
+            "num__range_atomic_radius",
+            0.044481903314590454
+        ],
+        [
+            "num__wtd_gmean_ThermalConductivity",
+            0.028923993930220604
+        ],
+        [
+            "num__wtd_std_ElectronAffinity",
+            0.013519846834242344
+        ],
+        [
+            "num__wtd_std_ThermalConductivity",
+            0.012979522347450256
+        ]
+    ]
+}

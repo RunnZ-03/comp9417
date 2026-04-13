@@ -1,0 +1,42 @@
+{
+    "model": "lightgbm",
+    "dataset": "stroke",
+    "task_type": "classification",
+    "n_train": 3066,
+    "n_val": 1022,
+    "n_test": 1022,
+    "n_features": 21,
+    "train_time": 0.03345918655395508,
+    "infer_time_total": 0.0006299018859863281,
+    "infer_time_per_sample": 6.163423541940588e-07,
+    "val_metrics": {
+        "accuracy": 0.9510763209393346,
+        "auc": 0.838065843621399
+    },
+    "test_metrics": {
+        "accuracy": 0.9500978473581213,
+        "auc": 0.8231069958847737
+    },
+    "feature_importance_top5": [
+        [
+            "num__avg_glucose_level",
+            333
+        ],
+        [
+            "num__bmi",
+            321
+        ],
+        [
+            "num__age",
+            195
+        ],
+        [
+            "cat__work_type_Private",
+            30
+        ],
+        [
+            "cat__smoking_status_never smoked",
+            27
+        ]
+    ]
+}

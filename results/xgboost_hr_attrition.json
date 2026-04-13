@@ -1,0 +1,42 @@
+{
+    "model": "xgboost",
+    "dataset": "hr_attrition",
+    "task_type": "classification",
+    "n_train": 882,
+    "n_val": 294,
+    "n_test": 294,
+    "n_features": 51,
+    "train_time": 0.10596299171447754,
+    "infer_time_total": 0.0005030632019042969,
+    "infer_time_per_sample": 1.7110993262050914e-06,
+    "val_metrics": {
+        "accuracy": 0.8707482993197279,
+        "auc": 0.8048066155568955
+    },
+    "test_metrics": {
+        "accuracy": 0.8469387755102041,
+        "auc": 0.7481264536135757
+    },
+    "feature_importance_top5": [
+        [
+            "cat__OverTime_No",
+            0.04786830395460129
+        ],
+        [
+            "num__TotalWorkingYears",
+            0.04402614384889603
+        ],
+        [
+            "cat__OverTime_Yes",
+            0.041512079536914825
+        ],
+        [
+            "num__StockOptionLevel",
+            0.03772689774632454
+        ],
+        [
+            "num__JobLevel",
+            0.03369547054171562
+        ]
+    ]
+}

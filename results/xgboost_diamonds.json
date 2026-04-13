@@ -1,0 +1,40 @@
+{
+    "model": "xgboost",
+    "dataset": "diamonds",
+    "task_type": "regression",
+    "n_train": 32365,
+    "n_val": 10789,
+    "n_test": 10789,
+    "n_features": 26,
+    "train_time": 0.7574100494384766,
+    "infer_time_total": 0.009505033493041992,
+    "infer_time_per_sample": 8.809930014868841e-07,
+    "val_metrics": {
+        "rmse": 557.4383492376481
+    },
+    "test_metrics": {
+        "rmse": 540.4523933251645
+    },
+    "feature_importance_top5": [
+        [
+            "num__y",
+            0.39950159192085266
+        ],
+        [
+            "num__carat",
+            0.1703067272901535
+        ],
+        [
+            "cat__clarity_I1",
+            0.06372728943824768
+        ],
+        [
+            "num__z",
+            0.0602746419608593
+        ],
+        [
+            "cat__clarity_SI2",
+            0.04287967085838318
+        ]
+    ]
+}
