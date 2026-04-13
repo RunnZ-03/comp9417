@@ -5,9 +5,9 @@
     "n_val": 1022,
     "n_test": 1022,
     "n_features": 21,
-    "train_time": 0.2554585933685303,
-    "infer_time_total": 0.0012638568878173828,
-    "infer_time_per_sample": 1.2366505751637797e-06,
+    "train_time": 0.259371280670166,
+    "infer_time_total": 0.0011587142944335938,
+    "infer_time_per_sample": 1.133771325277489e-06,
     "val_metrics": {
         "accuracy": 0.9442270058708415,
         "auc": 0.703425925925926
@@ -16,5 +16,26 @@
         "accuracy": 0.9412915851272016,
         "auc": 0.7605246913580248
     },
-    "feature_importance_top5": "Could not extract AGOP: TypeError('len() of unsized object')"
+    "feature_importance_top5": [
+        [
+            "num__avg_glucose_level",
+            1.0
+        ],
+        [
+            "num__age",
+            0.8289877772331238
+        ],
+        [
+            "num__bmi",
+            0.6750490069389343
+        ],
+        [
+            "cat__work_type_Self-employed",
+            0.029257362708449364
+        ],
+        [
+            "cat__smoking_status_smokes",
+            0.024949871003627777
+        ]
+    ]
 }

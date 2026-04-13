@@ -5,14 +5,35 @@
     "n_val": 10789,
     "n_test": 10789,
     "n_features": 26,
-    "train_time": 246.70974898338318,
-    "infer_time_total": 0.770031213760376,
-    "infer_time_per_sample": 7.137188004081712e-05,
+    "train_time": 247.0694227218628,
+    "infer_time_total": 0.7720804214477539,
+    "infer_time_per_sample": 7.156181494556992e-05,
     "val_metrics": {
         "rmse": 1494.7949566618718
     },
     "test_metrics": {
         "rmse": 1496.723217234009
     },
-    "feature_importance_top5": "Could not extract AGOP: TypeError('len() of unsized object')"
+    "feature_importance_top5": [
+        [
+            "num__y",
+            1.0
+        ],
+        [
+            "num__x",
+            0.9991217255592346
+        ],
+        [
+            "num__carat",
+            0.14441704750061035
+        ],
+        [
+            "num__z",
+            0.10225401818752289
+        ],
+        [
+            "num__depth",
+            0.07276595383882523
+        ]
+    ]
 }

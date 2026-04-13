@@ -6,16 +6,37 @@
         "n_val": 10789,
         "n_test": 10789,
         "n_features": 26,
-        "train_time": 246.70974898338318,
-        "infer_time_total": 0.770031213760376,
-        "infer_time_per_sample": 7.137188004081712e-05,
+        "train_time": 247.0694227218628,
+        "infer_time_total": 0.7720804214477539,
+        "infer_time_per_sample": 7.156181494556992e-05,
         "val_metrics": {
             "rmse": 1494.7949566618718
         },
         "test_metrics": {
             "rmse": 1496.723217234009
         },
-        "feature_importance_top5": "Could not extract AGOP: TypeError('len() of unsized object')"
+        "feature_importance_top5": [
+            [
+                "num__y",
+                1.0
+            ],
+            [
+                "num__x",
+                0.9991217255592346
+            ],
+            [
+                "num__carat",
+                0.14441704750061035
+            ],
+            [
+                "num__z",
+                0.10225401818752289
+            ],
+            [
+                "num__depth",
+                0.07276595383882523
+            ]
+        ]
     },
     {
         "dataset": "superconductivity",
@@ -24,16 +45,37 @@
         "n_val": 4253,
         "n_test": 4253,
         "n_features": 81,
-        "train_time": 1.5808875560760498,
-        "infer_time_total": 0.003954410552978516,
-        "infer_time_per_sample": 9.297932172533543e-07,
+        "train_time": 1.5879302024841309,
+        "infer_time_total": 0.0046672821044921875,
+        "infer_time_per_sample": 1.0974093826692187e-06,
         "val_metrics": {
             "rmse": 9.922950819642857
         },
         "test_metrics": {
             "rmse": 9.453961738831039
         },
-        "feature_importance_top5": "Could not extract AGOP: TypeError('len() of unsized object')"
+        "feature_importance_top5": [
+            [
+                "num__number_of_elements",
+                1.0
+            ],
+            [
+                "num__mean_atomic_mass",
+                1.0
+            ],
+            [
+                "num__wtd_mean_atomic_mass",
+                1.0
+            ],
+            [
+                "num__gmean_atomic_mass",
+                1.0
+            ],
+            [
+                "num__wtd_gmean_atomic_mass",
+                1.0
+            ]
+        ]
     },
     {
         "dataset": "shoppers",
@@ -42,9 +84,9 @@
         "n_val": 2466,
         "n_test": 2466,
         "n_features": 27,
-        "train_time": 0.7018554210662842,
-        "infer_time_total": 0.0018630027770996094,
-        "infer_time_per_sample": 7.554755787103039e-07,
+        "train_time": 0.7101306915283203,
+        "infer_time_total": 0.0017461776733398438,
+        "infer_time_per_sample": 7.081012462854192e-07,
         "val_metrics": {
             "accuracy": 0.8937550689375506,
             "auc": 0.915245550743134
@@ -53,7 +95,28 @@
             "accuracy": 0.8896999188969992,
             "auc": 0.9018330888042527
         },
-        "feature_importance_top5": "Could not extract AGOP: TypeError('len() of unsized object')"
+        "feature_importance_top5": [
+            [
+                "num__PageValues",
+                1.0
+            ],
+            [
+                "num__ExitRates",
+                0.04902525618672371
+            ],
+            [
+                "num__ProductRelated",
+                0.04006770998239517
+            ],
+            [
+                "num__ProductRelated_Duration",
+                0.0344570018351078
+            ],
+            [
+                "num__BounceRates",
+                0.029663318768143654
+            ]
+        ]
     },
     {
         "dataset": "stroke",
@@ -62,9 +125,9 @@
         "n_val": 1022,
         "n_test": 1022,
         "n_features": 21,
-        "train_time": 0.2554585933685303,
-        "infer_time_total": 0.0012638568878173828,
-        "infer_time_per_sample": 1.2366505751637797e-06,
+        "train_time": 0.259371280670166,
+        "infer_time_total": 0.0011587142944335938,
+        "infer_time_per_sample": 1.133771325277489e-06,
         "val_metrics": {
             "accuracy": 0.9442270058708415,
             "auc": 0.703425925925926
@@ -73,7 +136,28 @@
             "accuracy": 0.9412915851272016,
             "auc": 0.7605246913580248
         },
-        "feature_importance_top5": "Could not extract AGOP: TypeError('len() of unsized object')"
+        "feature_importance_top5": [
+            [
+                "num__avg_glucose_level",
+                1.0
+            ],
+            [
+                "num__age",
+                0.8289877772331238
+            ],
+            [
+                "num__bmi",
+                0.6750490069389343
+            ],
+            [
+                "cat__work_type_Self-employed",
+                0.029257362708449364
+            ],
+            [
+                "cat__smoking_status_smokes",
+                0.024949871003627777
+            ]
+        ]
     },
     {
         "dataset": "hr_attrition",
@@ -82,9 +166,9 @@
         "n_val": 294,
         "n_test": 294,
         "n_features": 51,
-        "train_time": 0.07882332801818848,
-        "infer_time_total": 0.001127481460571289,
-        "infer_time_per_sample": 3.834970954324112e-06,
+        "train_time": 0.0766286849975586,
+        "infer_time_total": 0.0010395050048828125,
+        "infer_time_per_sample": 3.5357313091252125e-06,
         "val_metrics": {
             "accuracy": 0.8877551020408163,
             "auc": 0.8251356706003963
@@ -93,6 +177,27 @@
             "accuracy": 0.8673469387755102,
             "auc": 0.7631148247049704
         },
-        "feature_importance_top5": "Could not extract AGOP: TypeError('len() of unsized object')"
+        "feature_importance_top5": [
+            [
+                "cat__OverTime_No",
+                1.0
+            ],
+            [
+                "cat__OverTime_Yes",
+                0.999998152256012
+            ],
+            [
+                "cat__BusinessTravel_Travel_Frequently",
+                0.8246946334838867
+            ],
+            [
+                "num__TotalWorkingYears",
+                0.7461749315261841
+            ],
+            [
+                "cat__BusinessTravel_Non-Travel",
+                0.5848576426506042
+            ]
+        ]
     }
 ]

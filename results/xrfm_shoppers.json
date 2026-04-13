@@ -5,9 +5,9 @@
     "n_val": 2466,
     "n_test": 2466,
     "n_features": 27,
-    "train_time": 0.7018554210662842,
-    "infer_time_total": 0.0018630027770996094,
-    "infer_time_per_sample": 7.554755787103039e-07,
+    "train_time": 0.7101306915283203,
+    "infer_time_total": 0.0017461776733398438,
+    "infer_time_per_sample": 7.081012462854192e-07,
     "val_metrics": {
         "accuracy": 0.8937550689375506,
         "auc": 0.915245550743134
@@ -16,5 +16,26 @@
         "accuracy": 0.8896999188969992,
         "auc": 0.9018330888042527
     },
-    "feature_importance_top5": "Could not extract AGOP: TypeError('len() of unsized object')"
+    "feature_importance_top5": [
+        [
+            "num__PageValues",
+            1.0
+        ],
+        [
+            "num__ExitRates",
+            0.04902525618672371
+        ],
+        [
+            "num__ProductRelated",
+            0.04006770998239517
+        ],
+        [
+            "num__ProductRelated_Duration",
+            0.0344570018351078
+        ],
+        [
+            "num__BounceRates",
+            0.029663318768143654
+        ]
+    ]
 }

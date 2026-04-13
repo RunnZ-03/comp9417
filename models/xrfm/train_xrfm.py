@@ -76,30 +76,32 @@ def build_top5_from_values(values, features):
 
     values = np.array(values)
 
-    # 如果是矩阵，取对角线
+    # 0维：说明是标量，不是 feature importance，直接跳过
+    if values.ndim == 0:
+        return None
+
+    # 2维矩阵
     if values.ndim == 2:
+        # 方阵 -> 取对角线
         if values.shape[0] == values.shape[1]:
             values = np.diag(values)
         else:
-            values = values.flatten()
+            values = values.reshape(-1)
 
-    # 如果是多维，flatten
-    if values.ndim > 1:
-        values = values.flatten()
+    # 更高维或列向量/行向量 -> 拉平
+    if values.ndim >= 1:
+        values = values.reshape(-1)
 
-    # 如果只有一个值但feature很多，重复扩展
-    if len(values) == 1 and len(features) > 1:
-        values = np.repeat(values, len(features))
+    # 还是空的，跳过
+    if values.size == 0:
+        return None
 
-    # 长度不匹配时截断
-    if len(values) != len(features):
-        min_len = min(len(values), len(features))
-        values = values[:min_len]
-        features = features[:min_len]
+    # 如果长度对不上，直接跳过，不报错
+    if values.size != len(features):
+        return None
 
     pairs = list(zip(features, values.tolist()))
     pairs = sorted(pairs, key=lambda x: x[1], reverse=True)
-
     return pairs[:5]
 
 
@@ -110,10 +112,11 @@ def extract_feature_importance(model, features):
     """
     当前 xRFM 版本的 AGOP 信息主要在:
     model.trees[0]["model"]
-    优先尝试:
-    1. diag
-    2. M 的对角线
-    3. agop_best_model
+
+    注意：
+    - inner_model.diag 很可能只是一个标志位，不一定是向量
+    - 优先尝试 M
+    - 再尝试 agop_best_model 里的 M / diag
     """
     try:
         if hasattr(model, "trees") and isinstance(model.trees, list) and len(model.trees) > 0:
@@ -122,39 +125,36 @@ def extract_feature_importance(model, features):
             if isinstance(tree0, dict) and "model" in tree0:
                 inner_model = tree0["model"]
 
-                # 1. 优先取 diag
-                if hasattr(inner_model, "diag"):
-                    diag_values = getattr(inner_model, "diag")
-                    result = build_top5_from_values(diag_values, features)
-                    if result is not None:
-                        return result
-
-                # 2. 再取 M 的对角线
+                # 1. 优先尝试 M
                 if hasattr(inner_model, "M"):
-                    M = getattr(inner_model, "M")
-                    result = build_top5_from_values(M, features)
+                    result = build_top5_from_values(getattr(inner_model, "M"), features)
                     if result is not None:
                         return result
 
-                # 3. 再尝试 agop_best_model
+                # 2. 再尝试 agop_best_model
                 if hasattr(inner_model, "agop_best_model"):
                     agop_obj = getattr(inner_model, "agop_best_model")
-
-                    if hasattr(agop_obj, "diag"):
-                        result = build_top5_from_values(getattr(agop_obj, "diag"), features)
-                        if result is not None:
-                            return result
 
                     if hasattr(agop_obj, "M"):
                         result = build_top5_from_values(getattr(agop_obj, "M"), features)
                         if result is not None:
                             return result
 
+                    if hasattr(agop_obj, "diag"):
+                        result = build_top5_from_values(getattr(agop_obj, "diag"), features)
+                        if result is not None:
+                            return result
+
+                # 3. 最后才尝试 diag
+                if hasattr(inner_model, "diag"):
+                    result = build_top5_from_values(getattr(inner_model, "diag"), features)
+                    if result is not None:
+                        return result
+
         return "Could not extract AGOP from model.trees[0]['model']"
 
     except Exception as e:
         return f"Could not extract AGOP: {repr(e)}"
-
 
 # =========================
 # 核心训练函数
