@@ -2,54 +2,97 @@
     {
         "dataset": "diamonds",
         "task_type": "regression",
-        "metrics": {
+        "n_train": 32365,
+        "n_val": 10789,
+        "n_test": 10789,
+        "n_features": 26,
+        "train_time": 247.18565392494202,
+        "infer_time_total": 0.7657670974731445,
+        "infer_time_per_sample": 7.097665191149731e-05,
+        "val_metrics": {
+            "rmse": 1494.7949566618718
+        },
+        "test_metrics": {
             "rmse": 1496.723217234009
         },
-        "train_time": 246.76458978652954,
-        "infer_time_per_sample": 8.574938882390566e-05,
-        "feature_importance_top5": "Could not extract AGOP"
+        "feature_importance_top5": "Could not extract AGOP: no supported method/attribute found"
     },
     {
         "dataset": "superconductivity",
         "task_type": "regression",
-        "metrics": {
+        "n_train": 12757,
+        "n_val": 4253,
+        "n_test": 4253,
+        "n_features": 81,
+        "train_time": 1.5823078155517578,
+        "infer_time_total": 0.00397491455078125,
+        "infer_time_per_sample": 9.346142842184928e-07,
+        "val_metrics": {
+            "rmse": 9.922950819642857
+        },
+        "test_metrics": {
             "rmse": 9.453961738831039
         },
-        "train_time": 1.5825800895690918,
-        "infer_time_per_sample": 1.2261767177729783e-06,
-        "feature_importance_top5": "Could not extract AGOP"
+        "feature_importance_top5": "Could not extract AGOP: no supported method/attribute found"
     },
     {
         "dataset": "shoppers",
         "task_type": "classification",
-        "metrics": {
+        "n_train": 7398,
+        "n_val": 2466,
+        "n_test": 2466,
+        "n_features": 27,
+        "train_time": 0.6883413791656494,
+        "infer_time_total": 0.0017709732055664062,
+        "infer_time_per_sample": 7.181562066368233e-07,
+        "val_metrics": {
+            "accuracy": 0.8937550689375506,
+            "auc": 0.915245550743134
+        },
+        "test_metrics": {
             "accuracy": 0.8896999188969992,
             "auc": 0.9018330888042527
         },
-        "train_time": 0.7093820571899414,
-        "infer_time_per_sample": 1.7012606185331446e-05,
-        "feature_importance_top5": "Could not extract AGOP"
+        "feature_importance_top5": "Could not extract AGOP: no supported method/attribute found"
     },
     {
         "dataset": "stroke",
         "task_type": "classification",
-        "metrics": {
+        "n_train": 3066,
+        "n_val": 1022,
+        "n_test": 1022,
+        "n_features": 21,
+        "train_time": 0.25910282135009766,
+        "infer_time_total": 0.001020669937133789,
+        "infer_time_per_sample": 9.986985686240597e-07,
+        "val_metrics": {
+            "accuracy": 0.9442270058708415,
+            "auc": 0.703425925925926
+        },
+        "test_metrics": {
             "accuracy": 0.9412915851272016,
             "auc": 0.7605246913580248
         },
-        "train_time": 0.260939359664917,
-        "infer_time_per_sample": 1.3761557711547136e-06,
-        "feature_importance_top5": "Could not extract AGOP"
+        "feature_importance_top5": "Could not extract AGOP: no supported method/attribute found"
     },
     {
         "dataset": "hr_attrition",
         "task_type": "classification",
-        "metrics": {
+        "n_train": 882,
+        "n_val": 294,
+        "n_test": 294,
+        "n_features": 51,
+        "train_time": 0.07377433776855469,
+        "infer_time_total": 0.0009703636169433594,
+        "infer_time_per_sample": 3.300556520215508e-06,
+        "val_metrics": {
+            "accuracy": 0.8877551020408163,
+            "auc": 0.8251356706003963
+        },
+        "test_metrics": {
             "accuracy": 0.8673469387755102,
             "auc": 0.7631148247049704
         },
-        "train_time": 0.07224655151367188,
-        "infer_time_per_sample": 3.6898113432384673e-06,
-        "feature_importance_top5": "Could not extract AGOP"
+        "feature_importance_top5": "Could not extract AGOP: no supported method/attribute found"
     }
 ]

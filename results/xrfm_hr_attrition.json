@@ -1,11 +1,20 @@
 {
     "dataset": "hr_attrition",
     "task_type": "classification",
-    "metrics": {
+    "n_train": 882,
+    "n_val": 294,
+    "n_test": 294,
+    "n_features": 51,
+    "train_time": 0.07377433776855469,
+    "infer_time_total": 0.0009703636169433594,
+    "infer_time_per_sample": 3.300556520215508e-06,
+    "val_metrics": {
+        "accuracy": 0.8877551020408163,
+        "auc": 0.8251356706003963
+    },
+    "test_metrics": {
         "accuracy": 0.8673469387755102,
         "auc": 0.7631148247049704
     },
-    "train_time": 0.07224655151367188,
-    "infer_time_per_sample": 3.6898113432384673e-06,
-    "feature_importance_top5": "Could not extract AGOP"
+    "feature_importance_top5": "Could not extract AGOP: no supported method/attribute found"
 }

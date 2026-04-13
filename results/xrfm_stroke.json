@@ -1,11 +1,20 @@
 {
     "dataset": "stroke",
     "task_type": "classification",
-    "metrics": {
+    "n_train": 3066,
+    "n_val": 1022,
+    "n_test": 1022,
+    "n_features": 21,
+    "train_time": 0.25910282135009766,
+    "infer_time_total": 0.001020669937133789,
+    "infer_time_per_sample": 9.986985686240597e-07,
+    "val_metrics": {
+        "accuracy": 0.9442270058708415,
+        "auc": 0.703425925925926
+    },
+    "test_metrics": {
         "accuracy": 0.9412915851272016,
         "auc": 0.7605246913580248
     },
-    "train_time": 0.260939359664917,
-    "infer_time_per_sample": 1.3761557711547136e-06,
-    "feature_importance_top5": "Could not extract AGOP"
+    "feature_importance_top5": "Could not extract AGOP: no supported method/attribute found"
 }

@@ -1,11 +1,20 @@
 {
     "dataset": "shoppers",
     "task_type": "classification",
-    "metrics": {
+    "n_train": 7398,
+    "n_val": 2466,
+    "n_test": 2466,
+    "n_features": 27,
+    "train_time": 0.6883413791656494,
+    "infer_time_total": 0.0017709732055664062,
+    "infer_time_per_sample": 7.181562066368233e-07,
+    "val_metrics": {
+        "accuracy": 0.8937550689375506,
+        "auc": 0.915245550743134
+    },
+    "test_metrics": {
         "accuracy": 0.8896999188969992,
         "auc": 0.9018330888042527
     },
-    "train_time": 0.7093820571899414,
-    "infer_time_per_sample": 1.7012606185331446e-05,
-    "feature_importance_top5": "Could not extract AGOP"
+    "feature_importance_top5": "Could not extract AGOP: no supported method/attribute found"
 }
