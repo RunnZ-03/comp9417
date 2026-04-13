@@ -5,9 +5,9 @@
     "n_val": 1022,
     "n_test": 1022,
     "n_features": 21,
-    "train_time": 0.2685666084289551,
-    "infer_time_total": 0.0011310577392578125,
-    "infer_time_per_sample": 1.106710116690619e-06,
+    "train_time": 0.2554585933685303,
+    "infer_time_total": 0.0012638568878173828,
+    "infer_time_per_sample": 1.2366505751637797e-06,
     "val_metrics": {
         "accuracy": 0.9442270058708415,
         "auc": 0.703425925925926
@@ -16,5 +16,5 @@
         "accuracy": 0.9412915851272016,
         "auc": 0.7605246913580248
     },
-    "feature_importance_top5": "AGOP length mismatch: got 1, expected 21"
+    "feature_importance_top5": "Could not extract AGOP: TypeError('len() of unsized object')"
 }

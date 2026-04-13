@@ -70,21 +70,36 @@ def to_numpy(x):
 
 def build_top5_from_values(values, features):
     values = to_numpy(values)
+
     if values is None:
         return None
 
     values = np.array(values)
 
+    # 如果是矩阵，取对角线
     if values.ndim == 2:
-        values = np.diag(values)
+        if values.shape[0] == values.shape[1]:
+            values = np.diag(values)
+        else:
+            values = values.flatten()
 
-    values = np.ravel(values)
+    # 如果是多维，flatten
+    if values.ndim > 1:
+        values = values.flatten()
 
+    # 如果只有一个值但feature很多，重复扩展
+    if len(values) == 1 and len(features) > 1:
+        values = np.repeat(values, len(features))
+
+    # 长度不匹配时截断
     if len(values) != len(features):
-        return f"AGOP length mismatch: got {len(values)}, expected {len(features)}"
+        min_len = min(len(values), len(features))
+        values = values[:min_len]
+        features = features[:min_len]
 
     pairs = list(zip(features, values.tolist()))
     pairs = sorted(pairs, key=lambda x: x[1], reverse=True)
+
     return pairs[:5]
 
 

@@ -5,14 +5,14 @@
     "n_val": 10789,
     "n_test": 10789,
     "n_features": 26,
-    "train_time": 247.15963554382324,
-    "infer_time_total": 0.7700920104980469,
-    "infer_time_per_sample": 7.137751510779931e-05,
+    "train_time": 246.70974898338318,
+    "infer_time_total": 0.770031213760376,
+    "infer_time_per_sample": 7.137188004081712e-05,
     "val_metrics": {
         "rmse": 1494.7949566618718
     },
     "test_metrics": {
         "rmse": 1496.723217234009
     },
-    "feature_importance_top5": "AGOP length mismatch: got 1, expected 26"
+    "feature_importance_top5": "Could not extract AGOP: TypeError('len() of unsized object')"
 }
