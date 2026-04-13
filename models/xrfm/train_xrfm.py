@@ -35,9 +35,7 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 # 评估函数
 # =========================
 def evaluate_classification(y_true, y_pred, y_prob=None) -> Dict[str, Any]:
-    result = {
-        "accuracy": float(accuracy_score(y_true, y_pred))
-    }
+    result = {"accuracy": float(accuracy_score(y_true, y_pred))}
 
     if y_prob is not None:
         try:
@@ -56,60 +54,88 @@ def evaluate_regression(y_true, y_pred) -> Dict[str, Any]:
 
 
 # =========================
-# 安全提取 AGOP / feature importance
+# 工具函数
+# =========================
+def to_numpy(x):
+    if x is None:
+        return None
+    if hasattr(x, "detach"):
+        return x.detach().cpu().numpy()
+    if hasattr(x, "cpu"):
+        return x.cpu().numpy()
+    if hasattr(x, "tolist"):
+        return np.array(x.tolist())
+    return np.array(x)
+
+
+def build_top5_from_values(values, features):
+    values = to_numpy(values)
+    if values is None:
+        return None
+
+    values = np.array(values)
+
+    if values.ndim == 2:
+        values = np.diag(values)
+
+    values = np.ravel(values)
+
+    if len(values) != len(features):
+        return f"AGOP length mismatch: got {len(values)}, expected {len(features)}"
+
+    pairs = list(zip(features, values.tolist()))
+    pairs = sorted(pairs, key=lambda x: x[1], reverse=True)
+    return pairs[:5]
+
+
+# =========================
+# AGOP / Feature Importance 提取
 # =========================
 def extract_feature_importance(model, features):
     """
-    尝试多种方式提取 feature importance / AGOP diagonal。
-    如果失败，返回错误信息，便于后续调试。
+    当前 xRFM 版本的 AGOP 信息主要在:
+    model.trees[0]["model"]
+    优先尝试:
+    1. diag
+    2. M 的对角线
+    3. agop_best_model
     """
     try:
-        # 方式 1：如果模型直接有 get_feature_importance
-        if hasattr(model, "get_feature_importance"):
-            values = model.get_feature_importance()
+        if hasattr(model, "trees") and isinstance(model.trees, list) and len(model.trees) > 0:
+            tree0 = model.trees[0]
 
-            if hasattr(values, "detach"):
-                values = values.detach().cpu().numpy()
-            elif hasattr(values, "cpu"):
-                values = values.cpu().numpy()
-            elif hasattr(values, "tolist"):
-                values = np.array(values.tolist())
-            else:
-                values = np.array(values)
+            if isinstance(tree0, dict) and "model" in tree0:
+                inner_model = tree0["model"]
 
-            values = np.ravel(values)
-            pairs = list(zip(features, values))
-            pairs = sorted(pairs, key=lambda x: x[1], reverse=True)
-            return pairs[:5]
+                # 1. 优先取 diag
+                if hasattr(inner_model, "diag"):
+                    diag_values = getattr(inner_model, "diag")
+                    result = build_top5_from_values(diag_values, features)
+                    if result is not None:
+                        return result
 
-        # 方式 2：如果模型对象里暴露了 agop / feature_importance 之类属性
-        candidate_attrs = [
-            "feature_importance",
-            "feature_importances_",
-            "agop",
-            "agop_diag",
-            "diag_importance"
-        ]
+                # 2. 再取 M 的对角线
+                if hasattr(inner_model, "M"):
+                    M = getattr(inner_model, "M")
+                    result = build_top5_from_values(M, features)
+                    if result is not None:
+                        return result
 
-        for attr in candidate_attrs:
-            if hasattr(model, attr):
-                values = getattr(model, attr)
+                # 3. 再尝试 agop_best_model
+                if hasattr(inner_model, "agop_best_model"):
+                    agop_obj = getattr(inner_model, "agop_best_model")
 
-                if hasattr(values, "detach"):
-                    values = values.detach().cpu().numpy()
-                elif hasattr(values, "cpu"):
-                    values = values.cpu().numpy()
-                elif hasattr(values, "tolist"):
-                    values = np.array(values.tolist())
-                else:
-                    values = np.array(values)
+                    if hasattr(agop_obj, "diag"):
+                        result = build_top5_from_values(getattr(agop_obj, "diag"), features)
+                        if result is not None:
+                            return result
 
-                values = np.ravel(values)
-                pairs = list(zip(features, values))
-                pairs = sorted(pairs, key=lambda x: x[1], reverse=True)
-                return pairs[:5]
+                    if hasattr(agop_obj, "M"):
+                        result = build_top5_from_values(getattr(agop_obj, "M"), features)
+                        if result is not None:
+                            return result
 
-        return "Could not extract AGOP: no supported method/attribute found"
+        return "Could not extract AGOP from model.trees[0]['model']"
 
     except Exception as e:
         return f"Could not extract AGOP: {repr(e)}"
@@ -127,8 +153,9 @@ def train_and_evaluate(dataset_name: str, task_type: str) -> Dict[str, Any]:
 
     # 初始化模型
     model = xRFM(use_diag=True, device=DEVICE)
+    print(model)
 
-    # 可选：GPU 时做一点保守设置
+    # GPU 保守优化
     try:
         if DEVICE == "cuda" and hasattr(model, "rfm_params"):
             if "fit" in model.rfm_params:
@@ -162,7 +189,6 @@ def train_and_evaluate(dataset_name: str, task_type: str) -> Dict[str, Any]:
                 val_prob_raw = model.predict_proba(X_val)
                 test_prob_raw = model.predict_proba(X_test)
 
-                # 二分类取正类概率
                 if len(np.shape(val_prob_raw)) == 2 and np.shape(val_prob_raw)[1] >= 2:
                     val_prob = val_prob_raw[:, 1]
                     test_prob = test_prob_raw[:, 1]
@@ -176,10 +202,10 @@ def train_and_evaluate(dataset_name: str, task_type: str) -> Dict[str, Any]:
         val_metrics = evaluate_regression(y_val, val_pred)
         test_metrics = evaluate_regression(y_test, test_pred)
 
-    # AGOP / 重要性
+    # AGOP / feature importance
     feature_importance_top5 = extract_feature_importance(model, features)
 
-    # 封装结果
+    # 结果封装
     result_dict = {
         "dataset": dataset_name,
         "task_type": task_type,
@@ -192,7 +218,7 @@ def train_and_evaluate(dataset_name: str, task_type: str) -> Dict[str, Any]:
         "infer_time_per_sample": float(infer_time_per_sample),
         "val_metrics": val_metrics,
         "test_metrics": test_metrics,
-        "feature_importance_top5": feature_importance_top5
+        "feature_importance_top5": feature_importance_top5,
     }
 
     # 保存单个结果
@@ -203,7 +229,7 @@ def train_and_evaluate(dataset_name: str, task_type: str) -> Dict[str, Any]:
     with open(save_path, "w", encoding="utf-8") as f:
         json.dump(result_dict, f, indent=4, ensure_ascii=False)
 
-    print("=== Result ===")
+    print("\n=== Result ===")
     print(f"Train time: {train_time:.4f} s")
     print(f"Inference total: {infer_time_total:.6f} s")
     print(f"Inference per sample: {infer_time_per_sample:.8f} s")
@@ -216,7 +242,7 @@ def train_and_evaluate(dataset_name: str, task_type: str) -> Dict[str, Any]:
 
 
 if __name__ == "__main__":
-    # 先跑一个测试
-    result = train_and_evaluate("stroke", "classification")
+    # 默认单独测试一个
+    result = train_and_evaluate("diamonds", "regression")
     print("\nFinal result:")
     print(json.dumps(result, indent=4, ensure_ascii=False))

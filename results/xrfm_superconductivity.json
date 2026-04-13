@@ -5,14 +5,14 @@
     "n_val": 4253,
     "n_test": 4253,
     "n_features": 81,
-    "train_time": 1.5823078155517578,
-    "infer_time_total": 0.00397491455078125,
-    "infer_time_per_sample": 9.346142842184928e-07,
+    "train_time": 1.6084120273590088,
+    "infer_time_total": 0.00449371337890625,
+    "infer_time_per_sample": 1.0565984902201388e-06,
     "val_metrics": {
         "rmse": 9.922950819642857
     },
     "test_metrics": {
         "rmse": 9.453961738831039
     },
-    "feature_importance_top5": "Could not extract AGOP: no supported method/attribute found"
+    "feature_importance_top5": "AGOP length mismatch: got 1, expected 81"
 }

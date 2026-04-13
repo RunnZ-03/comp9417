@@ -12,22 +12,21 @@ from comp9417.models.xrfm.train_xrfm import train_and_evaluate
 
 
 def run_all():
-    # 对应 data_loader.py 里的数据集名字
     tasks = [
         ("diamonds", "regression"),
         ("superconductivity", "regression"),
         ("shoppers", "classification"),
         ("stroke", "classification"),
-        ("hr_attrition", "classification")
+        ("hr_attrition", "classification"),
     ]
 
     summary = []
 
     for dataset_name, task_type in tasks:
         try:
-            print(f"\n==============================")
+            print("\n==============================")
             print(f"开始处理: {dataset_name} ({task_type})")
-            print(f"==============================")
+            print("==============================")
 
             result = train_and_evaluate(dataset_name, task_type)
             summary.append(result)
@@ -43,7 +42,6 @@ def run_all():
                 "error": repr(e)
             })
 
-    # 保存总汇总
     results_dir = os.path.join(PROJECT_PARENT, "comp9417", "results")
     os.makedirs(results_dir, exist_ok=True)
 

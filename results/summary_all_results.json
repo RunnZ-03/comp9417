@@ -6,16 +6,16 @@
         "n_val": 10789,
         "n_test": 10789,
         "n_features": 26,
-        "train_time": 247.18565392494202,
-        "infer_time_total": 0.7657670974731445,
-        "infer_time_per_sample": 7.097665191149731e-05,
+        "train_time": 247.15963554382324,
+        "infer_time_total": 0.7700920104980469,
+        "infer_time_per_sample": 7.137751510779931e-05,
         "val_metrics": {
             "rmse": 1494.7949566618718
         },
         "test_metrics": {
             "rmse": 1496.723217234009
         },
-        "feature_importance_top5": "Could not extract AGOP: no supported method/attribute found"
+        "feature_importance_top5": "AGOP length mismatch: got 1, expected 26"
     },
     {
         "dataset": "superconductivity",
@@ -24,16 +24,16 @@
         "n_val": 4253,
         "n_test": 4253,
         "n_features": 81,
-        "train_time": 1.5823078155517578,
-        "infer_time_total": 0.00397491455078125,
-        "infer_time_per_sample": 9.346142842184928e-07,
+        "train_time": 1.6084120273590088,
+        "infer_time_total": 0.00449371337890625,
+        "infer_time_per_sample": 1.0565984902201388e-06,
         "val_metrics": {
             "rmse": 9.922950819642857
         },
         "test_metrics": {
             "rmse": 9.453961738831039
         },
-        "feature_importance_top5": "Could not extract AGOP: no supported method/attribute found"
+        "feature_importance_top5": "AGOP length mismatch: got 1, expected 81"
     },
     {
         "dataset": "shoppers",
@@ -42,9 +42,9 @@
         "n_val": 2466,
         "n_test": 2466,
         "n_features": 27,
-        "train_time": 0.6883413791656494,
-        "infer_time_total": 0.0017709732055664062,
-        "infer_time_per_sample": 7.181562066368233e-07,
+        "train_time": 0.7142698764801025,
+        "infer_time_total": 0.0017135143280029297,
+        "infer_time_per_sample": 6.948557696686658e-07,
         "val_metrics": {
             "accuracy": 0.8937550689375506,
             "auc": 0.915245550743134
@@ -53,7 +53,7 @@
             "accuracy": 0.8896999188969992,
             "auc": 0.9018330888042527
         },
-        "feature_importance_top5": "Could not extract AGOP: no supported method/attribute found"
+        "feature_importance_top5": "AGOP length mismatch: got 1, expected 27"
     },
     {
         "dataset": "stroke",
@@ -62,9 +62,9 @@
         "n_val": 1022,
         "n_test": 1022,
         "n_features": 21,
-        "train_time": 0.25910282135009766,
-        "infer_time_total": 0.001020669937133789,
-        "infer_time_per_sample": 9.986985686240597e-07,
+        "train_time": 0.2685666084289551,
+        "infer_time_total": 0.0011310577392578125,
+        "infer_time_per_sample": 1.106710116690619e-06,
         "val_metrics": {
             "accuracy": 0.9442270058708415,
             "auc": 0.703425925925926
@@ -73,7 +73,7 @@
             "accuracy": 0.9412915851272016,
             "auc": 0.7605246913580248
         },
-        "feature_importance_top5": "Could not extract AGOP: no supported method/attribute found"
+        "feature_importance_top5": "AGOP length mismatch: got 1, expected 21"
     },
     {
         "dataset": "hr_attrition",
@@ -82,9 +82,9 @@
         "n_val": 294,
         "n_test": 294,
         "n_features": 51,
-        "train_time": 0.07377433776855469,
-        "infer_time_total": 0.0009703636169433594,
-        "infer_time_per_sample": 3.300556520215508e-06,
+        "train_time": 0.07558655738830566,
+        "infer_time_total": 0.0010008811950683594,
+        "infer_time_per_sample": 3.404357806354964e-06,
         "val_metrics": {
             "accuracy": 0.8877551020408163,
             "auc": 0.8251356706003963
@@ -93,6 +93,6 @@
             "accuracy": 0.8673469387755102,
             "auc": 0.7631148247049704
         },
-        "feature_importance_top5": "Could not extract AGOP: no supported method/attribute found"
+        "feature_importance_top5": "AGOP length mismatch: got 1, expected 51"
     }
 ]
