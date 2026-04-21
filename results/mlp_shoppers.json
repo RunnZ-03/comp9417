@@ -1,0 +1,21 @@
+{
+    "model": "mlp",
+    "dataset": "shoppers",
+    "task_type": "classification",
+    "n_train": 7398,
+    "n_val": 2466,
+    "n_test": 2466,
+    "n_features": 29,
+    "train_time": 1.1656279563903809,
+    "infer_time_total": 0.0024166107177734375,
+    "infer_time_per_sample": 9.799719050176145e-07,
+    "val_metrics": {
+        "accuracy": 0.9022708840227088,
+        "auc": 0.9119305905879751
+    },
+    "test_metrics": {
+        "accuracy": 0.894566098945661,
+        "auc": 0.9040244294600597
+    },
+    "feature_importance_top5": null
+}

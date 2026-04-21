@@ -1,0 +1,19 @@
+{
+    "model": "mlp",
+    "dataset": "diamonds",
+    "task_type": "regression",
+    "n_train": 32365,
+    "n_val": 10789,
+    "n_test": 10789,
+    "n_features": 26,
+    "train_time": 8.2926607131958,
+    "infer_time_total": 0.007992029190063477,
+    "infer_time_per_sample": 7.407571776868548e-07,
+    "val_metrics": {
+        "rmse": 1248.3606128874471
+    },
+    "test_metrics": {
+        "rmse": 779.0455324505175
+    },
+    "feature_importance_top5": null
+}

@@ -6,9 +6,9 @@
     "n_val": 1022,
     "n_test": 1022,
     "n_features": 21,
-    "train_time": 0.03345918655395508,
-    "infer_time_total": 0.0006299018859863281,
-    "infer_time_per_sample": 6.163423541940588e-07,
+    "train_time": 0.09456419944763184,
+    "infer_time_total": 0.002092123031616211,
+    "infer_time_per_sample": 2.047087115084355e-06,
     "val_metrics": {
         "accuracy": 0.9510763209393346,
         "auc": 0.838065843621399

@@ -7,35 +7,35 @@
         "n_val": 10789,
         "n_test": 10789,
         "n_features": 26,
-        "train_time": 0.7574100494384766,
-        "infer_time_total": 0.009505033493041992,
-        "infer_time_per_sample": 8.809930014868841e-07,
+        "train_time": 1.4473228454589844,
+        "infer_time_total": 0.01997685432434082,
+        "infer_time_per_sample": 1.8515946171416091e-06,
         "val_metrics": {
-            "rmse": 557.4383492376481
+            "rmse": 545.246876423882
         },
         "test_metrics": {
-            "rmse": 540.4523933251645
+            "rmse": 544.6759070768597
         },
         "feature_importance_top5": [
             [
                 "num__y",
-                0.39950159192085266
+                0.3539279103279114
             ],
             [
                 "num__carat",
-                0.1703067272901535
+                0.18282915651798248
             ],
             [
                 "cat__clarity_I1",
-                0.06372728943824768
-            ],
-            [
-                "num__z",
-                0.0602746419608593
+                0.07943902164697647
             ],
             [
                 "cat__clarity_SI2",
-                0.04287967085838318
+                0.050301700830459595
+            ],
+            [
+                "cat__clarity_IF",
+                0.045439463108778
             ]
         ]
     },
@@ -47,35 +47,35 @@
         "n_val": 4253,
         "n_test": 4253,
         "n_features": 81,
-        "train_time": 1.6251933574676514,
-        "infer_time_total": 0.0059909820556640625,
-        "infer_time_per_sample": 1.4086484965116535e-06,
+        "train_time": 3.3969600200653076,
+        "infer_time_total": 0.009023904800415039,
+        "infer_time_per_sample": 2.121773994924768e-06,
         "val_metrics": {
-            "rmse": 10.223913929622778
+            "rmse": 10.189372611719488
         },
         "test_metrics": {
-            "rmse": 9.338226556750787
+            "rmse": 9.301672727542474
         },
         "feature_importance_top5": [
             [
                 "num__range_ThermalConductivity",
-                0.747911810874939
+                0.770147442817688
             ],
             [
                 "num__range_atomic_radius",
-                0.044481903314590454
+                0.04874201491475105
             ],
             [
                 "num__wtd_gmean_ThermalConductivity",
-                0.028923993930220604
+                0.02798336371779442
+            ],
+            [
+                "num__std_atomic_mass",
+                0.010143421590328217
             ],
             [
                 "num__wtd_std_ElectronAffinity",
-                0.013519846834242344
-            ],
-            [
-                "num__wtd_std_ThermalConductivity",
-                0.012979522347450256
+                0.009789186529815197
             ]
         ]
     },
@@ -87,37 +87,37 @@
         "n_val": 2466,
         "n_test": 2466,
         "n_features": 29,
-        "train_time": 0.12277507781982422,
-        "infer_time_total": 0.004649162292480469,
-        "infer_time_per_sample": 1.885305065888268e-06,
+        "train_time": 0.24576067924499512,
+        "infer_time_total": 0.0035431385040283203,
+        "infer_time_per_sample": 1.4367958248290026e-06,
         "val_metrics": {
-            "accuracy": 0.9075425790754258,
-            "auc": 0.9413582418024139
+            "accuracy": 0.910786699107867,
+            "auc": 0.9424661595200531
         },
         "test_metrics": {
-            "accuracy": 0.9022708840227088,
-            "auc": 0.9300692888223412
+            "accuracy": 0.9030819140308192,
+            "auc": 0.9306420898192159
         },
         "feature_importance_top5": [
             [
                 "num__PageValues",
-                0.2942504584789276
+                0.32653382420539856
             ],
             [
                 "cat__Month_Nov",
-                0.07999274134635925
+                0.07894991338253021
             ],
             [
                 "cat__Month_May",
-                0.05745093151926994
+                0.04767826572060585
             ],
             [
                 "cat__Month_Mar",
-                0.05072915554046631
+                0.04457668587565422
             ],
             [
-                "num__ExitRates",
-                0.03211117535829544
+                "cat__Month_Sep",
+                0.033222176134586334
             ]
         ]
     },
@@ -129,37 +129,37 @@
         "n_val": 1022,
         "n_test": 1022,
         "n_features": 21,
-        "train_time": 0.04897117614746094,
-        "infer_time_total": 0.0005280971527099609,
-        "infer_time_per_sample": 5.167291122406663e-07,
+        "train_time": 0.1371164321899414,
+        "infer_time_total": 0.0010852813720703125,
+        "infer_time_per_sample": 1.0619191507537305e-06,
         "val_metrics": {
             "accuracy": 0.9510763209393346,
-            "auc": 0.8481069958847737
+            "auc": 0.8404938271604938
         },
         "test_metrics": {
-            "accuracy": 0.9500978473581213,
-            "auc": 0.8342386831275721
+            "accuracy": 0.949119373776908,
+            "auc": 0.8388477366255144
         },
         "feature_importance_top5": [
             [
                 "num__age",
-                0.12138362973928452
+                0.13480086624622345
             ],
             [
-                "cat__ever_married_No",
-                0.06595909595489502
+                "cat__ever_married_Yes",
+                0.07314151525497437
             ],
             [
-                "num__heart_disease",
-                0.06114639714360237
+                "cat__smoking_status_smokes",
+                0.06315024942159653
             ],
             [
                 "num__hypertension",
-                0.06112651526927948
+                0.061981286853551865
             ],
             [
                 "cat__work_type_children",
-                0.05985848605632782
+                0.05885351821780205
             ]
         ]
     },
@@ -171,37 +171,37 @@
         "n_val": 294,
         "n_test": 294,
         "n_features": 51,
-        "train_time": 0.10596299171447754,
-        "infer_time_total": 0.0005030632019042969,
-        "infer_time_per_sample": 1.7110993262050914e-06,
+        "train_time": 0.0938568115234375,
+        "infer_time_total": 0.0008809566497802734,
+        "infer_time_per_sample": 2.9964511897288213e-06,
         "val_metrics": {
             "accuracy": 0.8707482993197279,
-            "auc": 0.8048066155568955
+            "auc": 0.7820656387285727
         },
         "test_metrics": {
-            "accuracy": 0.8469387755102041,
-            "auc": 0.7481264536135757
+            "accuracy": 0.8571428571428571,
+            "auc": 0.7551899388405547
         },
         "feature_importance_top5": [
             [
-                "cat__OverTime_No",
-                0.04786830395460129
-            ],
-            [
-                "num__TotalWorkingYears",
-                0.04402614384889603
-            ],
-            [
                 "cat__OverTime_Yes",
-                0.041512079536914825
+                0.05522393435239792
             ],
             [
                 "num__StockOptionLevel",
-                0.03772689774632454
+                0.041386667639017105
             ],
             [
-                "num__JobLevel",
-                0.03369547054171562
+                "cat__OverTime_No",
+                0.04055892676115036
+            ],
+            [
+                "num__TotalWorkingYears",
+                0.03327879682183266
+            ],
+            [
+                "cat__JobRole_Sales Executive",
+                0.03129070997238159
             ]
         ]
     },
@@ -213,14 +213,14 @@
         "n_val": 10789,
         "n_test": 10789,
         "n_features": 26,
-        "train_time": 0.3246462345123291,
-        "infer_time_total": 0.027217864990234375,
-        "infer_time_per_sample": 2.5227421438719413e-06,
+        "train_time": 0.7558760643005371,
+        "infer_time_total": 0.020757198333740234,
+        "infer_time_per_sample": 1.9239223592307197e-06,
         "val_metrics": {
             "rmse": 551.5198313803555
         },
         "test_metrics": {
-            "rmse": 535.9882106651397
+            "rmse": 535.9882106651398
         },
         "feature_importance_top5": [
             [
@@ -253,9 +253,9 @@
         "n_val": 4253,
         "n_test": 4253,
         "n_features": 81,
-        "train_time": 0.9586331844329834,
-        "infer_time_total": 0.02910017967224121,
-        "infer_time_per_sample": 6.8422712608138285e-06,
+        "train_time": 1.9196350574493408,
+        "infer_time_total": 0.03220558166503906,
+        "infer_time_per_sample": 7.572438670359525e-06,
         "val_metrics": {
             "rmse": 9.935165928426102
         },
@@ -293,9 +293,9 @@
         "n_val": 2466,
         "n_test": 2466,
         "n_features": 29,
-        "train_time": 0.09342503547668457,
-        "infer_time_total": 0.0030770301818847656,
-        "infer_time_per_sample": 1.2477819066848197e-06,
+        "train_time": 0.2736320495605469,
+        "infer_time_total": 0.003900289535522461,
+        "infer_time_per_sample": 1.58162592681365e-06,
         "val_metrics": {
             "accuracy": 0.910786699107867,
             "auc": 0.9431105606415372
@@ -335,9 +335,9 @@
         "n_val": 1022,
         "n_test": 1022,
         "n_features": 21,
-        "train_time": 0.03345918655395508,
-        "infer_time_total": 0.0006299018859863281,
-        "infer_time_per_sample": 6.163423541940588e-07,
+        "train_time": 0.09456419944763184,
+        "infer_time_total": 0.002092123031616211,
+        "infer_time_per_sample": 2.047087115084355e-06,
         "val_metrics": {
             "accuracy": 0.9510763209393346,
             "auc": 0.838065843621399
@@ -377,9 +377,9 @@
         "n_val": 294,
         "n_test": 294,
         "n_features": 51,
-        "train_time": 0.02994704246520996,
-        "infer_time_total": 0.00045013427734375,
-        "infer_time_per_sample": 1.5310689705569728e-06,
+        "train_time": 0.11115789413452148,
+        "infer_time_total": 0.002201080322265625,
+        "infer_time_per_sample": 7.4866677628082486e-06,
         "val_metrics": {
             "accuracy": 0.8639455782312925,
             "auc": 0.7739684727366699

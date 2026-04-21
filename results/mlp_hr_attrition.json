@@ -1,0 +1,21 @@
+{
+    "model": "mlp",
+    "dataset": "hr_attrition",
+    "task_type": "classification",
+    "n_train": 882,
+    "n_val": 294,
+    "n_test": 294,
+    "n_features": 51,
+    "train_time": 0.16402006149291992,
+    "infer_time_total": 0.00041794776916503906,
+    "infer_time_per_sample": 1.4215910515817654e-06,
+    "val_metrics": {
+        "accuracy": 0.8673469387755102,
+        "auc": 0.771470410888104
+    },
+    "test_metrics": {
+        "accuracy": 0.8605442176870748,
+        "auc": 0.7625118442587648
+    },
+    "feature_importance_top5": null
+}

@@ -1,0 +1,103 @@
+[
+    {
+        "model": "mlp",
+        "dataset": "diamonds",
+        "task_type": "regression",
+        "n_train": 32365,
+        "n_val": 10789,
+        "n_test": 10789,
+        "n_features": 26,
+        "train_time": 8.2926607131958,
+        "infer_time_total": 0.007992029190063477,
+        "infer_time_per_sample": 7.407571776868548e-07,
+        "val_metrics": {
+            "rmse": 1248.3606128874471
+        },
+        "test_metrics": {
+            "rmse": 779.0455324505175
+        },
+        "feature_importance_top5": null
+    },
+    {
+        "model": "mlp",
+        "dataset": "superconductivity",
+        "task_type": "regression",
+        "n_train": 12757,
+        "n_val": 4253,
+        "n_test": 4253,
+        "n_features": 81,
+        "train_time": 9.637189388275146,
+        "infer_time_total": 0.0023806095123291016,
+        "infer_time_per_sample": 5.597482982198687e-07,
+        "val_metrics": {
+            "rmse": 12.391107393552327
+        },
+        "test_metrics": {
+            "rmse": 11.942374933991363
+        },
+        "feature_importance_top5": null
+    },
+    {
+        "model": "mlp",
+        "dataset": "shoppers",
+        "task_type": "classification",
+        "n_train": 7398,
+        "n_val": 2466,
+        "n_test": 2466,
+        "n_features": 29,
+        "train_time": 1.1656279563903809,
+        "infer_time_total": 0.0024166107177734375,
+        "infer_time_per_sample": 9.799719050176145e-07,
+        "val_metrics": {
+            "accuracy": 0.9022708840227088,
+            "auc": 0.9119305905879751
+        },
+        "test_metrics": {
+            "accuracy": 0.894566098945661,
+            "auc": 0.9040244294600597
+        },
+        "feature_importance_top5": null
+    },
+    {
+        "model": "mlp",
+        "dataset": "stroke",
+        "task_type": "classification",
+        "n_train": 3066,
+        "n_val": 1022,
+        "n_test": 1022,
+        "n_features": 21,
+        "train_time": 0.25603699684143066,
+        "infer_time_total": 0.0013360977172851562,
+        "infer_time_per_sample": 1.3073363182829317e-06,
+        "val_metrics": {
+            "accuracy": 0.9510763209393346,
+            "auc": 0.2710288065843621
+        },
+        "test_metrics": {
+            "accuracy": 0.9510763209393346,
+            "auc": 0.26901234567901233
+        },
+        "feature_importance_top5": null
+    },
+    {
+        "model": "mlp",
+        "dataset": "hr_attrition",
+        "task_type": "classification",
+        "n_train": 882,
+        "n_val": 294,
+        "n_test": 294,
+        "n_features": 51,
+        "train_time": 0.16402006149291992,
+        "infer_time_total": 0.00041794776916503906,
+        "infer_time_per_sample": 1.4215910515817654e-06,
+        "val_metrics": {
+            "accuracy": 0.8673469387755102,
+            "auc": 0.771470410888104
+        },
+        "test_metrics": {
+            "accuracy": 0.8605442176870748,
+            "auc": 0.7625118442587648
+        },
+        "feature_importance_top5": null
+    }
+]

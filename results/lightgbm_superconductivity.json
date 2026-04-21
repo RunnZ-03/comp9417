@@ -6,9 +6,9 @@
     "n_val": 4253,
     "n_test": 4253,
     "n_features": 81,
-    "train_time": 0.9586331844329834,
-    "infer_time_total": 0.02910017967224121,
-    "infer_time_per_sample": 6.8422712608138285e-06,
+    "train_time": 1.9196350574493408,
+    "infer_time_total": 0.03220558166503906,
+    "infer_time_per_sample": 7.572438670359525e-06,
     "val_metrics": {
         "rmse": 9.935165928426102
     },

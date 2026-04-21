@@ -6,37 +6,37 @@
     "n_val": 1022,
     "n_test": 1022,
     "n_features": 21,
-    "train_time": 0.04897117614746094,
-    "infer_time_total": 0.0005280971527099609,
-    "infer_time_per_sample": 5.167291122406663e-07,
+    "train_time": 0.1371164321899414,
+    "infer_time_total": 0.0010852813720703125,
+    "infer_time_per_sample": 1.0619191507537305e-06,
     "val_metrics": {
         "accuracy": 0.9510763209393346,
-        "auc": 0.8481069958847737
+        "auc": 0.8404938271604938
     },
     "test_metrics": {
-        "accuracy": 0.9500978473581213,
-        "auc": 0.8342386831275721
+        "accuracy": 0.949119373776908,
+        "auc": 0.8388477366255144
     },
     "feature_importance_top5": [
         [
             "num__age",
-            0.12138362973928452
+            0.13480086624622345
         ],
         [
-            "cat__ever_married_No",
-            0.06595909595489502
+            "cat__ever_married_Yes",
+            0.07314151525497437
         ],
         [
-            "num__heart_disease",
-            0.06114639714360237
+            "cat__smoking_status_smokes",
+            0.06315024942159653
         ],
         [
             "num__hypertension",
-            0.06112651526927948
+            0.061981286853551865
         ],
         [
             "cat__work_type_children",
-            0.05985848605632782
+            0.05885351821780205
         ]
     ]
 }

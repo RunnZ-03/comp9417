@@ -6,35 +6,35 @@
     "n_val": 4253,
     "n_test": 4253,
     "n_features": 81,
-    "train_time": 1.6251933574676514,
-    "infer_time_total": 0.0059909820556640625,
-    "infer_time_per_sample": 1.4086484965116535e-06,
+    "train_time": 3.3969600200653076,
+    "infer_time_total": 0.009023904800415039,
+    "infer_time_per_sample": 2.121773994924768e-06,
     "val_metrics": {
-        "rmse": 10.223913929622778
+        "rmse": 10.189372611719488
     },
     "test_metrics": {
-        "rmse": 9.338226556750787
+        "rmse": 9.301672727542474
     },
     "feature_importance_top5": [
         [
             "num__range_ThermalConductivity",
-            0.747911810874939
+            0.770147442817688
         ],
         [
             "num__range_atomic_radius",
-            0.044481903314590454
+            0.04874201491475105
         ],
         [
             "num__wtd_gmean_ThermalConductivity",
-            0.028923993930220604
+            0.02798336371779442
+        ],
+        [
+            "num__std_atomic_mass",
+            0.010143421590328217
         ],
         [
             "num__wtd_std_ElectronAffinity",
-            0.013519846834242344
-        ],
-        [
-            "num__wtd_std_ThermalConductivity",
-            0.012979522347450256
+            0.009789186529815197
         ]
     ]
 }

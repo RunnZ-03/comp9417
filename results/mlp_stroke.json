@@ -1,0 +1,21 @@
+{
+    "model": "mlp",
+    "dataset": "stroke",
+    "task_type": "classification",
+    "n_train": 3066,
+    "n_val": 1022,
+    "n_test": 1022,
+    "n_features": 21,
+    "train_time": 0.25603699684143066,
+    "infer_time_total": 0.0013360977172851562,
+    "infer_time_per_sample": 1.3073363182829317e-06,
+    "val_metrics": {
+        "accuracy": 0.9510763209393346,
+        "auc": 0.2710288065843621
+    },
+    "test_metrics": {
+        "accuracy": 0.9510763209393346,
+        "auc": 0.26901234567901233
+    },
+    "feature_importance_top5": null
+}
