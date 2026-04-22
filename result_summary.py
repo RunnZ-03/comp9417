@@ -51,7 +51,7 @@ def main():
             print(f"Skipped {len(skipped_files)} invalid files.")
         return
     
-    df = pd.DataFrame(df_list)
+    df = pd.DataFrame(all_results)
     csv_save_path = os.path.join(RESULTS_DIR, "summary_all_results.csv")
     df.to_csv(csv_save_path, index=False, encoding="utf-8-sig")
     print(f"✅ Full results saved to: {csv_save_path}")
