@@ -63,9 +63,9 @@ def _train_mlp(X_train, y_train, X_val, y_val, X_test, task_type):
             solver="adam",
             learning_rate_init=1e-3,
             batch_size=256,
-            max_iter=200,
+            max_iter=500,
             early_stopping=True,
-            n_iter_no_change=10,
+            n_iter_no_change=20,
             random_state=42,
             verbose=False,
         )
@@ -76,9 +76,9 @@ def _train_mlp(X_train, y_train, X_val, y_val, X_test, task_type):
             solver="adam",
             learning_rate_init=1e-3,
             batch_size=256,
-            max_iter=200,
+            max_iter=500,
             early_stopping=True,
-            n_iter_no_change=10,
+            n_iter_no_change=20,
             random_state=42,
             verbose=False,
         )

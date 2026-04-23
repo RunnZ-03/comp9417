@@ -6,14 +6,14 @@
     "n_val": 10789,
     "n_test": 10789,
     "n_features": 26,
-    "train_time": 8.2926607131958,
-    "infer_time_total": 0.007992029190063477,
-    "infer_time_per_sample": 7.407571776868548e-07,
+    "train_time": 26.798079013824463,
+    "infer_time_total": 0.010218381881713867,
+    "infer_time_per_sample": 9.47111120744635e-07,
     "val_metrics": {
-        "rmse": 1248.3606128874471
+        "rmse": 1404.627780230168
     },
     "test_metrics": {
-        "rmse": 779.0455324505175
+        "rmse": 734.6918153851484
     },
     "feature_importance_top5": null
 }
