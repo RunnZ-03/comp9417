@@ -126,6 +126,32 @@ def get_dataset(name):
         data['features']
     )
 
+def get_dataset_subsampled(name, sample_size_fraction=None, sample_size_absolute=None):
+    data = processed_data[name]
+    X_train_full = data['X_train']
+    y_train_full = data['y_train']
+
+    if sample_size_fraction is not None:
+        n_samples = max(100, int(len(X_train_full) * sample_size_fraction))
+    elif sample_size_absolute is not None:
+        n_samples = min(len(X_train_full), max(100, sample_size_absolute))
+    else:
+        return (
+            data['X_train'], data['X_val'], data['X_test'],
+            data['y_train'], data['y_val'], data['y_test'],
+            data['features']
+        )
+
+    np.random.seed(42)
+    indices = np.random.choice(len(X_train_full), n_samples, replace=False)
+    X_train_sub = X_train_full[indices]
+    y_train_sub = y_train_full[indices]
+
+    return (
+        X_train_sub, data['X_val'], data['X_test'],
+        y_train_sub, data['y_val'], data['y_test'],
+        data['features']
+    )
 
 if __name__ == "__main__":
     print("--- finished ---")
