@@ -1,0 +1,58 @@
+[
+  {
+    "dataset": "diamonds",
+    "n_train": 1000,
+    "rmse": 846.6891671787082,
+    "train_time": 0.7996170520782471,
+    "infer_time_per_sample": 1.1660831941821531e-06
+  },
+  {
+    "dataset": "diamonds",
+    "n_train": 5000,
+    "rmse": 628.9332060340042,
+    "train_time": 0.3930230140686035,
+    "infer_time_per_sample": 6.934668116402014e-07
+  },
+  {
+    "dataset": "diamonds",
+    "n_train": 10000,
+    "rmse": 587.7580510733427,
+    "train_time": 0.48882579803466797,
+    "infer_time_per_sample": 8.413265495926117e-07
+  },
+  {
+    "dataset": "diamonds",
+    "n_train": 30000,
+    "rmse": 542.6784513148688,
+    "train_time": 0.5936689376831055,
+    "infer_time_per_sample": 1.016963853021958e-06
+  },
+  {
+    "dataset": "superconductivity",
+    "n_train": 1000,
+    "rmse": 13.75532782065324,
+    "train_time": 0.3873100280761719,
+    "infer_time_per_sample": 6.242721130672466e-07
+  },
+  {
+    "dataset": "superconductivity",
+    "n_train": 5000,
+    "rmse": 10.812100688796237,
+    "train_time": 1.0006999969482422,
+    "infer_time_per_sample": 9.323158685723221e-07
+  },
+  {
+    "dataset": "superconductivity",
+    "n_train": 10000,
+    "rmse": 9.512754122625028,
+    "train_time": 1.729813814163208,
+    "infer_time_per_sample": 1.4154876845319664e-06
+  },
+  {
+    "dataset": "superconductivity",
+    "n_train": 12757,
+    "rmse": 9.283477746086234,
+    "train_time": 1.6392951011657715,
+    "infer_time_per_sample": 1.5666785869154402e-06
+  }
+]
