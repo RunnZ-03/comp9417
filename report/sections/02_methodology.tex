@@ -1,0 +1,138 @@
+% ── Section 2: Methodology ────────────────────────────────────────────────────
+
+\section{Methodology}
+
+% ─────────────────────────────────────────────────────────────────────────────
+% 2.1  Theoretical Background  (B负责)
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{xRFM: Algorithm and Theoretical Background}
+
+% TODO (B): Write AGOP definition, geometric intuition, comparison with
+%           PCA/MI/permutation importance, xRFM pipeline description.
+
+\textit{[Placeholder: Theory section to be written by B. Covers AGOP definition, kernel machines, RFM iterations, tree-based partitioning.]}
+
+
+% ─────────────────────────────────────────────────────────────────────────────
+% 2.2  Experimental Design  (A + E 合写; C and D add hyperparameter paragraphs)
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Experimental Design}
+
+% ── 2.2.1 Datasets (A负责) ───────────────────────────────────────────────────
+\subsubsection{Datasets}
+
+% TODO (A): Describe dataset selection rationale and characteristics.
+
+\textit{[Placeholder: Dataset description to be written by A.]}
+
+We evaluate all models on five publicly available tabular datasets covering both regression and
+binary classification tasks, summarised in Table~\ref{tab:datasets}.
+
+\begin{table}[H]
+  \centering
+  \caption{Dataset statistics. \emph{n\textsubscript{train}}, \emph{n\textsubscript{val}}, and
+           \emph{n\textsubscript{test}} denote the sizes of the training, validation, and test splits
+           respectively; \emph{d} is the number of features after preprocessing.}
+  \label{tab:datasets}
+  \begin{tabular}{lllrrrrr}
+    \toprule
+    Dataset & Task & Target & $n_\text{train}$ & $n_\text{val}$ & $n_\text{test}$ & $d$ \\
+    \midrule
+    Diamonds            & Regression     & price          & 32{,}365 & 10{,}789 & 10{,}789 & 26 \\
+    Superconductivity   & Regression     & critical\_temp & 12{,}757 &  4{,}253 &  4{,}253 & 81 \\
+    Online Shoppers     & Classification & Revenue        &  7{,}398 &  2{,}466 &  2{,}466 & 27 \\
+    Stroke              & Classification & stroke         &  3{,}066 &  1{,}022 &  1{,}022 & 21 \\
+    HR Attrition        & Classification & Attrition      &    882   &    294   &    294   & 51 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+All datasets were split 60/20/20 into train/validation/test sets with a fixed random seed of 42.
+Numerical features were standardised with z-score normalisation, and categorical features were
+one-hot encoded. Missing values were imputed using column-wise median (numerical) or the constant
+\texttt{"Missing"} (categorical).
+
+
+% ── 2.2.2 Evaluation Metrics (E负责) ─────────────────────────────────────────
+\subsubsection{Evaluation Metrics}
+
+% TODO (E): Write evaluation metrics and experimental setup details.
+
+\textit{[Placeholder: Evaluation metrics to be written by E.]}
+
+For regression tasks, we report Root Mean Squared Error (RMSE) on the held-out test set.
+For classification tasks, we report test accuracy and the Area Under the ROC Curve (AUC).
+All hyperparameters are selected based on validation-set performance; test metrics are computed
+only once on the final model.
+
+
+% ── 2.2.3 xRFM Configuration (B负责) ─────────────────────────────────────────
+\subsubsection{xRFM Configuration}
+
+% TODO (B): Describe xRFM hyperparameter search space and training procedure.
+
+\textit{[Placeholder: xRFM configuration to be written by B.]}
+
+
+% ── 2.2.4 XGBoost and LightGBM Configuration (C负责 — 你的部分) ───────────────
+\subsubsection{XGBoost and LightGBM Configuration}
+\label{sec:gbdt-config}
+
+% ═══════════════════════════════════════════════════════════════════════════
+%  YOUR SECTION — Written by C (XGBoost / LightGBM person)
+% ═══════════════════════════════════════════════════════════════════════════
+
+We train two Gradient Boosted Decision Tree (GBDT) baselines: XGBoost~\citep{chen2016xgboost}
+and LightGBM~\citep{ke2017lightgbm}. Both models are trained using the scikit-learn-compatible
+API and share a common hyperparameter configuration designed to reflect strong default settings
+reported in the literature~\citep{holzmuller2024better}.
+
+\paragraph{Shared hyperparameters.}
+For both models, we set the maximum number of boosting rounds to 1{,}000, the learning rate to
+$\eta = 0.05$, the row subsampling ratio to $0.8$, and the column subsampling ratio to $0.8$.
+Early stopping with a patience of 20 rounds is applied using validation-set RMSE (regression) or
+log-loss (classification), preventing overfitting without manual tuning of the number of trees.
+
+\paragraph{XGBoost-specific settings.}
+The maximum tree depth is set to 6, which controls model complexity and is consistent with the
+default configuration used in large-scale benchmarks~\citep{grinsztajn2022tree}.
+XGBoost is trained with the \texttt{hist} tree method and \texttt{verbosity=0}.
+
+\paragraph{LightGBM-specific settings.}
+Rather than constraining tree depth, LightGBM is configured with \texttt{num\_leaves=31}, which
+directly bounds the number of leaves per tree and better reflects LightGBM's leaf-wise growth
+strategy~\citep{ke2017lightgbm}. Verbose output is suppressed via \texttt{verbose=-1}.
+
+\paragraph{Classification labels.}
+For datasets with string-valued class labels (e.g.\ \texttt{"Yes"}/\texttt{"No"} in HR Attrition),
+labels are integer-encoded via scikit-learn's \texttt{LabelEncoder} prior to training, as both
+XGBoost and LightGBM require numeric targets.
+
+Table~\ref{tab:gbdt-hyperparams} summarises the hyperparameter configuration for both models.
+
+\begin{table}[H]
+  \centering
+  \caption{Hyperparameter configuration for XGBoost and LightGBM baselines.}
+  \label{tab:gbdt-hyperparams}
+  \begin{tabular}{lcc}
+    \toprule
+    Hyperparameter          & XGBoost   & LightGBM \\
+    \midrule
+    Max boosting rounds     & 1{,}000   & 1{,}000 \\
+    Learning rate $\eta$    & 0.05      & 0.05 \\
+    Max depth               & 6         & — \\
+    Num leaves              & —         & 31 \\
+    Row subsample           & 0.8       & 0.8 \\
+    Column subsample        & 0.8       & 0.8 \\
+    Early stopping patience & 20        & 20 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+
+% ── 2.2.5 MLP Configuration (D负责) ──────────────────────────────────────────
+\subsubsection{MLP Configuration}
+
+% TODO (D): Describe MLP architecture and hyperparameters.
+
+\textit{[Placeholder: MLP configuration to be written by D.]}

@@ -1,0 +1,26 @@
+% ── Section 1: Introduction ───────────────────────────────────────────────────
+% Responsible: B (xRFM person)
+% Placeholder — to be filled by B
+
+\section{Introduction}
+
+% TODO (B): Write introduction covering:
+%   - Challenges of tabular data prediction
+%   - Motivation: why xRFM over GBDTs?
+%   - Core idea of xRFM (AGOP + tree structure)
+%   - Overview of experiments (A provides 1-2 sentences on datasets)
+%   - Structure of the report
+
+\textit{[Placeholder: Introduction to be written by B. Covers tabular data challenges, xRFM motivation, experimental overview.]}
+
+Tabular data constitutes one of the most pervasive forms of data in industry and science \citep{grinsztajn2022tree}.
+Despite dramatic advances in deep learning for images and text, Gradient Boosted Decision Trees (GBDTs) such
+as XGBoost \citep{chen2016xgboost} and LightGBM \citep{ke2017lightgbm} remain the dominant approach for tabular
+prediction tasks. Recently, \citet{beaglehole2025xrfm} proposed \textit{xRFM}, a model that combines
+feature-learning kernel machines with an adaptive binary tree structure, achieving state-of-the-art results
+on the TALENT benchmark.
+
+In this report, we replicate the core experiments of \citet{beaglehole2025xrfm}, evaluating xRFM
+against three baseline models — XGBoost, LightGBM, and MLP — across five tabular datasets spanning
+regression and binary classification tasks. We further analyse scalability and interpretability to
+contextualise the strengths and limitations of xRFM in practice.

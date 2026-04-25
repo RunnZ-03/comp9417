@@ -1,0 +1,45 @@
+\begin{thebibliography}{5}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Beaglehole et~al.(2025)Beaglehole, Holzm\"{u}ller, Radhakrishnan, and
+  Belkin]{beaglehole2025xrfm}
+Daniel Beaglehole, David Holzm\"{u}ller, Adityanarayanan Radhakrishnan, and
+  Mikhail Belkin.
+\newblock xrfm: Accurate, scalable, and interpretable feature learning models
+  for tabular data.
+\newblock \emph{arXiv preprint arXiv:2508.10053}, 2025.
+
+\bibitem[Chen and Guestrin(2016)]{chen2016xgboost}
+Tianqi Chen and Carlos Guestrin.
+\newblock Xgboost: A scalable tree boosting system.
+\newblock In \emph{Proceedings of the 22nd ACM SIGKDD International Conference
+  on Knowledge Discovery and Data Mining}, pages 785--794, 2016.
+
+\bibitem[Grinsztajn et~al.(2022)Grinsztajn, Oyallon, and
+  Varoquaux]{grinsztajn2022tree}
+L{\'e}o Grinsztajn, Edouard Oyallon, and Gael Varoquaux.
+\newblock Why do tree-based models still outperform deep learning on typical
+  tabular data?
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~35, pages 507--520, 2022.
+
+\bibitem[Holzm\"{u}ller et~al.(2024)Holzm\"{u}ller, Grinsztajn, and
+  Steinwart]{holzmuller2024better}
+David Holzm\"{u}ller, L{\'e}o Grinsztajn, and Ingo Steinwart.
+\newblock Better by default: Strong pre-tuned mlps and boosted trees on tabular
+  data.
+\newblock \emph{Advances in Neural Information Processing Systems},
+  37:\penalty0 26577--26658, 2024.
+
+\bibitem[Ke et~al.(2017)Ke, Meng, Finley, Wang, Chen, Ma, Ye, and
+  Liu]{ke2017lightgbm}
+Guolin Ke, Qi~Meng, Thomas Finley, Taifeng Wang, Wei Chen, Weidong Ma, Qiwei
+  Ye, and Tie-Yan Liu.
+\newblock Lightgbm: A highly efficient gradient boosting decision tree.
+\newblock \emph{Advances in Neural Information Processing Systems}, 30, 2017.
+
+\end{thebibliography}

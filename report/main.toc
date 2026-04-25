@@ -1,0 +1,25 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {section}{\numberline {2}Methodology}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}xRFM: Algorithm and Theoretical Background}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Experimental Design}{2}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Datasets}{2}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Evaluation Metrics}{2}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}xRFM Configuration}{3}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4}XGBoost and LightGBM Configuration}{3}{subsubsection.2.2.4}%
+\contentsline {paragraph}{Shared hyperparameters.}{3}{section*.3}%
+\contentsline {paragraph}{XGBoost-specific settings.}{3}{section*.4}%
+\contentsline {paragraph}{LightGBM-specific settings.}{3}{section*.5}%
+\contentsline {paragraph}{Classification labels.}{3}{section*.6}%
+\contentsline {subsubsection}{\numberline {2.2.5}MLP Configuration}{3}{subsubsection.2.2.5}%
+\contentsline {section}{\numberline {3}Results}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Predictive Performance}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Scalability Analysis}{4}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Interpretability Comparison}{4}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Discussion}{5}{section.4}%
+\contentsline {subsection}{\numberline {4.1}xRFM: When Feature Learning Helps and When It Does Not}{5}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}XGBoost and LightGBM: Performance and Efficiency}{5}{subsection.4.2}%
+\contentsline {paragraph}{Regression tasks.}{5}{section*.10}%
+\contentsline {paragraph}{Classification tasks.}{5}{section*.11}%
+\contentsline {paragraph}{Scalability.}{5}{section*.12}%
+\contentsline {subsection}{\numberline {4.3}MLP Baseline}{5}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Conclusion}{5}{section.5}%

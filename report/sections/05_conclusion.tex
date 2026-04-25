@@ -1,0 +1,23 @@
+% ── Section 5: Conclusion ─────────────────────────────────────────────────────
+% Responsible: E (with framework from overall report)
+
+\section{Conclusion}
+
+% TODO (E): Write conclusion summarising findings and contextualising within
+%           the xRFM paper's claims.
+
+\textit{[Placeholder: Conclusion to be written by E.]}
+
+In this work, we replicated the core experiments of \citet{beaglehole2025xrfm}, comparing xRFM
+against XGBoost, LightGBM, and MLP on five tabular datasets. Our results broadly confirm the
+paper's claims: xRFM is competitive on regression tasks, particularly those with high-dimensional
+feature spaces, while GBDTs maintain a clear advantage on datasets with strong axis-aligned
+structure. LightGBM emerges as the most training-time efficient model across all settings.
+
+Interpretability analysis confirms that xRFM's AGOP provides a principled and data-driven
+measure of feature importance, comparable to permutation importance but arising naturally from
+the model rather than requiring post-hoc computation. Scalability experiments show that both
+GBDT methods scale near-linearly in training time, while MLP incurs substantially higher costs.
+
+Future work could investigate xRFM on larger datasets ($n > 100{,}000$) where its $O(n \log n)$
+training complexity may become a decisive advantage over MLP-based approaches.

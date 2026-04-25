@@ -1,0 +1,73 @@
+% ── Section 4: Discussion ─────────────────────────────────────────────────────
+% Responsible:
+%   B  — xRFM analysis + "xRFM明显不如XGBoost的场景" required point
+%   C  — XGBoost/LightGBM analysis paragraph  ← YOUR SECTION
+%   D  — MLP analysis paragraph
+%   B  — collate and unify writing
+
+\section{Discussion}
+
+% ── 4.1 xRFM Analysis (B负责) ────────────────────────────────────────────────
+\subsection{xRFM: When Feature Learning Helps and When It Does Not}
+
+% TODO (B): Analyse xRFM results, link to AGOP theory.
+%           Must include required point: "xRFM明显不如XGBoost的场景"
+
+\textit{[Placeholder: xRFM discussion to be written by B. Must include analysis of
+cases where xRFM clearly underperforms GBDTs, linking to axis-aligned structure argument.]}
+
+
+% ── 4.2 XGBoost and LightGBM Analysis (C负责 — 你的部分) ──────────────────────
+\subsection{XGBoost and LightGBM: Performance and Efficiency}
+\label{sec:gbdt-discussion}
+
+% ═══════════════════════════════════════════════════════════════════════════
+%  YOUR SECTION — Written by C (XGBoost / LightGBM person)
+% ═══════════════════════════════════════════════════════════════════════════
+
+Across all five benchmark datasets, XGBoost and LightGBM consistently deliver competitive or
+superior performance compared to the other baselines, while remaining among the fastest models
+to train.
+
+\paragraph{Regression tasks.}
+On the Diamonds dataset, both GBDTs substantially outperform xRFM, achieving test RMSEs of
+544.7 (XGBoost) and 536.0 (LightGBM) against xRFM's 1{,}496.7 — a reduction in error of
+approximately 64\%. This gap is consistent with the axis-aligned inductive bias of tree-based
+models: diamond price is largely determined by a small set of monotone features (carat, physical
+dimensions) that GBDT splits can exploit directly~\citep{grinsztajn2022tree}. On Superconductivity,
+the advantage is much smaller — LightGBM achieves RMSE 9.21 versus xRFM's 9.45 (a 2.5\%
+improvement), indicating that the high-dimensional, less axis-aligned structure of this dataset
+partially closes the gap.
+
+\paragraph{Classification tasks.}
+On the Online Shoppers dataset, both GBDTs improve on xRFM in AUC (0.931 vs.\ 0.902), reflecting
+their ability to capture non-linear, feature-interaction effects from the larger training set
+($n = 7{,}398$). On the Stroke dataset, XGBoost achieves the highest AUC of 0.839, markedly
+above xRFM's 0.761; the MLP result (AUC $= 0.269$) appears anomalous and is consistent with
+class-imbalance sensitivity in the absence of explicit resampling. Notably, on the HR Attrition
+dataset — the smallest dataset with the highest feature dimensionality ($n = 882$, $d = 51$)
+— xRFM marginally outperforms XGBoost in accuracy (0.867 vs.\ 0.857), suggesting that kernel
+feature learning provides a modest advantage in the high-$d$, low-$n$ regime.
+
+\paragraph{Scalability.}
+The scalability experiments (Table~\ref{tab:scaling}) reveal that LightGBM is the fastest model
+across all sample sizes. At $n = 30{,}000$ on the Diamonds dataset, LightGBM trains in 0.29 s
+compared to 0.59 s for XGBoost and 22.2 s for MLP — a speed advantage exceeding 75$\times$
+over MLP at this scale. Both GBDTs show near-linear growth in training time with sample size,
+consistent with their histogram-based split-finding algorithms. In terms of predictive performance,
+RMSE decreases sub-linearly with $n$: moving from 1{,}000 to 5{,}000 samples yields a larger
+improvement than moving from 10{,}000 to 30{,}000, indicating diminishing returns at larger sizes.
+
+In summary, XGBoost and LightGBM represent a strong, efficient baseline for tabular data: they
+are robust across dataset sizes and task types, require minimal preprocessing, and train
+significantly faster than MLP at large scale. Their primary limitation relative to xRFM appears
+only in small, high-dimensional classification settings where kernel feature learning can better
+capture the global feature geometry.
+
+
+% ── 4.3 MLP Analysis (D负责) ─────────────────────────────────────────────────
+\subsection{MLP Baseline}
+
+% TODO (D): Write MLP analysis paragraph.
+
+\textit{[Placeholder: MLP discussion to be written by D.]}

@@ -1,0 +1,65 @@
+\documentclass[11pt, a4paper]{article}
+
+% ── Packages ──────────────────────────────────────────────────────────────────
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{microtype}
+\usepackage{natbib}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{parskip}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!70!black,
+  citecolor=green!50!black,
+  urlcolor=blue!70!black
+}
+
+% ── Title ─────────────────────────────────────────────────────────────────────
+\title{%
+  \textbf{Replicating xRFM: Accurate, Scalable, and Interpretable\\
+  Feature Learning Models for Tabular Data}\\[0.5em]
+  \large COMP9417 Group Project
+}
+
+\author{
+  Group Member A \and
+  Group Member B \and
+  Group Member C \and
+  Group Member D \and
+  Group Member E
+}
+
+\date{\today}
+
+% ── Document ──────────────────────────────────────────────────────────────────
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+% ── Sections ──────────────────────────────────────────────────────────────────
+\input{sections/01_introduction}
+\input{sections/02_methodology}
+\input{sections/03_results}
+\input{sections/04_discussion}
+\input{sections/05_conclusion}
+
+% ── References ────────────────────────────────────────────────────────────────
+\newpage
+\bibliographystyle{plainnat}
+\bibliography{sections/references}
+
+\end{document}
