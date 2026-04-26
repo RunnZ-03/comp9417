@@ -8,12 +8,9 @@
 % ── 3.1 Main Performance Comparison (E负责) ───────────────────────────────────
 \subsection{Predictive Performance}
 
-% TODO (E): Write overall analysis of results table.
-
 \textit{[Placeholder: Main results analysis to be written by E.]}
 
-Table~\ref{tab:main-results} reports test-set performance for all four models across the five
-benchmark datasets.
+Table~\ref{tab:main-results} reports test-set performance for all four models across the five benchmark datasets.
 
 \begin{table}[H]
   \centering
@@ -50,14 +47,9 @@ benchmark datasets.
 % ── 3.2 Scalability (A协助E) ──────────────────────────────────────────────────
 \subsection{Scalability Analysis}
 
-% TODO (A/E): Insert scalability figures and write analysis.
+\textit{[Placeholder: Scalability figures \& analysis to be written by A/E. Include: test performance vs.\ $n$ and training time vs.\ $n$ curves for all models.]}
 
-\textit{[Placeholder: Scalability figures and analysis to be written by A/E.]}
-
-To assess how training-set size affects predictive performance and training time, we train all
-models on subsampled versions of the two large regression datasets (Diamonds and Superconductivity)
-at $n \in \{1000, 5000, 10000, 30000\}$ samples. Results are summarised in
-Table~\ref{tab:scaling}.
+Table~\ref{tab:scaling} summarises test RMSE and training time at each subsample size.
 
 \begin{table}[H]
   \centering
@@ -91,7 +83,4 @@ Table~\ref{tab:scaling}.
 % ── 3.3 Interpretability Comparison (B负责) ───────────────────────────────────
 \subsection{Interpretability Comparison}
 
-% TODO (B): Write AGOP diagonal vs PCA vs MI vs permutation importance comparison.
-
-\textit{[Placeholder: Interpretability comparison to be written by B. Covers AGOP diagonal,
-PCA, Mutual Information, and permutation feature importance.]}
+\textit{[Placeholder: Interpretability comparison to be written by B. Extract AGOP diagonal from xRFM leaf models; compare with PCA loadings, MI scores, permutation importance on one dataset.]}

@@ -7,10 +7,7 @@
 % ─────────────────────────────────────────────────────────────────────────────
 \subsection{xRFM: Algorithm and Theoretical Background}
 
-% TODO (B): Write AGOP definition, geometric intuition, comparison with
-%           PCA/MI/permutation importance, xRFM pipeline description.
-
-\textit{[Placeholder: Theory section to be written by B. Covers AGOP definition, kernel machines, RFM iterations, tree-based partitioning.]}
+\textit{[Placeholder: Theory to be written by B. Covers: formal AGOP definition, geometric intuition, two interpretability strategies (diagonal vs.\ top eigenvector), comparison with PCA/MI/permutation importance, full xRFM pipeline, complexity analysis.]}
 
 
 % ─────────────────────────────────────────────────────────────────────────────
@@ -21,9 +18,7 @@
 % ── 2.2.1 Datasets (A负责) ───────────────────────────────────────────────────
 \subsubsection{Datasets}
 
-% TODO (A): Describe dataset selection rationale and characteristics.
-
-\textit{[Placeholder: Dataset description to be written by A.]}
+\textit{[Placeholder: Dataset rationale to be written by A.]}
 
 We evaluate all models on five publicly available tabular datasets covering both regression and
 binary classification tasks, summarised in Table~\ref{tab:datasets}.
@@ -56,59 +51,24 @@ one-hot encoded. Missing values were imputed using column-wise median (numerical
 % ── 2.2.2 Evaluation Metrics (E负责) ─────────────────────────────────────────
 \subsubsection{Evaluation Metrics}
 
-% TODO (E): Write evaluation metrics and experimental setup details.
-
-\textit{[Placeholder: Evaluation metrics to be written by E.]}
-
-For regression tasks, we report Root Mean Squared Error (RMSE) on the held-out test set.
-For classification tasks, we report test accuracy and the Area Under the ROC Curve (AUC).
-All hyperparameters are selected based on validation-set performance; test metrics are computed
-only once on the final model.
+\textit{[Placeholder: Evaluation metrics \& experimental setup to be written by E. Cover: RMSE for regression, Accuracy + AUC for classification, val-set hyperparameter selection.]}
 
 
 % ── 2.2.3 xRFM Configuration (B负责) ─────────────────────────────────────────
 \subsubsection{xRFM Configuration}
 
-% TODO (B): Describe xRFM hyperparameter search space and training procedure.
-
-\textit{[Placeholder: xRFM configuration to be written by B.]}
+\textit{[Placeholder: xRFM configuration to be written by B. Cover: tree depth, kernel type, AGOP iterations, final hyperparameters per dataset.]}
 
 
 % ── 2.2.4 XGBoost and LightGBM Configuration (C负责 — 你的部分) ───────────────
 \subsubsection{XGBoost and LightGBM Configuration}
 \label{sec:gbdt-config}
 
-% ═══════════════════════════════════════════════════════════════════════════
-%  YOUR SECTION — Written by C (XGBoost / LightGBM person)
-% ═══════════════════════════════════════════════════════════════════════════
-
-We train two Gradient Boosted Decision Tree (GBDT) baselines: XGBoost~\citep{chen2016xgboost}
-and LightGBM~\citep{ke2017lightgbm}. Both models are trained using the scikit-learn-compatible
-API and share a common hyperparameter configuration designed to reflect strong default settings
-reported in the literature~\citep{holzmuller2024better}.
-
-\paragraph{Shared hyperparameters.}
-For both models, we set the maximum number of boosting rounds to 1{,}000, the learning rate to
-$\eta = 0.05$, the row subsampling ratio to $0.8$, and the column subsampling ratio to $0.8$.
-Early stopping with a patience of 20 rounds is applied using validation-set RMSE (regression) or
-log-loss (classification), preventing overfitting without manual tuning of the number of trees.
-
-\paragraph{XGBoost-specific settings.}
-The maximum tree depth is set to 6, which controls model complexity and is consistent with the
-default configuration used in large-scale benchmarks~\citep{grinsztajn2022tree}.
-XGBoost is trained with the \texttt{hist} tree method and \texttt{verbosity=0}.
-
-\paragraph{LightGBM-specific settings.}
-Rather than constraining tree depth, LightGBM is configured with \texttt{num\_leaves=31}, which
-directly bounds the number of leaves per tree and better reflects LightGBM's leaf-wise growth
-strategy~\citep{ke2017lightgbm}. Verbose output is suppressed via \texttt{verbose=-1}.
-
-\paragraph{Classification labels.}
-For datasets with string-valued class labels (e.g.\ \texttt{"Yes"}/\texttt{"No"} in HR Attrition),
-labels are integer-encoded via scikit-learn's \texttt{LabelEncoder} prior to training, as both
-XGBoost and LightGBM require numeric targets.
-
-Table~\ref{tab:gbdt-hyperparams} summarises the hyperparameter configuration for both models.
+Both models are trained via the scikit-learn API following strong-default settings from the
+literature~\citep{holzmuller2024better}: 1{,}000 boosting rounds, learning rate $\eta=0.05$,
+row/column subsample $0.8$, and early stopping with patience 20 on validation loss.
+XGBoost uses max depth~6; LightGBM uses \texttt{num\_leaves=31} to reflect its leaf-wise
+growth strategy. Table~\ref{tab:gbdt-hyperparams} summarises the full configuration.
 
 \begin{table}[H]
   \centering
@@ -133,6 +93,4 @@ Table~\ref{tab:gbdt-hyperparams} summarises the hyperparameter configuration for
 % ── 2.2.5 MLP Configuration (D负责) ──────────────────────────────────────────
 \subsubsection{MLP Configuration}
 
-% TODO (D): Describe MLP architecture and hyperparameters.
-
-\textit{[Placeholder: MLP configuration to be written by D.]}
+\textit{[Placeholder: MLP configuration to be written by D. Cover: architecture, activation, optimiser, learning rate schedule, early stopping.]}
