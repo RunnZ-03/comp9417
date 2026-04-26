@@ -28,6 +28,20 @@ training time (Table~\ref{tab:scaling}).
 
 
 % ── 4.3 MLP Analysis (D负责) ─────────────────────────────────────────────────
-\subsection{MLP Baseline}
+\subsection{MLP: Performance and Scalability Limitations}
+\label{sec:mlp-discussion}
 
-\textit{[Placeholder: MLP analysis to be written by D. Cover: where MLP performs well/poorly, sensitivity to class imbalance, training cost trade-off.]}
+On Diamonds, MLP underperforms both XGBoost and LightGBM by a large margin in RMSE 
+(743.5 vs.\ 542.7 / 535.3 at $n=30{,}000$), and a similar pattern is observed on 
+Superconductivity (11.22 vs.\ $\sim$9.5 RMSE) (Table~\ref{tab:main-results}), indicating weaker ability to exploit 
+feature interactions, especially in high-dimensional settings~\citep{tolstikhin2021mlp}. In classification tasks, 
+performance is unstable: while accuracy can be comparable in some cases (e.g., Stroke, 0.9511), 
+probability calibration degrades significantly, as reflected by the low AUC (0.269) (Table~\ref{tab:main-results}), 
+highlighting sensitivity to class imbalance~\citep{walde2004statistical}. Unlike tree-based methods such as XGBoost and LightGBM, 
+MLPs rely on global gradient-based optimisation over continuous parameter spaces. 
+This makes them less aligned with the piecewise and often sparse structure of tabular features, 
+resulting in lower data efficiency.
+
+
+
+

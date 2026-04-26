@@ -9,10 +9,10 @@
 \contentsline {subsubsection}{\numberline {2.2.5}MLP Configuration}{3}{subsubsection.2.2.5}%
 \contentsline {section}{\numberline {3}Results}{3}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Predictive Performance}{3}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Scalability Analysis}{3}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.2}Scalability Analysis}{4}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Interpretability Comparison}{4}{subsection.3.3}%
 \contentsline {section}{\numberline {4}Discussion}{4}{section.4}%
 \contentsline {subsection}{\numberline {4.1}xRFM: When Feature Learning Helps and When It Does Not}{4}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}XGBoost and LightGBM: Performance and Efficiency}{4}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}MLP Baseline}{4}{subsection.4.3}%
-\contentsline {section}{\numberline {5}Conclusion}{4}{section.5}%
+\contentsline {subsection}{\numberline {4.2}XGBoost and LightGBM: Performance and Efficiency}{5}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}MLP: Performance and Scalability Limitations}{5}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Conclusion}{5}{section.5}%
