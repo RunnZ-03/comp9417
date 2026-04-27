@@ -137,29 +137,7 @@ a standard architecture for tabular data. We use a two-hidden-layer network with
 $(128, 64)$ and ReLU activations, trained using the Adam optimiser. The learning rate is
 set to $\eta = 0.001$ and a batch size of 256 is used. Early stopping is enabled with patience
 20 based on validation loss to mitigate overfitting.
-
 All input features are standardised using z-score normalisation prior to training.
 For classification tasks, the model outputs class probabilities via a softmax layer,
 while for regression tasks a linear output is used. The maximum number of training
-iterations is set to 500. Table~\ref{tab:mlp-hyperparams} summarises the full configuration.
-
-\begin{table}[H]
-  \centering
-  \caption{Hyperparameter configuration for the MLP baseline.}
-  \label{tab:mlp-hyperparams}
-  \begin{tabular}{lc}
-    \toprule
-    Hyperparameter          & Value \\
-    \midrule
-    Hidden layer sizes      & $(128, 64)$ \\
-    Activation function     & ReLU \\
-    Optimiser               & Adam \\
-    Learning rate           & $0.001$ \\
-    Batch size              & 256 \\
-    Max iterations          & 500 \\
-    Early stopping          & Enabled \\
-    Patience                & 20 \\
-    Feature scaling         & Standardisation \\
-    \bottomrule
-  \end{tabular}
-\end{table}
+iterations is set to 500.

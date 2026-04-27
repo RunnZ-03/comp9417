@@ -14,11 +14,11 @@
 \contentsline {subsubsection}{\numberline {2.2.6}MLP Configuration}{5}{subsubsection.2.2.6}%
 \contentsline {section}{\numberline {3}Results}{5}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Predictive Performance}{5}{subsection.3.1}%
-\contentsline {paragraph}{Regression Task Results}{5}{section*.10}%
-\contentsline {paragraph}{Binary Classification Task Results}{6}{section*.11}%
-\contentsline {paragraph}{Overall Core Findings from Predictive Performance}{6}{section*.12}%
+\contentsline {paragraph}{Regression Task Results}{5}{section*.9}%
+\contentsline {paragraph}{Binary Classification Task Results}{6}{section*.10}%
+\contentsline {paragraph}{Overall Core Findings from Predictive Performance}{6}{section*.11}%
 \contentsline {subsection}{\numberline {3.2}Scalability Analysis}{6}{subsection.3.2}%
-\contentsline {paragraph}{Scalability Analysis from Table~\ref {tab:scaling}}{7}{section*.14}%
+\contentsline {paragraph}{Scalability Analysis from Table~\ref {tab:scaling}}{6}{section*.13}%
 \contentsline {subsection}{\numberline {3.3}Interpretability Comparison}{7}{subsection.3.3}%
 \contentsline {section}{\numberline {4}Discussion}{8}{section.4}%
 \contentsline {subsection}{\numberline {4.1}xRFM: When Feature Learning Helps and When It Does Not}{8}{subsection.4.1}%

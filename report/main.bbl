@@ -1,9 +1,15 @@
-\begin{thebibliography}{4}
+\begin{thebibliography}{7}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[fedesoriano(2021)]{fedesoriano2021stroke}
+fedesoriano.
+\newblock Stroke prediction dataset, 2021.
+\newblock URL
+  \url{https://www.kaggle.com/fedesoriano/stroke-prediction-dataset}.
 
 \bibitem[Grinsztajn et~al.(2022)Grinsztajn, Oyallon, and
   Varoquaux]{grinsztajn2022tree}
@@ -13,6 +19,12 @@ L{\'e}o Grinsztajn, Edouard Oyallon, and Gael Varoquaux.
 \newblock In \emph{Advances in Neural Information Processing Systems},
   volume~35, pages 507--520, 2022.
 
+\bibitem[Hamidieh(2018)]{hamidieh2018data}
+Kam Hamidieh.
+\newblock A data-driven statistical model for predicting the critical
+  temperature of a superconductor.
+\newblock \emph{Computational Materials Science}, 154:\penalty0 346--354, 2018.
+
 \bibitem[Holzm\"{u}ller et~al.(2024)Holzm\"{u}ller, Grinsztajn, and
   Steinwart]{holzmuller2024better}
 David Holzm\"{u}ller, L{\'e}o Grinsztajn, and Ingo Steinwart.
@@ -20,6 +32,14 @@ David Holzm\"{u}ller, L{\'e}o Grinsztajn, and Ingo Steinwart.
   data.
 \newblock \emph{Advances in Neural Information Processing Systems},
   37:\penalty0 26577--26658, 2024.
+
+\bibitem[Sakar et~al.(2019)Sakar, Polat, Katircioglu, and
+  Kabadayi]{sakar2019real}
+C~Okan Sakar, SO~Polat, Mete Katircioglu, and Yomi Kabadayi.
+\newblock Real-time prediction of online shoppers' purchasing intention using
+  multilayer perceptron and lstm recurrent neural networks.
+\newblock \emph{Neural computing and applications}, 31\penalty0 (10):\penalty0
+  6893--6908, 2019.
 
 \bibitem[Tolstikhin et~al.(2021)Tolstikhin, Houlsby, Kolesnikov, Beyer, Zhai,
   Unterthiner, Yung, Steiner, Keysers, Uszkoreit, et~al.]{tolstikhin2021mlp}
