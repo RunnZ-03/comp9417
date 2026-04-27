@@ -3,16 +3,25 @@
 \contentsline {subsection}{\numberline {2.1}xRFM: Algorithm and Theoretical Background}{2}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Experimental Design}{2}{subsection.2.2}%
 \contentsline {subsubsection}{\numberline {2.2.1}Datasets}{2}{subsubsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2}Evaluation Metrics}{2}{subsubsection.2.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.3}xRFM Configuration}{2}{subsubsection.2.2.3}%
-\contentsline {subsubsection}{\numberline {2.2.4}XGBoost and LightGBM Configuration}{2}{subsubsection.2.2.4}%
-\contentsline {subsubsection}{\numberline {2.2.5}MLP Configuration}{3}{subsubsection.2.2.5}%
-\contentsline {section}{\numberline {3}Results}{3}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Predictive Performance}{3}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Scalability Analysis}{4}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Interpretability Comparison}{4}{subsection.3.3}%
-\contentsline {section}{\numberline {4}Discussion}{4}{section.4}%
-\contentsline {subsection}{\numberline {4.1}xRFM: When Feature Learning Helps and When It Does Not}{4}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}XGBoost and LightGBM: Performance and Efficiency}{5}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}MLP: Performance and Scalability Limitations}{5}{subsection.4.3}%
-\contentsline {section}{\numberline {5}Conclusion}{5}{section.5}%
+\contentsline {subsubsection}{\numberline {2.2.2}Data Preprocessing and Splitting Strategy}{3}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Evaluation Metrics}{3}{subsubsection.2.2.3}%
+\contentsline {paragraph}{Regression Task Metrics}{3}{section*.3}%
+\contentsline {paragraph}{Classification Task Metrics}{3}{section*.4}%
+\contentsline {paragraph}{Hyperparameter Tuning and Validation Protocol}{4}{section*.5}%
+\contentsline {paragraph}{Efficiency Evaluation Metrics}{4}{section*.6}%
+\contentsline {subsubsection}{\numberline {2.2.4}xRFM Configuration}{4}{subsubsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.5}XGBoost and LightGBM Configuration}{4}{subsubsection.2.2.5}%
+\contentsline {subsubsection}{\numberline {2.2.6}MLP Configuration}{5}{subsubsection.2.2.6}%
+\contentsline {section}{\numberline {3}Results}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Predictive Performance}{5}{subsection.3.1}%
+\contentsline {paragraph}{Regression Task Results}{5}{section*.10}%
+\contentsline {paragraph}{Binary Classification Task Results}{6}{section*.11}%
+\contentsline {paragraph}{Overall Core Findings from Predictive Performance}{6}{section*.12}%
+\contentsline {subsection}{\numberline {3.2}Scalability Analysis}{6}{subsection.3.2}%
+\contentsline {paragraph}{Scalability Analysis from Table~\ref {tab:scaling}}{7}{section*.14}%
+\contentsline {subsection}{\numberline {3.3}Interpretability Comparison}{7}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Discussion}{8}{section.4}%
+\contentsline {subsection}{\numberline {4.1}xRFM: When Feature Learning Helps and When It Does Not}{8}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}XGBoost and LightGBM: Performance and Efficiency}{8}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}MLP: Performance and Scalability Limitations}{8}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Conclusion}{8}{section.5}%
