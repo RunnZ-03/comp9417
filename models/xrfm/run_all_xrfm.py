@@ -29,7 +29,12 @@ def run_standard_experiments():
             print(f"Running: {dataset_name} ({task_type})")
             print("==============================")
 
-            result = train_and_evaluate(dataset_name, task_type)
+            result = train_and_evaluate(
+                dataset_name=dataset_name,
+                task_type=task_type,
+                save_result=True
+            )
+
             summary.append(result)
 
             if torch.cuda.is_available():
@@ -38,6 +43,7 @@ def run_standard_experiments():
         except Exception as e:
             print(f"Task failed: {dataset_name}, error: {repr(e)}")
             summary.append({
+                "model": "xrfm",
                 "dataset": dataset_name,
                 "task_type": task_type,
                 "error": repr(e)
@@ -46,27 +52,31 @@ def run_standard_experiments():
     return summary
 
 
-def run_diamonds_scaling_experiment():
-    sample_sizes = [1000, 5000, 10000, 30000]
+def run_scaling_experiment(dataset_name, task_type, sample_sizes):
     scaling_results = []
 
     for sample_size in sample_sizes:
         try:
             print("\n==============================")
-            print(f"Running Diamonds scaling experiment: {sample_size}")
+            print(f"Running {dataset_name} scaling experiment: {sample_size}")
             print("==============================")
 
             result = train_and_evaluate(
-                dataset_name="diamonds",
-                task_type="regression",
-                sample_size_absolute=sample_size
+                dataset_name=dataset_name,
+                task_type=task_type,
+                sample_size_absolute=sample_size,
+                save_result=False
             )
 
+            metric_name = "rmse" if task_type == "regression" else "auc"
+            metric_value = result["test_metrics"].get(metric_name)
+
             scaling_results.append({
-                "dataset": "diamonds",
+                "model": "xrfm",
+                "dataset": dataset_name,
                 "sample_size": sample_size,
                 "n_train": result["n_train"],
-                "rmse": result["test_metrics"]["rmse"],
+                metric_name: metric_value,
                 "train_time": result["train_time"],
                 "infer_time_total": result["infer_time_total"],
                 "infer_time_per_sample": result["infer_time_per_sample"]
@@ -76,9 +86,10 @@ def run_diamonds_scaling_experiment():
                 torch.cuda.empty_cache()
 
         except Exception as e:
-            print(f"Scaling task failed: sample_size={sample_size}, error: {repr(e)}")
+            print(f"Scaling task failed: dataset={dataset_name}, sample_size={sample_size}, error: {repr(e)}")
             scaling_results.append({
-                "dataset": "diamonds",
+                "model": "xrfm",
+                "dataset": dataset_name,
                 "sample_size": sample_size,
                 "error": repr(e)
             })
@@ -102,8 +113,27 @@ def run_all():
     summary = run_standard_experiments()
     save_json(summary, "summary_all_results.json")
 
-    scaling_results = run_diamonds_scaling_experiment()
-    save_json(scaling_results, "xrfm_scaling_results.json")
+    diamonds_scaling_results = run_scaling_experiment(
+        dataset_name="diamonds",
+        task_type="regression",
+        sample_sizes=[1000, 5000, 10000, 30000]
+    )
+
+    save_json(
+        diamonds_scaling_results,
+        "xrfm_diamonds_scaling_results.json"
+    )
+
+    superconductivity_scaling_results = run_scaling_experiment(
+        dataset_name="superconductivity",
+        task_type="regression",
+        sample_sizes=[1000, 5000, 10000, 12757]
+    )
+
+    save_json(
+        superconductivity_scaling_results,
+        "xrfm_superconductivity_scaling_results.json"
+    )
 
     print("\nAll xRFM experiments completed.")
 

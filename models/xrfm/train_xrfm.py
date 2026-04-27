@@ -142,10 +142,47 @@ def load_dataset(dataset_name: str, sample_size_absolute: Optional[int] = None):
     return get_dataset(dataset_name)
 
 
+def get_classification_scores(model, X):
+    if hasattr(model, "predict_proba"):
+        try:
+            prob_raw = to_numpy(model.predict_proba(X))
+
+            if prob_raw is not None:
+                prob_raw = np.array(prob_raw)
+
+                if prob_raw.ndim == 2 and prob_raw.shape[1] >= 2:
+                    return prob_raw[:, 1]
+
+                if prob_raw.ndim == 1:
+                    return prob_raw
+
+        except Exception as e:
+            print(f"Could not get predict_proba: {repr(e)}")
+
+    if hasattr(model, "decision_function"):
+        try:
+            scores = to_numpy(model.decision_function(X))
+
+            if scores is not None:
+                scores = np.array(scores)
+
+                if scores.ndim == 2 and scores.shape[1] >= 2:
+                    return scores[:, 1]
+
+                if scores.ndim == 1:
+                    return scores
+
+        except Exception as e:
+            print(f"Could not get decision_function: {repr(e)}")
+
+    return None
+
+
 def train_and_evaluate(
     dataset_name: str,
     task_type: str,
-    sample_size_absolute: Optional[int] = None
+    sample_size_absolute: Optional[int] = None,
+    save_result: bool = True
 ) -> Dict[str, Any]:
 
     X_train, X_val, X_test, y_train, y_val, y_test, features = load_dataset(
@@ -184,22 +221,8 @@ def train_and_evaluate(
     infer_time_per_sample = infer_time_total / max(len(X_test), 1)
 
     if task_type == "classification":
-        val_prob = None
-        test_prob = None
-
-        if hasattr(model, "predict_proba"):
-            try:
-                val_prob_raw = model.predict_proba(X_val)
-                test_prob_raw = model.predict_proba(X_test)
-
-                if len(np.shape(val_prob_raw)) == 2 and np.shape(val_prob_raw)[1] >= 2:
-                    val_prob = val_prob_raw[:, 1]
-
-                if len(np.shape(test_prob_raw)) == 2 and np.shape(test_prob_raw)[1] >= 2:
-                    test_prob = test_prob_raw[:, 1]
-
-            except Exception as e:
-                print(f"Could not get predict_proba: {repr(e)}")
+        val_prob = get_classification_scores(model, X_val)
+        test_prob = get_classification_scores(model, X_test)
 
         val_metrics = evaluate_classification(y_val, val_pred, val_prob)
         test_metrics = evaluate_classification(y_test, test_pred, test_prob)
@@ -211,6 +234,7 @@ def train_and_evaluate(
     feature_importance_top5 = extract_feature_importance(model, features)
 
     result_dict = {
+        "model": "xrfm",
         "dataset": dataset_name,
         "task_type": task_type,
         "sample_size_absolute": sample_size_absolute,
@@ -226,18 +250,23 @@ def train_and_evaluate(
         "feature_importance_top5": feature_importance_top5,
     }
 
-    save_dir = os.path.join(PROJECT_PARENT, "comp9417", "results")
-    os.makedirs(save_dir, exist_ok=True)
+    if save_result:
+        save_dir = os.path.join(PROJECT_PARENT, "comp9417", "results")
+        os.makedirs(save_dir, exist_ok=True)
 
-    if sample_size_absolute is not None:
-        save_filename = f"xrfm_{dataset_name}_{sample_size_absolute}.json"
+        if sample_size_absolute is not None:
+            save_filename = f"xrfm_{dataset_name}_{sample_size_absolute}.json"
+        else:
+            save_filename = f"xrfm_{dataset_name}.json"
+
+        save_path = os.path.join(save_dir, save_filename)
+
+        with open(save_path, "w", encoding="utf-8") as f:
+            json.dump(result_dict, f, indent=4, ensure_ascii=False)
+
+        print(f"Saved to: {save_path}")
     else:
-        save_filename = f"xrfm_{dataset_name}.json"
-
-    save_path = os.path.join(save_dir, save_filename)
-
-    with open(save_path, "w", encoding="utf-8") as f:
-        json.dump(result_dict, f, indent=4, ensure_ascii=False)
+        print("Individual result saving skipped.")
 
     print("\n=== Result ===")
     print(f"Train time: {train_time:.4f} s")
@@ -246,7 +275,6 @@ def train_and_evaluate(
     print(f"Validation metrics: {val_metrics}")
     print(f"Test metrics: {test_metrics}")
     print(f"Feature importance top5: {feature_importance_top5}")
-    print(f"Saved to: {save_path}")
 
     return result_dict
 

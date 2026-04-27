@@ -1,4 +1,5 @@
 {
+    "model": "xrfm",
     "dataset": "hr_attrition",
     "task_type": "classification",
     "sample_size_absolute": null,
@@ -6,9 +7,9 @@
     "n_val": 294,
     "n_test": 294,
     "n_features": 51,
-    "train_time": 0.07209515571594238,
-    "infer_time_total": 0.0010271072387695312,
-    "infer_time_per_sample": 3.493562036631059e-06,
+    "train_time": 0.07244634628295898,
+    "infer_time_total": 0.0009527206420898438,
+    "infer_time_per_sample": 3.2405464016661353e-06,
     "val_metrics": {
         "accuracy": 0.8877551020408163,
         "auc": 0.8251356706003963

@@ -1,5 +1,6 @@
 [
     {
+        "model": "xrfm",
         "dataset": "diamonds",
         "task_type": "regression",
         "sample_size_absolute": null,
@@ -7,9 +8,9 @@
         "n_val": 10789,
         "n_test": 10789,
         "n_features": 26,
-        "train_time": 246.4718873500824,
-        "infer_time_total": 0.7685117721557617,
-        "infer_time_per_sample": 7.123104756286604e-05,
+        "train_time": 246.52239656448364,
+        "infer_time_total": 0.7533080577850342,
+        "infer_time_per_sample": 6.982186094958144e-05,
         "val_metrics": {
             "rmse": 1494.7949566618718
         },
@@ -40,6 +41,7 @@
         ]
     },
     {
+        "model": "xrfm",
         "dataset": "superconductivity",
         "task_type": "regression",
         "sample_size_absolute": null,
@@ -47,9 +49,9 @@
         "n_val": 4253,
         "n_test": 4253,
         "n_features": 81,
-        "train_time": 1.5986559391021729,
-        "infer_time_total": 0.003892660140991211,
-        "infer_time_per_sample": 9.152739574397392e-07,
+        "train_time": 1.6005706787109375,
+        "infer_time_total": 0.00437164306640625,
+        "infer_time_per_sample": 1.0278963241021045e-06,
         "val_metrics": {
             "rmse": 9.922950819642857
         },
@@ -80,6 +82,7 @@
         ]
     },
     {
+        "model": "xrfm",
         "dataset": "shoppers",
         "task_type": "classification",
         "sample_size_absolute": null,
@@ -87,9 +90,9 @@
         "n_val": 2466,
         "n_test": 2466,
         "n_features": 27,
-        "train_time": 0.6928877830505371,
-        "infer_time_total": 0.0017197132110595703,
-        "infer_time_per_sample": 6.973695097565168e-07,
+        "train_time": 0.7003352642059326,
+        "infer_time_total": 0.0018613338470458984,
+        "infer_time_per_sample": 7.547988025328055e-07,
         "val_metrics": {
             "accuracy": 0.8937550689375506,
             "auc": 0.915245550743134
@@ -122,6 +125,7 @@
         ]
     },
     {
+        "model": "xrfm",
         "dataset": "stroke",
         "task_type": "classification",
         "sample_size_absolute": null,
@@ -129,9 +133,9 @@
         "n_val": 1022,
         "n_test": 1022,
         "n_features": 21,
-        "train_time": 0.25850915908813477,
-        "infer_time_total": 0.0011074542999267578,
-        "infer_time_per_sample": 1.0836147748794107e-06,
+        "train_time": 0.26641178131103516,
+        "infer_time_total": 0.0010883808135986328,
+        "infer_time_per_sample": 1.0649518724057073e-06,
         "val_metrics": {
             "accuracy": 0.9442270058708415,
             "auc": 0.703425925925926
@@ -164,6 +168,7 @@
         ]
     },
     {
+        "model": "xrfm",
         "dataset": "hr_attrition",
         "task_type": "classification",
         "sample_size_absolute": null,
@@ -171,9 +176,9 @@
         "n_val": 294,
         "n_test": 294,
         "n_features": 51,
-        "train_time": 0.07209515571594238,
-        "infer_time_total": 0.0010271072387695312,
-        "infer_time_per_sample": 3.493562036631059e-06,
+        "train_time": 0.07244634628295898,
+        "infer_time_total": 0.0009527206420898438,
+        "infer_time_per_sample": 3.2405464016661353e-06,
         "val_metrics": {
             "accuracy": 0.8877551020408163,
             "auc": 0.8251356706003963

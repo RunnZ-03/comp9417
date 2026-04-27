@@ -1,0 +1,42 @@
+[
+    {
+        "model": "xrfm",
+        "dataset": "superconductivity",
+        "sample_size": 1000,
+        "n_train": 1000,
+        "rmse": 14.065833967322682,
+        "train_time": 0.0837407112121582,
+        "infer_time_total": 0.0031447410583496094,
+        "infer_time_per_sample": 7.394171310485797e-07
+    },
+    {
+        "model": "xrfm",
+        "dataset": "superconductivity",
+        "sample_size": 5000,
+        "n_train": 5000,
+        "rmse": 11.304830356950868,
+        "train_time": 0.47253894805908203,
+        "infer_time_total": 0.003314495086669922,
+        "infer_time_per_sample": 7.793310808064712e-07
+    },
+    {
+        "model": "xrfm",
+        "dataset": "superconductivity",
+        "sample_size": 10000,
+        "n_train": 10000,
+        "rmse": 9.812737958445197,
+        "train_time": 1.0725655555725098,
+        "infer_time_total": 0.003648519515991211,
+        "infer_time_per_sample": 8.578696252036706e-07
+    },
+    {
+        "model": "xrfm",
+        "dataset": "superconductivity",
+        "sample_size": 12757,
+        "n_train": 12757,
+        "rmse": 9.455719332808268,
+        "train_time": 1.5629312992095947,
+        "infer_time_total": 0.004178762435913086,
+        "infer_time_per_sample": 9.825446592788822e-07
+    }
+]

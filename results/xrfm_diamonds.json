@@ -1,4 +1,5 @@
 {
+    "model": "xrfm",
     "dataset": "diamonds",
     "task_type": "regression",
     "sample_size_absolute": null,
@@ -6,9 +7,9 @@
     "n_val": 10789,
     "n_test": 10789,
     "n_features": 26,
-    "train_time": 246.4718873500824,
-    "infer_time_total": 0.7685117721557617,
-    "infer_time_per_sample": 7.123104756286604e-05,
+    "train_time": 246.52239656448364,
+    "infer_time_total": 0.7533080577850342,
+    "infer_time_per_sample": 6.982186094958144e-05,
     "val_metrics": {
         "rmse": 1494.7949566618718
     },

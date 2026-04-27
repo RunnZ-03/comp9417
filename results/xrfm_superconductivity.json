@@ -1,4 +1,5 @@
 {
+    "model": "xrfm",
     "dataset": "superconductivity",
     "task_type": "regression",
     "sample_size_absolute": null,
@@ -6,9 +7,9 @@
     "n_val": 4253,
     "n_test": 4253,
     "n_features": 81,
-    "train_time": 1.5986559391021729,
-    "infer_time_total": 0.003892660140991211,
-    "infer_time_per_sample": 9.152739574397392e-07,
+    "train_time": 1.6005706787109375,
+    "infer_time_total": 0.00437164306640625,
+    "infer_time_per_sample": 1.0278963241021045e-06,
     "val_metrics": {
         "rmse": 9.922950819642857
     },

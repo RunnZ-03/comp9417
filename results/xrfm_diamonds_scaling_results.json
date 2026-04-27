@@ -1,0 +1,42 @@
+[
+    {
+        "model": "xrfm",
+        "dataset": "diamonds",
+        "sample_size": 1000,
+        "n_train": 1000,
+        "rmse": 1656.958576421911,
+        "train_time": 0.7657606601715088,
+        "infer_time_total": 0.03408980369567871,
+        "infer_time_per_sample": 3.1596814992750684e-06
+    },
+    {
+        "model": "xrfm",
+        "dataset": "diamonds",
+        "sample_size": 5000,
+        "n_train": 5000,
+        "rmse": 1655.9292819781274,
+        "train_time": 11.029973030090332,
+        "infer_time_total": 0.12214422225952148,
+        "infer_time_per_sample": 1.1321181041757483e-05
+    },
+    {
+        "model": "xrfm",
+        "dataset": "diamonds",
+        "sample_size": 10000,
+        "n_train": 10000,
+        "rmse": 1577.5955375625201,
+        "train_time": 39.30726099014282,
+        "infer_time_total": 0.2317485809326172,
+        "infer_time_per_sample": 2.148007979725806e-05
+    },
+    {
+        "model": "xrfm",
+        "dataset": "diamonds",
+        "sample_size": 30000,
+        "n_train": 30000,
+        "rmse": 1487.4850778406455,
+        "train_time": 226.43540811538696,
+        "infer_time_total": 0.6945154666900635,
+        "infer_time_per_sample": 6.437255229308217e-05
+    }
+]

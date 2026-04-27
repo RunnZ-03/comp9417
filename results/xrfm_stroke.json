@@ -1,4 +1,5 @@
 {
+    "model": "xrfm",
     "dataset": "stroke",
     "task_type": "classification",
     "sample_size_absolute": null,
@@ -6,9 +7,9 @@
     "n_val": 1022,
     "n_test": 1022,
     "n_features": 21,
-    "train_time": 0.25850915908813477,
-    "infer_time_total": 0.0011074542999267578,
-    "infer_time_per_sample": 1.0836147748794107e-06,
+    "train_time": 0.26641178131103516,
+    "infer_time_total": 0.0010883808135986328,
+    "infer_time_per_sample": 1.0649518724057073e-06,
     "val_metrics": {
         "accuracy": 0.9442270058708415,
         "auc": 0.703425925925926
