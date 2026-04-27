@@ -92,7 +92,13 @@ Key observations from our subsampling experiments:
 2.  **All models' performance improves with increasing training set size**: For both Diamonds and Superconductivity, the test RMSE of all models decreases monotonically as the training set size increases, which is consistent with standard machine learning theory.
 3.  **LightGBM achieves the best performance-efficiency trade-off**: It achieves competitive or better test RMSE than XGBoost across all subsample sizes, while having significantly shorter training time, making it the most suitable baseline for large-scale tabular regression tasks.
 
-% TODO (A/E): Add scalability curve figures here (figures/fig_scaling_diamonds.pdf etc.)
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{figures/scaling_analysis.pdf}
+  \caption{Scalability analysis on the Diamonds dataset, comparing test RMSE (left) and training time (right) across varying training set sizes.}
+  \label{fig:scaling}
+\end{figure}
+
 \begin{figure}[htbp]
   \centering
   \begin{minipage}{0.48\textwidth}
