@@ -18,10 +18,19 @@
 % ── 2.2.1 Datasets (A负责) ───────────────────────────────────────────────────
 \subsubsection{Datasets}
 
-\textit{[Placeholder: Dataset rationale to be written by A.]}
+We selected five publicly available tabular datasets to satisfy the project requirements and to probe different aspects of model behaviour. Table~\ref{tab:datasets} provides an overview of their key statistics.
 
-We evaluate all models on five publicly available tabular datasets covering both regression and
-binary classification tasks, summarised in Table~\ref{tab:datasets}.
+\textbf{Diamonds} (Kaggle) is a large regression dataset ($n{=}53{,}940$, $d{=}10$ raw features) with a mix of continuous and ordinal categorical features (cut, colour, clarity), making it suitable for evaluating models on mixed feature types and at scale ($n > 10{,}000$).
+
+\textbf{Superconductivity}~\citep{hamidieh2018data} (UCI) is a high-dimensional regression task ($n{=}21{,}263$, $d{=}81$ numerical features) derived from material science experiments predicting the superconducting critical temperature. Its high dimensionality ($d > 50$) makes it well-suited for evaluating the AGOP's ability to identify relevant directions in feature space.
+
+\textbf{Online Shoppers Purchasing Intention}~\citep{sakar2019real} (UCI) is a binary classification task ($n{=}12{,}330$) with mixed numerical and categorical features representing user session behaviour on an e-commerce platform. The moderate class imbalance (approximately 15\% positive) makes AUC a particularly informative metric.
+
+\textbf{Stroke Prediction}~\citep{fedesoriano2021stroke} (Kaggle) is a binary classification task ($n{=}5{,}110$) with mixed feature types and notable class imbalance ($\sim$4.9\% positive), providing a challenging low-$n$ regime for all methods.
+
+\textbf{HR Attrition} (IBM/Kaggle) is a binary classification task ($n{=}1{,}470$, $d{=}35$ raw features expanding to $d{=}51$ after encoding) in a small-data regime. It tests whether xRFM's kernel-based approach can leverage structured feature relationships when training data is scarce.
+
+Together, this selection covers two regression and three classification tasks, includes datasets at multiple scales ($n$ ranging from 1{,}470 to 53{,}940), features high dimensionality ($d{=}81$ for Superconductivity), and mixed feature types (Diamonds, Online Shoppers, Stroke, HR Attrition)—satisfying all project coverage requirements.
 
 \begin{table}[H]
   \centering
@@ -29,7 +38,7 @@ binary classification tasks, summarised in Table~\ref{tab:datasets}.
            \emph{n\textsubscript{test}} denote the sizes of the training, validation, and test splits
            respectively; \emph{d} is the number of features after preprocessing.}
   \label{tab:datasets}
-  \begin{tabular}{lllrrrrr}
+  \begin{tabular}{lllrrrr}
     \toprule
     Dataset & Task & Target & $n_\text{train}$ & $n_\text{val}$ & $n_\text{test}$ & $d$ \\
     \midrule
@@ -42,10 +51,11 @@ binary classification tasks, summarised in Table~\ref{tab:datasets}.
   \end{tabular}
 \end{table}
 
-All datasets were split 60/20/20 into train/validation/test sets with a fixed random seed of 42.
-Numerical features were standardised with z-score normalisation, and categorical features were
-one-hot encoded. Missing values were imputed using column-wise median (numerical) or the constant
-\texttt{"Missing"} (categorical).
+\subsubsection{Data Preprocessing and Splitting Strategy}
+
+To maintain fairness and consistency across all experiments, all random seeds were fixed (seed 42) for reproducibility. For each dataset, we applied a strict 60/20/20 split for the training, validation, and test sets. Missing values were imputed using column-wise median for numerical features and the constant \texttt{"Missing"} for categorical features.
+
+Proper preprocessing was crucial, particularly for xRFM which requires specific input formats. Numerical features were standardised using z-score normalisation, and categorical features were transformed using one-hot encoding. These processed features were then concatenated into a single numerical array before being passed to the models, ensuring compatibility with the xRFM library's underlying AGOP computations.
 
 
 % ── 2.2.2 Evaluation Metrics (E负责) ─────────────────────────────────────────
