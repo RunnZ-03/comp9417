@@ -1,13 +1,14 @@
 {
     "dataset": "hr_attrition",
     "task_type": "classification",
+    "sample_size_absolute": null,
     "n_train": 882,
     "n_val": 294,
     "n_test": 294,
     "n_features": 51,
-    "train_time": 0.0766286849975586,
-    "infer_time_total": 0.0010395050048828125,
-    "infer_time_per_sample": 3.5357313091252125e-06,
+    "train_time": 0.07209515571594238,
+    "infer_time_total": 0.0010271072387695312,
+    "infer_time_per_sample": 3.493562036631059e-06,
     "val_metrics": {
         "accuracy": 0.8877551020408163,
         "auc": 0.8251356706003963

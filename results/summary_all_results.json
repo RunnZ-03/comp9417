@@ -2,13 +2,14 @@
     {
         "dataset": "diamonds",
         "task_type": "regression",
+        "sample_size_absolute": null,
         "n_train": 32365,
         "n_val": 10789,
         "n_test": 10789,
         "n_features": 26,
-        "train_time": 247.0694227218628,
-        "infer_time_total": 0.7720804214477539,
-        "infer_time_per_sample": 7.156181494556992e-05,
+        "train_time": 246.4718873500824,
+        "infer_time_total": 0.7685117721557617,
+        "infer_time_per_sample": 7.123104756286604e-05,
         "val_metrics": {
             "rmse": 1494.7949566618718
         },
@@ -41,13 +42,14 @@
     {
         "dataset": "superconductivity",
         "task_type": "regression",
+        "sample_size_absolute": null,
         "n_train": 12757,
         "n_val": 4253,
         "n_test": 4253,
         "n_features": 81,
-        "train_time": 1.5879302024841309,
-        "infer_time_total": 0.0046672821044921875,
-        "infer_time_per_sample": 1.0974093826692187e-06,
+        "train_time": 1.5986559391021729,
+        "infer_time_total": 0.003892660140991211,
+        "infer_time_per_sample": 9.152739574397392e-07,
         "val_metrics": {
             "rmse": 9.922950819642857
         },
@@ -80,13 +82,14 @@
     {
         "dataset": "shoppers",
         "task_type": "classification",
+        "sample_size_absolute": null,
         "n_train": 7398,
         "n_val": 2466,
         "n_test": 2466,
         "n_features": 27,
-        "train_time": 0.7101306915283203,
-        "infer_time_total": 0.0017461776733398438,
-        "infer_time_per_sample": 7.081012462854192e-07,
+        "train_time": 0.6928877830505371,
+        "infer_time_total": 0.0017197132110595703,
+        "infer_time_per_sample": 6.973695097565168e-07,
         "val_metrics": {
             "accuracy": 0.8937550689375506,
             "auc": 0.915245550743134
@@ -121,13 +124,14 @@
     {
         "dataset": "stroke",
         "task_type": "classification",
+        "sample_size_absolute": null,
         "n_train": 3066,
         "n_val": 1022,
         "n_test": 1022,
         "n_features": 21,
-        "train_time": 0.259371280670166,
-        "infer_time_total": 0.0011587142944335938,
-        "infer_time_per_sample": 1.133771325277489e-06,
+        "train_time": 0.25850915908813477,
+        "infer_time_total": 0.0011074542999267578,
+        "infer_time_per_sample": 1.0836147748794107e-06,
         "val_metrics": {
             "accuracy": 0.9442270058708415,
             "auc": 0.703425925925926
@@ -162,13 +166,14 @@
     {
         "dataset": "hr_attrition",
         "task_type": "classification",
+        "sample_size_absolute": null,
         "n_train": 882,
         "n_val": 294,
         "n_test": 294,
         "n_features": 51,
-        "train_time": 0.0766286849975586,
-        "infer_time_total": 0.0010395050048828125,
-        "infer_time_per_sample": 3.5357313091252125e-06,
+        "train_time": 0.07209515571594238,
+        "infer_time_total": 0.0010271072387695312,
+        "infer_time_per_sample": 3.493562036631059e-06,
         "val_metrics": {
             "accuracy": 0.8877551020408163,
             "auc": 0.8251356706003963

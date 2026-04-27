@@ -1,0 +1,40 @@
+{
+    "dataset": "diamonds",
+    "task_type": "regression",
+    "sample_size_absolute": 5000,
+    "n_train": 5000,
+    "n_val": 10789,
+    "n_test": 10789,
+    "n_features": 26,
+    "train_time": 10.973855257034302,
+    "infer_time_total": 0.12005472183227539,
+    "infer_time_per_sample": 1.1127511523985113e-05,
+    "val_metrics": {
+        "rmse": 1689.1686207828363
+    },
+    "test_metrics": {
+        "rmse": 1655.9292819781274
+    },
+    "feature_importance_top5": [
+        [
+            "num__y",
+            1.0
+        ],
+        [
+            "num__x",
+            0.6283060908317566
+        ],
+        [
+            "num__z",
+            0.10655342042446136
+        ],
+        [
+            "num__depth",
+            0.07149641960859299
+        ],
+        [
+            "num__carat",
+            0.025997154414653778
+        ]
+    ]
+}

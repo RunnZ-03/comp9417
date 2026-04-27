@@ -1,13 +1,14 @@
 {
     "dataset": "superconductivity",
     "task_type": "regression",
+    "sample_size_absolute": null,
     "n_train": 12757,
     "n_val": 4253,
     "n_test": 4253,
     "n_features": 81,
-    "train_time": 1.5879302024841309,
-    "infer_time_total": 0.0046672821044921875,
-    "infer_time_per_sample": 1.0974093826692187e-06,
+    "train_time": 1.5986559391021729,
+    "infer_time_total": 0.003892660140991211,
+    "infer_time_per_sample": 9.152739574397392e-07,
     "val_metrics": {
         "rmse": 9.922950819642857
     },

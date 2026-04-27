@@ -1,13 +1,14 @@
 {
     "dataset": "shoppers",
     "task_type": "classification",
+    "sample_size_absolute": null,
     "n_train": 7398,
     "n_val": 2466,
     "n_test": 2466,
     "n_features": 27,
-    "train_time": 0.7101306915283203,
-    "infer_time_total": 0.0017461776733398438,
-    "infer_time_per_sample": 7.081012462854192e-07,
+    "train_time": 0.6928877830505371,
+    "infer_time_total": 0.0017197132110595703,
+    "infer_time_per_sample": 6.973695097565168e-07,
     "val_metrics": {
         "accuracy": 0.8937550689375506,
         "auc": 0.915245550743134

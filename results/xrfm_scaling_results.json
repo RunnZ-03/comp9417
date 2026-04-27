@@ -1,0 +1,38 @@
+[
+    {
+        "dataset": "diamonds",
+        "sample_size": 1000,
+        "n_train": 1000,
+        "rmse": 1656.958576421911,
+        "train_time": 0.7319908142089844,
+        "infer_time_total": 0.03253579139709473,
+        "infer_time_per_sample": 3.015644767549794e-06
+    },
+    {
+        "dataset": "diamonds",
+        "sample_size": 5000,
+        "n_train": 5000,
+        "rmse": 1655.9292819781274,
+        "train_time": 10.973855257034302,
+        "infer_time_total": 0.12005472183227539,
+        "infer_time_per_sample": 1.1127511523985113e-05
+    },
+    {
+        "dataset": "diamonds",
+        "sample_size": 10000,
+        "n_train": 10000,
+        "rmse": 1577.5955375625201,
+        "train_time": 39.244163274765015,
+        "infer_time_total": 0.2294604778289795,
+        "infer_time_per_sample": 2.126800239401052e-05
+    },
+    {
+        "dataset": "diamonds",
+        "sample_size": 30000,
+        "n_train": 30000,
+        "rmse": 1487.4850778406455,
+        "train_time": 225.88243746757507,
+        "infer_time_total": 0.7061042785644531,
+        "infer_time_per_sample": 6.544668445309603e-05
+    }
+]
