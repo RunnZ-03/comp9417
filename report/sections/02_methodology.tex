@@ -51,7 +51,35 @@ one-hot encoded. Missing values were imputed using column-wise median (numerical
 % ── 2.2.2 Evaluation Metrics (E负责) ─────────────────────────────────────────
 \subsubsection{Evaluation Metrics}
 
-\textit{[Placeholder: Evaluation metrics \& experimental setup to be written by E. Cover: RMSE for regression, Accuracy + AUC for classification, val-set hyperparameter selection.]}
+To ensure the fairness, reproducibility and academic rigour of cross-model comparison across all experiments, we established a unified evaluation pipeline with standardised performance metrics for regression and binary classification tasks, as well as a consistent validation protocol for hyperparameter tuning and model selection. This pipeline aligns strictly with the fixed data preprocessing and train/validation/test split defined in Section 2.2.1, eliminating discrepancies in data usage across all models.
+
+\paragraph{Regression Task Metrics}
+For the two regression tasks (Diamonds price prediction, Superconductivity critical temperature prediction), we use **Root Mean Squared Error (RMSE)** as the sole primary evaluation metric, formally defined as:
+$$
+\text{RMSE} = \sqrt{\frac{1}{N} \sum_{i=1}^{N} \left( y_i - \hat{y}_i \right)^2}
+$$
+where $N$ is the number of test samples, $y_i$ is the ground truth target value, and $\hat{y}_i$ is the model's predicted value. RMSE is selected as the core metric because it is the standard benchmark for tabular regression tasks, is sensitive to large prediction errors, and provides an interpretable measure of absolute prediction error in the original units of the target variable.
+
+\paragraph{Classification Task Metrics}
+For the three binary classification tasks (Online Shoppers purchase intention prediction, Stroke prediction, HR Attrition prediction), we use two complementary metrics to comprehensively evaluate model performance, with specific consideration for the class imbalance present in all three datasets:
+1.  **Classification Accuracy**: The proportion of correctly classified samples across the test set, defined as:
+    $$
+    \text{Accuracy} = \frac{\text{True Positives} + \text{True Negatives}}{\text{Total Number of Test Samples}}
+    $$
+    This metric provides an intuitive global measure of overall classification correctness.
+2.  **Area Under the Receiver Operating Characteristic Curve (AUC-ROC)**: A threshold-agnostic metric that measures the model's ability to distinguish between positive and negative classes. This metric is robust to class imbalance, which is critical for our classification datasets (all of which have positive class prevalence below 15%), and is the primary metric for classification model comparison.
+
+\paragraph{Hyperparameter Tuning and Validation Protocol}
+In line with the fixed 60/20/20 train/validation/test split with a fixed random seed of 42 (defined in Section 2.2.1), we enforce a strict validation protocol for all models to prevent data leakage and overfitting:
+1.  All hyperparameter tuning is conducted **exclusively on the independent validation set**, with no access to the held-out test set at any stage of training or tuning.
+2.  For all models, we enable early stopping with a patience of 20, optimising for the validation set's core task metric (RMSE for regression, AUC-ROC for classification) to prevent overfitting, consistent with the configuration defined for all baseline models in Sections 2.2.4 and 2.2.5.
+3.  The final reported performance of all models is evaluated **only once on the held-out test set**, after model training and hyperparameter tuning are fully completed, to ensure the generalisability and credibility of all reported results.
+
+\paragraph{Efficiency Evaluation Metrics}
+To compare the computational overhead and deployment suitability of all models, we uniformly record two standardised efficiency metrics for every experiment:
+1.  **Total Training Time**: The wall-clock time elapsed from model initialisation to the completion of training (including early stopping termination).
+2.  **Per-sample Inference Time**: The average inference time per test sample, measured on the full test set to reflect real-world deployment latency.
+All time metrics are recorded in a consistent hardware environment to ensure fair cross-model comparison.
 
 
 % ── 2.2.3 xRFM Configuration (B负责) ─────────────────────────────────────────
