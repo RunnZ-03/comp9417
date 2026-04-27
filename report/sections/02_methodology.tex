@@ -1,21 +1,26 @@
-% ── Section 2: Methodology ────────────────────────────────────────────────────
+% Section 2: Methodology
 
 \section{Methodology}
 
-% ─────────────────────────────────────────────────────────────────────────────
-% 2.1  Theoretical Background  (B负责)
-% ─────────────────────────────────────────────────────────────────────────────
 \subsection{xRFM: Algorithm and Theoretical Background}
 
-\textit{[Placeholder: Theory to be written by B. Covers: formal AGOP definition, geometric intuition, two interpretability strategies (diagonal vs.\ top eigenvector), comparison with PCA/MI/permutation importance, full xRFM pipeline, complexity analysis.]}
+xRFM is a feature learning model designed for tabular prediction tasks. Its main idea is to use the average gradient outer product (AGOP) to identify the directions of the input space to which a learned function is most sensitive~\citep{beaglehole2025xrfm,radhakrishnan2024mechanism}. Given a prediction function $f:\mathbb{R}^{d}\rightarrow\mathbb{R}$, the AGOP matrix is defined as
+\begin{equation}
+    G_f = \mathbb{E}_{x}\left[\nabla f(x)\nabla f(x)^{\top}\right],
+    \label{eq:agop}
+\end{equation}
+where $\nabla f(x)$ is the gradient of the prediction with respect to the input feature vector $x$. The matrix $G_f\in\mathbb{R}^{d\times d}$ measures how changes in input directions affect the model output on average. Large values in $G_f$ indicate that the model is sensitive to movements along the corresponding feature directions.
 
+Geometrically, AGOP can be understood as a supervised analogue of covariance-based dimension analysis. Principal component analysis (PCA) identifies directions with high input variance without using the target variable~\citep{pearson1901pca}. In contrast, AGOP uses gradients of the learned prediction function and therefore captures directions that matter for the supervised task. This is important for tabular data because the most variable features are not always the most predictive features. The diagonal elements of $G_f$ provide a simple feature-level importance score, while the leading eigenvectors of $G_f$ describe the most influential linear combinations of input variables. The diagonal view is easier to interpret because it maps directly back to original or one-hot encoded features; the eigenvector view is more geometric and can reveal interactions across groups of features.
 
-% ─────────────────────────────────────────────────────────────────────────────
-% 2.2  Experimental Design  (A + E 合写; C and D add hyperparameter paragraphs)
-% ─────────────────────────────────────────────────────────────────────────────
+The xRFM pipeline follows an iterative feature-learning procedure. First, a base random-feature or kernel-style model is fitted on the preprocessed tabular features. Second, gradients of the learned function with respect to the input are used to estimate the AGOP matrix. Third, this AGOP information is used to reweight or transform the feature space, so that subsequent model fitting focuses more strongly on task-relevant directions. This process is repeated for a small number of iterations, after which the final model is evaluated on validation and test data. In this project, we use the diagonal AGOP mode because it is computationally lighter and directly supports feature-importance extraction.
+
+AGOP-based interpretation differs from other common interpretability methods. PCA loadings are unsupervised and explain input variance rather than predictive relevance~\citep{pearson1901pca}. Mutual information (MI) measures dependence between individual features and the target, but it is usually univariate and may miss multivariate feature interactions~\citep{kraskov2004estimating,guyon2003introduction}. Permutation importance measures the drop in predictive performance after shuffling a feature and is model-agnostic, but it requires repeated evaluation and can be unstable when features are correlated~\citep{fisher2019all}. AGOP diagonal importance is model-specific and supervised: it reflects the sensitivity of the trained xRFM function to each input dimension. This makes it useful for interpreting the feature-learning behaviour of xRFM, although it should be viewed as complementary rather than identical to permutation-based importance.
+
+From a computational perspective, AGOP estimation requires gradient-related operations over training examples and features. This can become expensive for large $n$ or high-dimensional one-hot encoded data. Therefore, the practical scalability of xRFM depends on the number of AGOP iterations, batch size, and whether a diagonal or full AGOP matrix is used. Our experiments use diagonal AGOP to reduce memory and computational cost while preserving a feature-level interpretation.
+
 \subsection{Experimental Design}
 
-% ── 2.2.1 Datasets (A负责) ───────────────────────────────────────────────────
 \subsubsection{Datasets}
 
 We selected five publicly available tabular datasets to satisfy the project requirements and to probe different aspects of model behaviour. Table~\ref{tab:datasets} provides an overview of their key statistics.
@@ -30,13 +35,11 @@ We selected five publicly available tabular datasets to satisfy the project requ
 
 \textbf{HR Attrition} (IBM/Kaggle) is a binary classification task ($n{=}1{,}470$, $d{=}35$ raw features expanding to $d{=}51$ after encoding) in a small-data regime. It tests whether xRFM's kernel-based approach can leverage structured feature relationships when training data is scarce.
 
-Together, this selection covers two regression and three classification tasks, includes datasets at multiple scales ($n$ ranging from 1{,}470 to 53{,}940), features high dimensionality ($d{=}81$ for Superconductivity), and mixed feature types (Diamonds, Online Shoppers, Stroke, HR Attrition)—satisfying all project coverage requirements.
+Together, this selection covers two regression and three classification tasks, includes datasets at multiple scales ($n$ ranging from 1{,}470 to 53{,}940), features high dimensionality ($d{=}81$ for Superconductivity), and mixed feature types (Diamonds, Online Shoppers, Stroke, HR Attrition), satisfying the project coverage requirements.
 
 \begin{table}[H]
   \centering
-  \caption{Dataset statistics. \emph{n\textsubscript{train}}, \emph{n\textsubscript{val}}, and
-           \emph{n\textsubscript{test}} denote the sizes of the training, validation, and test splits
-           respectively; \emph{d} is the number of features after preprocessing.}
+  \caption{Dataset statistics. $n_\text{train}$, $n_\text{val}$, and $n_\text{test}$ denote the sizes of the training, validation, and test splits respectively; $d$ is the number of features after preprocessing.}
   \label{tab:datasets}
   \begin{tabular}{lllrrrr}
     \toprule
@@ -53,60 +56,56 @@ Together, this selection covers two regression and three classification tasks, i
 
 \subsubsection{Data Preprocessing and Splitting Strategy}
 
-To maintain fairness and consistency across all experiments, all random seeds were fixed (seed 42) for reproducibility. For each dataset, we applied a strict 60/20/20 split for the training, validation, and test sets. Missing values were imputed using column-wise median for numerical features and the constant \texttt{"Missing"} for categorical features.
+To maintain fairness and consistency across all experiments, all random seeds were fixed at 42 for reproducibility. For each dataset, we applied a strict 60/20/20 split for the training, validation, and test sets. Missing values were imputed using the column-wise median for numerical features and the constant \texttt{Missing} for categorical features. Numerical features were standardised using z-score normalisation, and categorical features were transformed using one-hot encoding. The processed features were concatenated into a single numerical array before being passed to all models, ensuring compatibility with xRFM's AGOP computations and with the baseline models.
 
-Proper preprocessing was crucial, particularly for xRFM which requires specific input formats. Numerical features were standardised using z-score normalisation, and categorical features were transformed using one-hot encoding. These processed features were then concatenated into a single numerical array before being passed to the models, ensuring compatibility with the xRFM library's underlying AGOP computations.
-
-
-% ── 2.2.2 Evaluation Metrics (E负责) ─────────────────────────────────────────
 \subsubsection{Evaluation Metrics}
 
-To ensure the fairness, reproducibility and academic rigour of cross-model comparison across all experiments, we established a unified evaluation pipeline with standardised performance metrics for regression and binary classification tasks, as well as a consistent validation protocol for hyperparameter tuning and model selection. This pipeline aligns strictly with the fixed data preprocessing and train/validation/test split defined in Section 2.2.1, eliminating discrepancies in data usage across all models.
+To ensure fair cross-model comparison, we used standardised metrics for regression and binary classification tasks. For the two regression tasks, we used root mean squared error (RMSE):
+\begin{equation}
+\text{RMSE}=\sqrt{\frac{1}{N}\sum_{i=1}^{N}(y_i-\hat{y}_i)^2},
+\end{equation}
+where $N$ is the number of test samples, $y_i$ is the ground-truth target value, and $\hat{y}_i$ is the prediction. Lower RMSE indicates better predictive accuracy.
 
-\paragraph{Regression Task Metrics}
-For the two regression tasks (Diamonds price prediction, Superconductivity critical temperature prediction), we use Root Mean Squared Error (RMSE) as the sole primary evaluation metric, formally defined as:
-$$
-\text{RMSE} = \sqrt{\frac{1}{N} \sum_{i=1}^{N} \left( y_i - \hat{y}_i \right)^2}
-$$
-where $N$ is the number of test samples, $y_i$ is the ground truth target value, and $\hat{y}_i$ is the model's predicted value. RMSE is selected as the core metric because it is the standard benchmark for tabular regression tasks, is sensitive to large prediction errors, and provides an interpretable measure of absolute prediction error in the original units of the target variable.
+For the three binary classification tasks, we reported accuracy and area under the receiver operating characteristic curve (AUC-ROC). Accuracy measures the proportion of correctly classified examples:
+\begin{equation}
+\text{Accuracy}=\frac{\text{True Positives}+\text{True Negatives}}{\text{Total Number of Test Samples}}.
+\end{equation}
+AUC-ROC is threshold-independent and is more informative under class imbalance, which is present in the classification datasets. For computational efficiency, we recorded total training time and per-sample inference time on the test set.
 
-\paragraph{Classification Task Metrics}
-For the three binary classification tasks (Online Shoppers purchase intention prediction, Stroke prediction, HR Attrition prediction), we use two complementary metrics to comprehensively evaluate model performance, with specific consideration for the class imbalance present in all three datasets:
-1.  Classification Accuracy: The proportion of correctly classified samples across the test set, defined as:
-    $$
-    \text{Accuracy} = \frac{\text{True Positives} + \text{True Negatives}}{\text{Total Number of Test Samples}}
-    $$
-    This metric provides an intuitive global measure of overall classification correctness.
-2.  Area Under the Receiver Operating Characteristic Curve (AUC-ROC): A threshold-agnostic metric that measures the model's ability to distinguish between positive and negative classes. This metric is robust to class imbalance, which is critical for our classification datasets (all of which have positive class prevalence below 15\%), and is the primary metric for classification model comparison.
-
-\paragraph{Hyperparameter Tuning and Validation Protocol}
-In line with the fixed 60/20/20 train/validation/test split with a fixed random seed of 42 (defined in Section 2.2.1), we enforce a strict validation protocol for all models to prevent data leakage and overfitting:
-1.  All hyperparameter tuning is conducted exclusively on the independent validation set, with no access to the held-out test set at any stage of training or tuning.
-2.  For all models, we enable early stopping with a patience of 20, optimising for the validation set's core task metric (RMSE for regression, AUC-ROC for classification) to prevent overfitting, consistent with the configuration defined for all baseline models in Sections 2.2.4 and 2.2.5.
-3.  The final reported performance of all models is evaluated only once on the held-out test set, after model training and hyperparameter tuning are fully completed, to ensure the generalisability and credibility of all reported results.
-
-\paragraph{Efficiency Evaluation Metrics}
-To compare the computational overhead and deployment suitability of all models, we uniformly record two standardised efficiency metrics for every experiment:
-1.  Total Training Time: The wall-clock time elapsed from model initialisation to the completion of training (including early stopping termination).
-2.  Per-sample Inference Time: The average inference time per test sample, measured on the full test set to reflect real-world deployment latency.
-All time metrics are recorded in a consistent hardware environment to ensure fair cross-model comparison.
-
-
-% ── 2.2.3 xRFM Configuration (B负责) ─────────────────────────────────────────
 \subsubsection{xRFM Configuration}
+\label{sec:xrfm-config}
 
-\textit{[Placeholder: xRFM configuration to be written by B. Cover: tree depth, kernel type, AGOP iterations, final hyperparameters per dataset.]}
+The xRFM model was implemented using the Python \texttt{xrfm} package and trained through the shared project pipeline. The training script initialises the model as \texttt{xRFM(use\_diag=True, device=DEVICE)}, where \texttt{DEVICE} is set to CUDA when available and CPU otherwise. The diagonal setting was selected because it substantially reduces the memory cost of AGOP estimation while producing feature-level importance values. The project code also fixes NumPy and PyTorch random seeds at 42, which improves reproducibility across repeated runs~\citep{pedregosa2011scikit,paszke2019pytorch}.
 
+When running on GPU, the code reduces the number of xRFM fit iterations to $3$ and sets \texttt{M\_batch\_size=128}. This setting was used as a practical compromise between computational cost and model quality. All xRFM models were fitted on the training split, monitored using the validation split, and evaluated once on the held-out test split. For classification tasks, the code used predicted class labels for accuracy and attempted to use \texttt{predict\_proba} scores for AUC-ROC. For regression tasks, predictions were evaluated directly using RMSE. Feature importance was extracted from the learned model by reading the AGOP matrix or diagonal values from the internal xRFM tree model and ranking features by their AGOP-derived scores.
 
-% ── 2.2.4 XGBoost and LightGBM Configuration (C负责 — 你的部分) ───────────────
+\begin{table}[H]
+  \centering
+  \caption{xRFM configuration used in the experiments.}
+  \label{tab:xrfm-config}
+  \begin{tabular}{ll}
+    \toprule
+    Component & Setting \\
+    \midrule
+    Model & \texttt{xRFM} \\
+    AGOP mode & Diagonal AGOP (\texttt{use\_diag=True}) \\
+    Device & CUDA if available; otherwise CPU \\
+    Random seed & 42 \\
+    GPU fit iterations & 3 \\
+    GPU AGOP batch size & 128 \\
+    Input representation & Standardised numerical features and one-hot encoded categorical features \\
+    Evaluation split & 60/20/20 train/validation/test split \\
+    Regression metric & RMSE \\
+    Classification metrics & Accuracy and AUC-ROC \\
+    Interpretability output & Top features ranked by AGOP diagonal score \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
 \subsubsection{XGBoost and LightGBM Configuration}
 \label{sec:gbdt-config}
 
-Both models are trained via the scikit-learn API following strong-default settings from the
-literature~\citep{holzmuller2024better}: 1{,}000 boosting rounds, learning rate $\eta=0.05$,
-row/column subsample $0.8$, and early stopping with patience 20 on validation loss.
-XGBoost uses max depth~6; LightGBM uses \texttt{num\_leaves=31} to reflect its leaf-wise
-growth strategy. Table~\ref{tab:gbdt-hyperparams} summarises the full configuration.
+Both models are trained via the scikit-learn API following strong-default settings from the literature~\citep{holzmuller2024better}: 1{,}000 boosting rounds, learning rate $\eta=0.05$, row/column subsample $0.8$, and early stopping with patience 20 on validation loss. XGBoost uses max depth~6; LightGBM uses \texttt{num\_leaves=31} to reflect its leaf-wise growth strategy. Table~\ref{tab:gbdt-hyperparams} summarises the full configuration.
 
 \begin{table}[H]
   \centering
@@ -118,8 +117,8 @@ growth strategy. Table~\ref{tab:gbdt-hyperparams} summarises the full configurat
     \midrule
     Max boosting rounds     & 1{,}000   & 1{,}000 \\
     Learning rate $\eta$    & 0.05      & 0.05 \\
-    Max depth               & 6         & — \\
-    Num leaves              & —         & 31 \\
+    Max depth               & 6         & -- \\
+    Num leaves              & --        & 31 \\
     Row subsample           & 0.8       & 0.8 \\
     Column subsample        & 0.8       & 0.8 \\
     Early stopping patience & 20        & 20 \\
@@ -127,17 +126,30 @@ growth strategy. Table~\ref{tab:gbdt-hyperparams} summarises the full configurat
   \end{tabular}
 \end{table}
 
-
-% ── 2.2.5 MLP Configuration (D负责) ──────────────────────────────────────────
 \subsubsection{MLP Configuration}
 \label{sec:mlp-config}
 
-The multilayer perceptron (MLP) baseline is implemented using the scikit-learn API with
-a standard architecture for tabular data. We use a two-hidden-layer network with sizes
-$(128, 64)$ and ReLU activations, trained using the Adam optimiser. The learning rate is
-set to $\eta = 0.001$ and a batch size of 256 is used. Early stopping is enabled with patience
-20 based on validation loss to mitigate overfitting.
-All input features are standardised using z-score normalisation prior to training.
-For classification tasks, the model outputs class probabilities via a softmax layer,
-while for regression tasks a linear output is used. The maximum number of training
-iterations is set to 500.
+The multilayer perceptron (MLP) baseline is implemented using the scikit-learn API with a standard architecture for tabular data. We use a two-hidden-layer network with sizes $(128,64)$ and ReLU activations, trained using the Adam optimiser. The learning rate is set to $\eta=0.001$ and a batch size of 256 is used. Early stopping is enabled with patience 20 based on validation loss to mitigate overfitting.
+
+All input features are standardised using z-score normalisation prior to training. For classification tasks, the model outputs class probabilities via a softmax layer, while for regression tasks a linear output is used. The maximum number of training iterations is set to 500. Table~\ref{tab:mlp-hyperparams} summarises the full configuration.
+
+\begin{table}[H]
+  \centering
+  \caption{Hyperparameter configuration for the MLP baseline.}
+  \label{tab:mlp-hyperparams}
+  \begin{tabular}{lc}
+    \toprule
+    Hyperparameter          & Value \\
+    \midrule
+    Hidden layer sizes      & $(128,64)$ \\
+    Activation function     & ReLU \\
+    Optimiser               & Adam \\
+    Learning rate           & $0.001$ \\
+    Batch size              & 256 \\
+    Max iterations          & 500 \\
+    Early stopping          & Enabled \\
+    Patience                & 20 \\
+    Feature scaling         & Standardisation \\
+    \bottomrule
+  \end{tabular}
+\end{table}

@@ -1,15 +1,47 @@
-\begin{thebibliography}{7}
+\begin{thebibliography}{20}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[fedesoriano(2021)]{fedesoriano2021stroke}
-fedesoriano.
+\bibitem[Beaglehole et~al.(2025)Beaglehole, Holzm{\"u}ller, Radhakrishnan, and
+  Belkin]{beaglehole2025xrfm}
+Daniel Beaglehole, David Holzm{\"u}ller, Adityanarayanan Radhakrishnan, and
+  Mikhail Belkin.
+\newblock xrfm: Accurate, scalable, and interpretable feature learning models
+  for tabular data.
+\newblock \emph{arXiv preprint arXiv:2508.10053}, 2025.
+
+\bibitem[Breiman(2001)]{breiman2001random}
+Leo Breiman.
+\newblock Random forests.
+\newblock \emph{Machine Learning}, 45\penalty0 (1):\penalty0 5--32, 2001.
+
+\bibitem[Chen and Guestrin(2016)]{chen2016xgboost}
+Tianqi Chen and Carlos Guestrin.
+\newblock Xgboost: A scalable tree boosting system.
+\newblock In \emph{Proceedings of the 22nd ACM SIGKDD International Conference
+  on Knowledge Discovery and Data Mining}, pages 785--794, 2016.
+
+\bibitem[{fedesoriano}(2021)]{fedesoriano2021stroke}
+{fedesoriano}.
 \newblock Stroke prediction dataset, 2021.
 \newblock URL
   \url{https://www.kaggle.com/fedesoriano/stroke-prediction-dataset}.
+
+\bibitem[Fisher et~al.(2019)Fisher, Rudin, and Dominici]{fisher2019all}
+Aaron Fisher, Cynthia Rudin, and Francesca Dominici.
+\newblock All models are wrong, but many are useful: Learning a variable's
+  importance by studying an entire class of prediction models simultaneously.
+\newblock \emph{Journal of Machine Learning Research}, 20\penalty0
+  (177):\penalty0 1--81, 2019.
+
+\bibitem[Friedman(2001)]{friedman2001greedy}
+Jerome~H. Friedman.
+\newblock Greedy function approximation: A gradient boosting machine.
+\newblock \emph{The Annals of Statistics}, 29\penalty0 (5):\penalty0
+  1189--1232, 2001.
 
 \bibitem[Grinsztajn et~al.(2022)Grinsztajn, Oyallon, and
   Varoquaux]{grinsztajn2022tree}
@@ -19,43 +51,101 @@ L{\'e}o Grinsztajn, Edouard Oyallon, and Gael Varoquaux.
 \newblock In \emph{Advances in Neural Information Processing Systems},
   volume~35, pages 507--520, 2022.
 
+\bibitem[Guyon and Elisseeff(2003)]{guyon2003introduction}
+Isabelle Guyon and Andr{\'e} Elisseeff.
+\newblock An introduction to variable and feature selection.
+\newblock \emph{Journal of Machine Learning Research}, 3:\penalty0 1157--1182,
+  2003.
+
 \bibitem[Hamidieh(2018)]{hamidieh2018data}
 Kam Hamidieh.
 \newblock A data-driven statistical model for predicting the critical
   temperature of a superconductor.
 \newblock \emph{Computational Materials Science}, 154:\penalty0 346--354, 2018.
 
-\bibitem[Holzm\"{u}ller et~al.(2024)Holzm\"{u}ller, Grinsztajn, and
+\bibitem[Hollmann et~al.(2025)Hollmann, M{\"u}ller, Purucker, Krishnakumar,
+  K{"o}rfer, Hoo, Schirrmeister, and Hutter]{hollmann2025tabpfn}
+Noah Hollmann, Samuel M{\"u}ller, Lennart Purucker, Arjun Krishnakumar, Max
+  K{"o}rfer, Shi~Bin Hoo, Robin~Tibor Schirrmeister, and Frank Hutter.
+\newblock Accurate predictions on small data with a tabular foundation model.
+\newblock \emph{Nature}, 637:\penalty0 319--326, 2025.
+
+\bibitem[Holzm{\"u}ller et~al.(2024)Holzm{\"u}ller, Grinsztajn, and
   Steinwart]{holzmuller2024better}
-David Holzm\"{u}ller, L{\'e}o Grinsztajn, and Ingo Steinwart.
+David Holzm{\"u}ller, L{\'e}o Grinsztajn, and Ingo Steinwart.
 \newblock Better by default: Strong pre-tuned mlps and boosted trees on tabular
   data.
-\newblock \emph{Advances in Neural Information Processing Systems},
-  37:\penalty0 26577--26658, 2024.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~37, pages 26577--26658, 2024.
+
+\bibitem[Ke et~al.(2017)Ke, Meng, Finley, Wang, Chen, Ma, Ye, and
+  Liu]{ke2017lightgbm}
+Guolin Ke, Qi~Meng, Thomas Finley, Taifeng Wang, Wei Chen, Weidong Ma, Qiwei
+  Ye, and Tie-Yan Liu.
+\newblock Lightgbm: A highly efficient gradient boosting decision tree.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~30, 2017.
+
+\bibitem[Kraskov et~al.(2004)Kraskov, St{\"o}gbauer, and
+  Grassberger]{kraskov2004estimating}
+Alexander Kraskov, Harald St{\"o}gbauer, and Peter Grassberger.
+\newblock Estimating mutual information.
+\newblock \emph{Physical Review E}, 69\penalty0 (6):\penalty0 066138, 2004.
+
+\bibitem[Paszke et~al.(2019)Paszke, Gross, Massa, Lerer, Bradbury, Chanan,
+  Killeen, Lin, Gimelshein, Antiga, et~al.]{paszke2019pytorch}
+Adam Paszke, Sam Gross, Francisco Massa, Adam Lerer, James Bradbury, Gregory
+  Chanan, Trevor Killeen, Zeming Lin, Natalia Gimelshein, Luca Antiga, et~al.
+\newblock Pytorch: An imperative style, high-performance deep learning library.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~32, 2019.
+
+\bibitem[Pearson(1901)]{pearson1901pca}
+Karl Pearson.
+\newblock On lines and planes of closest fit to systems of points in space.
+\newblock \emph{The London, Edinburgh, and Dublin Philosophical Magazine and
+  Journal of Science}, 2\penalty0 (11):\penalty0 559--572, 1901.
+
+\bibitem[Pedregosa et~al.(2011)Pedregosa, Varoquaux, Gramfort, Michel, Thirion,
+  Grisel, Blondel, Prettenhofer, Weiss, Dubourg, et~al.]{pedregosa2011scikit}
+Fabian Pedregosa, Ga{\"e}l Varoquaux, Alexandre Gramfort, Vincent Michel,
+  Bertrand Thirion, Olivier Grisel, Mathieu Blondel, Peter Prettenhofer, Ron
+  Weiss, Vincent Dubourg, et~al.
+\newblock Scikit-learn: Machine learning in python.
+\newblock \emph{Journal of Machine Learning Research}, 12:\penalty0 2825--2830,
+  2011.
+
+\bibitem[Radhakrishnan et~al.(2024)Radhakrishnan, Beaglehole, Pandit, and
+  Belkin]{radhakrishnan2024mechanism}
+Adityanarayanan Radhakrishnan, Daniel Beaglehole, Parthe Pandit, and Mikhail
+  Belkin.
+\newblock Mechanism for feature learning in neural networks and
+  backpropagation-free machine learning models.
+\newblock \emph{Science}, 383\penalty0 (6690):\penalty0 1461--1467, 2024.
 
 \bibitem[Sakar et~al.(2019)Sakar, Polat, Katircioglu, and
-  Kabadayi]{sakar2019real}
-C~Okan Sakar, SO~Polat, Mete Katircioglu, and Yomi Kabadayi.
+  Kastro]{sakar2019real}
+C.~Okan Sakar, S.~O. Polat, Mete Katircioglu, and Yomi Kastro.
 \newblock Real-time prediction of online shoppers' purchasing intention using
   multilayer perceptron and lstm recurrent neural networks.
-\newblock \emph{Neural computing and applications}, 31\penalty0 (10):\penalty0
+\newblock \emph{Neural Computing and Applications}, 31\penalty0 (10):\penalty0
   6893--6908, 2019.
 
 \bibitem[Tolstikhin et~al.(2021)Tolstikhin, Houlsby, Kolesnikov, Beyer, Zhai,
   Unterthiner, Yung, Steiner, Keysers, Uszkoreit, et~al.]{tolstikhin2021mlp}
-Ilya~O Tolstikhin, Neil Houlsby, Alexander Kolesnikov, Lucas Beyer, Xiaohua
+Ilya~O. Tolstikhin, Neil Houlsby, Alexander Kolesnikov, Lucas Beyer, Xiaohua
   Zhai, Thomas Unterthiner, Jessica Yung, Andreas Steiner, Daniel Keysers,
   Jakob Uszkoreit, et~al.
 \newblock Mlp-mixer: An all-mlp architecture for vision.
-\newblock \emph{Advances in neural information processing systems},
-  34:\penalty0 24261--24272, 2021.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~34, pages 24261--24272, 2021.
 
 \bibitem[Walde et~al.(2004)Walde, Tappeiner, Tappeiner, Tasser, and
   Holub]{walde2004statistical}
-Janette~F Walde, Gottfried Tappeiner, Ulrike Tappeiner, Erich Tasser, and
+Janette~F. Walde, Gottfried Tappeiner, Ulrike Tappeiner, Erich Tasser, and
   Hans~Werner Holub.
 \newblock Statistical aspects of multilayer perceptrons under data limitations.
-\newblock \emph{Computational statistics \& data analysis}, 46\penalty0
+\newblock \emph{Computational Statistics \& Data Analysis}, 46\penalty0
   (1):\penalty0 173--188, 2004.
 
 \end{thebibliography}

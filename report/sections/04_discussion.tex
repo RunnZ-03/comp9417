@@ -1,47 +1,23 @@
-% ── Section 4: Discussion ─────────────────────────────────────────────────────
-% Responsible:
-%   B  — xRFM analysis + "xRFM明显不如XGBoost的场景" required point
-%   C  — XGBoost/LightGBM analysis paragraph  ← YOUR SECTION
-%   D  — MLP analysis paragraph
-%   B  — collate and unify writing
+% Section 4: Discussion
 
 \section{Discussion}
 
-% ── 4.1 xRFM Analysis (B负责) ────────────────────────────────────────────────
 \subsection{xRFM: When Feature Learning Helps and When It Does Not}
 
-\textit{[Placeholder: xRFM analysis to be written by B. Must include: empirical advantage/disadvantage vs.\ theory, at least one scenario where xRFM clearly underperforms XGBoost with an algorithm-design hypothesis.]}
+The empirical results partially support the motivation behind xRFM. The AGOP mechanism is designed to learn task-relevant feature directions rather than relying only on the original coordinate system~\citep{beaglehole2025xrfm,radhakrishnan2024mechanism}. This is most visible in the HR Attrition dataset, where xRFM achieves the highest accuracy among the four models. Since HR Attrition has only 882 training examples after splitting, this result suggests that xRFM can be competitive in small-data settings where a structured feature-learning prior may help stabilise prediction. The feature-importance ranking for this dataset is also plausible: overtime, business travel, and total working years are all work-condition variables that can reasonably relate to attrition.
 
+However, the results also show clear limitations. The strongest negative case is Diamonds, where xRFM obtains 1496.72 RMSE, compared with 544.68 for XGBoost and 535.99 for LightGBM. This is not a small gap: xRFM is almost three times worse than the best tree-based model on this dataset. A likely algorithm-design explanation is that Diamonds contains strong axis-aligned effects and threshold-like categorical structure, such as cut, colour, clarity, and size variables. Boosted decision trees are highly effective at capturing such split-based interactions~\citep{friedman2001greedy,breiman2001random,chen2016xgboost,ke2017lightgbm}. By contrast, xRFM estimates task-relevant feature geometry through gradients and kernel-style feature learning. This can be less efficient when the dominant predictive structure is already well represented by simple tree splits.
 
-% ── 4.2 XGBoost and LightGBM Analysis (C负责 — 你的部分) ──────────────────────
+The scalability experiment strengthens this interpretation. On Diamonds, xRFM improves only modestly as $n_\text{train}$ increases from 1{,}000 to 30{,}000, while its training time increases from less than one second to more than 226 seconds. This indicates that simply adding more data does not solve the inductive-bias mismatch for this dataset. In contrast, on Superconductivity, xRFM improves from 14.07 RMSE at 1{,}000 examples to 9.46 RMSE at the full training size, approaching the boosted-tree baselines. This dataset is fully numerical and high-dimensional, which may better match AGOP's objective of identifying useful continuous directions in feature space.
+
+Therefore, xRFM appears most promising when the data are numerical or moderately high-dimensional, and when interpretability through learned feature sensitivity is important. It is less attractive when the task is large-scale mixed-type tabular regression with strong categorical threshold effects, where XGBoost and LightGBM remain more accurate and substantially more efficient~\citep{grinsztajn2022tree,holzmuller2024better}. Future improvements should focus on dataset-specific hyperparameter tuning, better handling of categorical variables, more efficient AGOP approximation, and integration with tree-style partitioning mechanisms.
+
 \subsection{XGBoost and LightGBM: Performance and Efficiency}
 \label{sec:gbdt-discussion}
 
-XGBoost and LightGBM deliver competitive or superior performance across all five datasets while
-remaining the fastest models to train. On Diamonds, both GBDTs outperform xRFM by $\sim$64\%
-in RMSE (544.7 / 536.0 vs.\ 1{,}496.7), consistent with the axis-aligned inductive bias of
-tree-based splits~\citep{grinsztajn2022tree}. On HR Attrition ($n=882$, $d=51$), xRFM
-marginally surpasses XGBoost in accuracy (0.867 vs.\ 0.857), suggesting kernel feature learning
-offers a modest advantage only in the high-$d$, low-$n$ regime. LightGBM is the fastest model
-at every scale — 75$\times$ faster than MLP at $n=30{,}000$ — with near-linear growth in
-training time (Table~\ref{tab:scaling}).
+XGBoost and LightGBM deliver competitive or superior performance across all five datasets while remaining the fastest models to train. On Diamonds, both GBDTs outperform xRFM by a large margin in RMSE (544.68 and 535.99 versus 1496.72), consistent with the strong axis-aligned inductive bias of tree-based splits~\citep{grinsztajn2022tree}. On HR Attrition ($n=882$, $d=51$), xRFM marginally surpasses XGBoost in accuracy (0.8673 versus 0.8571), suggesting that kernel-style feature learning offers a modest advantage only in a restricted small-data regime. LightGBM is the fastest model at every large Diamonds scale, with near-linear growth in training time (Table~\ref{tab:scaling}).
 
-
-% ── 4.3 MLP Analysis (D负责) ─────────────────────────────────────────────────
 \subsection{MLP: Performance and Scalability Limitations}
 \label{sec:mlp-discussion}
 
-On Diamonds, MLP underperforms both XGBoost and LightGBM by a large margin in RMSE 
-(743.5 vs.\ 542.7 / 535.3 at $n=30{,}000$), and a similar pattern is observed on 
-Superconductivity (11.22 vs.\ $\sim$9.5 RMSE) (Table~\ref{tab:main-results}), indicating weaker ability to exploit 
-feature interactions, especially in high-dimensional settings~\citep{tolstikhin2021mlp}. In classification tasks, 
-performance is unstable: while accuracy can be comparable in some cases (e.g., Stroke, 0.9511), 
-probability calibration degrades significantly, as reflected by the low AUC (0.269) (Table~\ref{tab:main-results}), 
-highlighting sensitivity to class imbalance~\citep{walde2004statistical}. Unlike tree-based methods such as XGBoost and LightGBM, 
-MLPs rely on global gradient-based optimisation over continuous parameter spaces. 
-This makes them less aligned with the piecewise and often sparse structure of tabular features, 
-resulting in lower data efficiency.
-
-
-
-
+On Diamonds, MLP underperforms both XGBoost and LightGBM by a large margin in RMSE (743.5 versus 542.7 and 535.3 at $n=30{,}000$), and a similar pattern is observed on Superconductivity (11.22 versus approximately 9.5 RMSE) (Table~\ref{tab:main-results}), indicating weaker ability to exploit feature interactions without extensive architecture tuning~\citep{tolstikhin2021mlp,holzmuller2024better}. In classification tasks, performance is unstable: while accuracy can be comparable in some cases, such as Stroke, probability ranking degrades significantly, as reflected by the low AUC of 0.269 on Stroke. This highlights sensitivity to class imbalance and calibration issues~\citep{walde2004statistical}. Unlike tree-based methods, MLPs rely on global gradient-based optimisation over continuous parameter spaces. This makes them less aligned with the piecewise and often sparse structure of tabular features, resulting in lower data efficiency.

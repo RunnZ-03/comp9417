@@ -2,62 +2,94 @@
 \providecommand\hyper@newdestlabel[2]{}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
-\citation{hamidieh2018data}
-\citation{sakar2019real}
-\citation{fedesoriano2021stroke}
+\citation{chen2016xgboost,ke2017lightgbm,grinsztajn2022tree,holzmuller2024better}
+\citation{beaglehole2025xrfm,radhakrishnan2024mechanism}
+\citation{beaglehole2025xrfm,radhakrishnan2024mechanism}
+\citation{pearson1901pca}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2}Methodology}{2}{section.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}xRFM: Algorithm and Theoretical Background}{2}{subsection.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Experimental Design}{2}{subsection.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Datasets}{2}{subsubsection.2.2.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Dataset statistics. \emph  {n\textsubscript  {train}}, \emph  {n\textsubscript  {val}}, and \emph  {n\textsubscript  {test}} denote the sizes of the training, validation, and test splits respectively; \emph  {d} is the number of features after preprocessing.}}{3}{table.caption.2}\protected@file@percent }
+\newlabel{eq:agop}{{1}{2}{xRFM: Algorithm and Theoretical Background}{equation.1}{}}
+\citation{pearson1901pca}
+\citation{kraskov2004estimating,guyon2003introduction}
+\citation{fisher2019all}
+\citation{hamidieh2018data}
+\citation{sakar2019real}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Experimental Design}{3}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Datasets}{3}{subsubsection.2.2.1}\protected@file@percent }
+\citation{fedesoriano2021stroke}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Dataset statistics. $n_\text  {train}$, $n_\text  {val}$, and $n_\text  {test}$ denote the sizes of the training, validation, and test splits respectively; $d$ is the number of features after preprocessing.}}{4}{table.caption.2}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:datasets}{{1}{3}{Dataset statistics. \emph {n\textsubscript {train}}, \emph {n\textsubscript {val}}, and \emph {n\textsubscript {test}} denote the sizes of the training, validation, and test splits respectively; \emph {d} is the number of features after preprocessing}{table.caption.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Data Preprocessing and Splitting Strategy}{3}{subsubsection.2.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}Evaluation Metrics}{3}{subsubsection.2.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Regression Task Metrics}{3}{section*.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Classification Task Metrics}{3}{section*.4}\protected@file@percent }
+\newlabel{tab:datasets}{{1}{4}{Dataset statistics. $n_\text {train}$, $n_\text {val}$, and $n_\text {test}$ denote the sizes of the training, validation, and test splits respectively; $d$ is the number of features after preprocessing}{table.caption.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Data Preprocessing and Splitting Strategy}{4}{subsubsection.2.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}Evaluation Metrics}{4}{subsubsection.2.2.3}\protected@file@percent }
+\citation{pedregosa2011scikit,paszke2019pytorch}
 \citation{holzmuller2024better}
-\@writefile{toc}{\contentsline {paragraph}{Hyperparameter Tuning and Validation Protocol}{4}{section*.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Efficiency Evaluation Metrics}{4}{section*.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.4}xRFM Configuration}{4}{subsubsection.2.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.5}XGBoost and LightGBM Configuration}{4}{subsubsection.2.2.5}\protected@file@percent }
-\newlabel{sec:gbdt-config}{{2.2.5}{4}{XGBoost and LightGBM Configuration}{subsubsection.2.2.5}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Hyperparameter configuration for XGBoost and LightGBM baselines.}}{4}{table.caption.7}\protected@file@percent }
-\newlabel{tab:gbdt-hyperparams}{{2}{4}{Hyperparameter configuration for XGBoost and LightGBM baselines}{table.caption.7}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.6}MLP Configuration}{5}{subsubsection.2.2.6}\protected@file@percent }
-\newlabel{sec:mlp-config}{{2.2.6}{5}{MLP Configuration}{subsubsection.2.2.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{5}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Predictive Performance}{5}{subsection.3.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Test-set performance of all models. \textbf  {Bold} indicates best result per dataset. RMSE is lower-better; Accuracy and AUC are higher-better.}}{5}{table.caption.8}\protected@file@percent }
-\newlabel{tab:main-results}{{3}{5}{Test-set performance of all models. \textbf {Bold} indicates best result per dataset. RMSE is lower-better; Accuracy and AUC are higher-better}{table.caption.8}{}}
-\@writefile{toc}{\contentsline {paragraph}{Regression Task Results}{5}{section*.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Binary Classification Task Results}{6}{section*.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Overall Core Findings from Predictive Performance}{6}{section*.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Scalability Analysis}{6}{subsection.3.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Scalability experiment: test RMSE and training time (seconds) as a function of training set size. Dash (—) indicates configurations not run due to extreme computational costs.}}{6}{table.caption.12}\protected@file@percent }
-\newlabel{tab:scaling}{{4}{6}{Scalability experiment: test RMSE and training time (seconds) as a function of training set size. Dash (—) indicates configurations not run due to extreme computational costs}{table.caption.12}{}}
-\@writefile{toc}{\contentsline {paragraph}{Scalability Analysis from Table~\ref {tab:scaling}}{6}{section*.13}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Scalability analysis on the Diamonds dataset, comparing test RMSE (left) and training time (right) across varying training set sizes.}}{7}{figure.caption.14}\protected@file@percent }
-\newlabel{fig:scaling}{{1}{7}{Scalability analysis on the Diamonds dataset, comparing test RMSE (left) and training time (right) across varying training set sizes}{figure.caption.14}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Interpretability Comparison}{7}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.4}xRFM Configuration}{5}{subsubsection.2.2.4}\protected@file@percent }
+\newlabel{sec:xrfm-config}{{2.2.4}{5}{xRFM Configuration}{subsubsection.2.2.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces xRFM configuration used in the experiments.}}{5}{table.caption.3}\protected@file@percent }
+\newlabel{tab:xrfm-config}{{2}{5}{xRFM configuration used in the experiments}{table.caption.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.5}XGBoost and LightGBM Configuration}{5}{subsubsection.2.2.5}\protected@file@percent }
+\newlabel{sec:gbdt-config}{{2.2.5}{5}{XGBoost and LightGBM Configuration}{subsubsection.2.2.5}{}}
+\citation{grinsztajn2022tree,holzmuller2024better}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Hyperparameter configuration for XGBoost and LightGBM baselines.}}{6}{table.caption.4}\protected@file@percent }
+\newlabel{tab:gbdt-hyperparams}{{3}{6}{Hyperparameter configuration for XGBoost and LightGBM baselines}{table.caption.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.6}MLP Configuration}{6}{subsubsection.2.2.6}\protected@file@percent }
+\newlabel{sec:mlp-config}{{2.2.6}{6}{MLP Configuration}{subsubsection.2.2.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Hyperparameter configuration for the MLP baseline.}}{6}{table.caption.5}\protected@file@percent }
+\newlabel{tab:mlp-hyperparams}{{4}{6}{Hyperparameter configuration for the MLP baseline}{table.caption.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{6}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Predictive Performance}{6}{subsection.3.1}\protected@file@percent }
+\citation{grinsztajn2022tree,holzmuller2024better,hollmann2025tabpfn}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Test-set performance of all models. \textbf  {Bold} indicates best result per dataset and metric. RMSE is lower-better; Accuracy and AUC are higher-better.}}{7}{table.caption.6}\protected@file@percent }
+\newlabel{tab:main-results}{{5}{7}{Test-set performance of all models. \textbf {Bold} indicates best result per dataset and metric. RMSE is lower-better; Accuracy and AUC are higher-better}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Regression tasks.}{7}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Binary classification tasks.}{7}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Overall performance pattern.}{7}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Scalability Analysis}{7}{subsection.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Scalability experiment: test RMSE and training time (seconds) as a function of training set size. Dash (--) indicates configurations not run.}}{8}{table.caption.10}\protected@file@percent }
+\newlabel{tab:scaling}{{6}{8}{Scalability experiment: test RMSE and training time (seconds) as a function of training set size. Dash (--) indicates configurations not run}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Scalability observations.}{8}{section*.11}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Scalability analysis on the Diamonds dataset, comparing test RMSE (left) and training time (right) across varying training set sizes.}}{8}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:scaling}{{1}{8}{Scalability analysis on the Diamonds dataset, comparing test RMSE (left) and training time (right) across varying training set sizes}{figure.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Interpretability Comparison}{8}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces xRFM AGOP-diagonal feature importance extracted from the trained models.}}{9}{table.caption.13}\protected@file@percent }
+\newlabel{tab:xrfm-interpretability}{{7}{9}{xRFM AGOP-diagonal feature importance extracted from the trained models}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Conceptual comparison of interpretability methods used for tabular features.}}{9}{table.caption.14}\protected@file@percent }
+\newlabel{tab:interpretability-methods}{{8}{9}{Conceptual comparison of interpretability methods used for tabular features}{table.caption.14}{}}
+\citation{beaglehole2025xrfm,radhakrishnan2024mechanism}
+\citation{friedman2001greedy,breiman2001random,chen2016xgboost,ke2017lightgbm}
+\citation{grinsztajn2022tree,holzmuller2024better}
 \citation{grinsztajn2022tree}
-\citation{tolstikhin2021mlp}
+\citation{tolstikhin2021mlp,holzmuller2024better}
 \citation{walde2004statistical}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{8}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}xRFM: When Feature Learning Helps and When It Does Not}{8}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}XGBoost and LightGBM: Performance and Efficiency}{8}{subsection.4.2}\protected@file@percent }
-\newlabel{sec:gbdt-discussion}{{4.2}{8}{XGBoost and LightGBM: Performance and Efficiency}{subsection.4.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}MLP: Performance and Scalability Limitations}{8}{subsection.4.3}\protected@file@percent }
-\newlabel{sec:mlp-discussion}{{4.3}{8}{MLP: Performance and Scalability Limitations}{subsection.4.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{8}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{10}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}xRFM: When Feature Learning Helps and When It Does Not}{10}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}XGBoost and LightGBM: Performance and Efficiency}{10}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:gbdt-discussion}{{4.2}{10}{XGBoost and LightGBM: Performance and Efficiency}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}MLP: Performance and Scalability Limitations}{11}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:mlp-discussion}{{4.3}{11}{MLP: Performance and Scalability Limitations}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{11}{section.5}\protected@file@percent }
 \bibstyle{plainnat}
 \bibdata{sections/references}
-\bibcite{fedesoriano2021stroke}{{1}{2021}{{fedesoriano}}{{}}}
-\bibcite{grinsztajn2022tree}{{2}{2022}{{Grinsztajn et~al.}}{{Grinsztajn, Oyallon, and Varoquaux}}}
-\bibcite{hamidieh2018data}{{3}{2018}{{Hamidieh}}{{}}}
-\bibcite{holzmuller2024better}{{4}{2024}{{Holzm\"{u}ller et~al.}}{{Holzm\"{u}ller, Grinsztajn, and Steinwart}}}
-\bibcite{sakar2019real}{{5}{2019}{{Sakar et~al.}}{{Sakar, Polat, Katircioglu, and Kabadayi}}}
-\bibcite{tolstikhin2021mlp}{{6}{2021}{{Tolstikhin et~al.}}{{Tolstikhin, Houlsby, Kolesnikov, Beyer, Zhai, Unterthiner, Yung, Steiner, Keysers, Uszkoreit, et~al.}}}
-\bibcite{walde2004statistical}{{7}{2004}{{Walde et~al.}}{{Walde, Tappeiner, Tappeiner, Tasser, and Holub}}}
-\gdef \@abspage@last{9}
+\bibcite{beaglehole2025xrfm}{{1}{2025}{{Beaglehole et~al.}}{{Beaglehole, Holzm{\"u}ller, Radhakrishnan, and Belkin}}}
+\bibcite{breiman2001random}{{2}{2001}{{Breiman}}{{}}}
+\bibcite{chen2016xgboost}{{3}{2016}{{Chen and Guestrin}}{{}}}
+\bibcite{fedesoriano2021stroke}{{4}{2021}{{fedesoriano}}{{}}}
+\bibcite{fisher2019all}{{5}{2019}{{Fisher et~al.}}{{Fisher, Rudin, and Dominici}}}
+\bibcite{friedman2001greedy}{{6}{2001}{{Friedman}}{{}}}
+\bibcite{grinsztajn2022tree}{{7}{2022}{{Grinsztajn et~al.}}{{Grinsztajn, Oyallon, and Varoquaux}}}
+\bibcite{guyon2003introduction}{{8}{2003}{{Guyon and Elisseeff}}{{}}}
+\bibcite{hamidieh2018data}{{9}{2018}{{Hamidieh}}{{}}}
+\bibcite{hollmann2025tabpfn}{{10}{2025}{{Hollmann et~al.}}{{Hollmann, M{\"u}ller, Purucker, Krishnakumar, K{"o}rfer, Hoo, Schirrmeister, and Hutter}}}
+\bibcite{holzmuller2024better}{{11}{2024}{{Holzm{\"u}ller et~al.}}{{Holzm{\"u}ller, Grinsztajn, and Steinwart}}}
+\bibcite{ke2017lightgbm}{{12}{2017}{{Ke et~al.}}{{Ke, Meng, Finley, Wang, Chen, Ma, Ye, and Liu}}}
+\bibcite{kraskov2004estimating}{{13}{2004}{{Kraskov et~al.}}{{Kraskov, St{\"o}gbauer, and Grassberger}}}
+\bibcite{paszke2019pytorch}{{14}{2019}{{Paszke et~al.}}{{Paszke, Gross, Massa, Lerer, Bradbury, Chanan, Killeen, Lin, Gimelshein, Antiga, et~al.}}}
+\bibcite{pearson1901pca}{{15}{1901}{{Pearson}}{{}}}
+\bibcite{pedregosa2011scikit}{{16}{2011}{{Pedregosa et~al.}}{{Pedregosa, Varoquaux, Gramfort, Michel, Thirion, Grisel, Blondel, Prettenhofer, Weiss, Dubourg, et~al.}}}
+\bibcite{radhakrishnan2024mechanism}{{17}{2024}{{Radhakrishnan et~al.}}{{Radhakrishnan, Beaglehole, Pandit, and Belkin}}}
+\bibcite{sakar2019real}{{18}{2019}{{Sakar et~al.}}{{Sakar, Polat, Katircioglu, and Kastro}}}
+\bibcite{tolstikhin2021mlp}{{19}{2021}{{Tolstikhin et~al.}}{{Tolstikhin, Houlsby, Kolesnikov, Beyer, Zhai, Unterthiner, Yung, Steiner, Keysers, Uszkoreit, et~al.}}}
+\bibcite{walde2004statistical}{{20}{2004}{{Walde et~al.}}{{Walde, Tappeiner, Tappeiner, Tasser, and Holub}}}
+\gdef \@abspage@last{13}
