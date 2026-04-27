@@ -58,39 +58,43 @@ The key takeaway from our predictive performance comparison is that tree-based m
 
 % ── 3.2 Scalability (A协助E) ──────────────────────────────────────────────────
 \subsection{Scalability Analysis}
-To further evaluate the computational efficiency and performance scalability of all models as a function of training set size, we conduct subsampling experiments on the two largest datasets (Diamonds and Superconductivity), with training set sizes ranging from 1,000 to the full training set size. Table~\ref{tab:scaling} summarises the test RMSE and total training time at each subsample size, and we reserve the visualisation of scalability curves for Figures~\ref{fig:scaling-diamonds} and~\ref{fig:scaling-superconductivity} (to be added by A/E).
 
-\begin{table}[htbp]
+To further evaluate the computational efficiency and performance scalability as a function of training set size, we conduct subsampling experiments on the large-scale dataset Diamonds ($n > 10{,}000$). Table~\ref{tab:scaling} summarises the test RMSE and total training time at each subsample size, and Figure~\ref{fig:scaling} visualises these scalability curves.
+
+\begin{table}[H]
   \centering
-  \caption{Scalability experiment: test RMSE and training time (seconds) as a function of training
-           set size on Diamonds and Superconductivity.}
+  \caption{Scalability experiment: test RMSE and training time (seconds) as a function of training set size. Dash (—) indicates configurations not run due to extreme computational costs.}
   \label{tab:scaling}
-  \begin{tabular}{llrrrrrr}
+  \resizebox{\textwidth}{!}{
+  \begin{tabular}{llrrrrrrrr}
     \toprule
     \multirow{2}{*}{Dataset} & \multirow{2}{*}{$n_\text{train}$}
-      & \multicolumn{2}{c}{XGBoost} & \multicolumn{2}{c}{LightGBM} & \multicolumn{2}{c}{MLP} \\
-    \cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-8}
-      & & RMSE & Time (s) & RMSE & Time (s) & RMSE & Time (s) \\
+      & \multicolumn{2}{c}{xRFM} & \multicolumn{2}{c}{XGBoost} & \multicolumn{2}{c}{LightGBM} & \multicolumn{2}{c}{MLP} \\
+    \cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-8}\cmidrule(lr){9-10}
+      & & RMSE & Time (s) & RMSE & Time (s) & RMSE & Time (s) & RMSE & Time (s) \\
     \midrule
     \multirow{4}{*}{Diamonds}
-      & 1{,}000  & 846.7 & 0.80 & 1003.4 & 0.13 & 1081.0 &  2.27 \\
-      & 5{,}000  & 628.9 & 0.39 &  622.7 & 0.11 &  901.1 & 10.12 \\
-      & 10{,}000 & 587.8 & 0.49 &  592.3 & 0.15 &  888.9 & 10.33 \\
-      & 30{,}000 & 542.7 & 0.59 &  535.3 & 0.29 &  743.5 & 22.23 \\[4pt]
-    \multirow{4}{*}{Superconductivity}
-      & 1{,}000  & 13.76 & 0.39 & 13.91 & 0.15 & 15.39 &  2.52 \\
-      & 5{,}000  & 10.81 & 1.00 & 10.71 & 0.46 & 13.05 &  8.58 \\
-      & 10{,}000 &  9.51 & 1.73 &  9.50 & 1.10 & 11.22 & 28.35 \\
-      & 12{,}757 &  9.28 & 1.64 &  9.21 & 1.04 &   —   &   — \\
+      & 1{,}000  & 1657.0 &   0.73 & 846.7 & 0.80 & 1003.4 & 0.13 & 1081.0 &  2.27 \\
+      & 5{,}000  & 1655.9 &  10.97 & 628.9 & 0.39 &  622.7 & 0.11 &  901.1 & 10.12 \\
+      & 10{,}000 & 1577.6 &  39.24 & 587.8 & 0.49 &  592.3 & 0.15 &  888.9 & 10.33 \\
+      & 30{,}000 & 1487.5 & 225.88 & 542.7 & 0.59 &  535.3 & 0.29 &  743.5 & 22.23 \\[4pt]
+    \multirow{4}{*}{Supercond.}
+      & 1{,}000  &   —    &    —   & 13.76 & 0.39 &  13.91 & 0.15 &  15.39 &  2.52 \\
+      & 5{,}000  &   —    &    —   & 10.81 & 1.00 &  10.71 & 0.46 &  13.05 &  8.58 \\
+      & 10{,}000 &   —    &    —   &  9.51 & 1.73 &   9.50 & 1.10 &  11.22 & 28.35 \\
+      & 12{,}757 &   —    &    —   &  9.28 & 1.64 &   9.21 & 1.04 &    —   &   —   \\
     \bottomrule
   \end{tabular}
+  }
 \end{table}
 
 \paragraph{Scalability Analysis from Table~\ref{tab:scaling}}
 Key observations from our subsampling experiments:
-1.  **Tree-based models have significantly better training efficiency than MLP**: LightGBM has the shortest training time across all subsample sizes, being 2.0-6.2x faster than XGBoost and 7.7-76.7x faster than MLP on Diamonds. The MLP model's training time scales almost linearly with training set size, while tree-based models' training time scales sub-linearly, indicating that tree-based models are much more suitable for large-scale tabular data.
-2.  **All models' performance improves with increasing training set size**: For both Diamonds and Superconductivity, the test RMSE of all models decreases monotonically as the training set size increases, which is consistent with standard machine learning theory.
-3.  **LightGBM achieves the best performance-efficiency trade-off**: It achieves competitive or better test RMSE than XGBoost across all subsample sizes, while having significantly shorter training time, making it the most suitable baseline for large-scale tabular regression tasks.
+\begin{itemize}
+  \item \textbf{xRFM suffers from severe scalability bottlenecks}: As $n_\text{train}$ increases from 1{,}000 to 30{,}000, xRFM's training time surges from 0.73s to nearly 226s, exhibiting a steep non-linear growth in computational cost. In contrast, tree-based models like LightGBM scale sub-linearly and process the same 30{,}000 samples in just 0.29s.
+  \item \textbf{Data scaling marginally improves xRFM, but tree models dominate}: While xRFM's RMSE improves monotonically (from 1657.0 down to 1487.5) with more data, it completely fails to close the massive performance gap. Even at $n=1{,}000$, XGBoost (846.7) outperforms xRFM trained on 30{,}000 samples.
+  \item \textbf{Tree-based models achieve the optimal performance-efficiency trade-off}: Both XGBoost and LightGBM consistently deliver the lowest RMSE across all scales while remaining orders of magnitude faster than both xRFM and MLP, reinforcing their status as the premier baselines for large-scale tabular regression.
+\end{itemize}
 
 \begin{figure}[H]
   \centering
