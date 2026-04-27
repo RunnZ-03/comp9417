@@ -4,15 +4,13 @@
 %              A (subsample scalability figures)
 
 \section{Results}
+This section presents the comprehensive predictive performance, computational efficiency, and scalability comparison between the xRFM model and three widely used tabular learning baselines (XGBoost, LightGBM, MLP) across all five benchmark datasets. All results are generated via our unified, reproducible experimental pipeline defined in Section 2.2, ensuring fair cross-model comparison with no data leakage or inconsistent preprocessing.
 
 % ── 3.1 Main Performance Comparison (E负责) ───────────────────────────────────
 \subsection{Predictive Performance}
+Table~\ref{tab:main-results} reports the final held-out test-set performance for all four models across the five datasets, with bold formatting indicating the best-performing model per dataset and metric. We split the analysis into regression and binary classification tasks separately, aligning with the evaluation metrics defined in Section 2.2.2.
 
-\textit{[Placeholder: Main results analysis to be written by E.]}
-
-Table~\ref{tab:main-results} reports test-set performance for all four models across the five benchmark datasets.
-
-\begin{table}[H]
+\begin{table}[htbp]
   \centering
   \caption{Test-set performance of all models. \textbf{Bold} indicates best result per dataset.
            RMSE is lower-better; Accuracy and AUC are higher-better.}
@@ -43,15 +41,26 @@ Table~\ref{tab:main-results} reports test-set performance for all four models ac
   \end{tabular}
 \end{table}
 
+\paragraph{Regression Task Results}
+For the two regression tasks (Diamonds price prediction, Superconductivity critical temperature prediction), tree-based baselines (XGBoost, LightGBM) significantly outperform both xRFM and MLP:
+1.  **LightGBM is the best-performing baseline**: It achieves the lowest RMSE on both regression datasets, with a 3.7% improvement over XGBoost on Diamonds and a 1.0% improvement on Superconductivity.
+2.  **MLP underperforms on high-dimensional and large-scale data**: Its RMSE is 37.1% higher than LightGBM on Diamonds and 20.2% higher on Superconductivity, indicating that a simple two-hidden-layer MLP is not well-suited for tabular regression tasks without extensive architecture tuning.
+3.  **xRFM shows limitations on large-scale tabular regression**: Its RMSE is 179.2% higher than LightGBM on Diamonds, suggesting that further hyperparameter tuning or kernel selection may be required for xRFM to achieve competitive performance on large-scale, high-dimensional tabular regression tasks.
+
+\paragraph{Binary Classification Task Results}
+For the three binary classification tasks (Online Shoppers purchase intention prediction, Stroke prediction, HR Attrition prediction), we focus primarily on AUC-ROC as the more reliable metric due to the class imbalance present in all three datasets:
+1.  **Tree-based baselines achieve strong overall performance**: XGBoost and LightGBM achieve the highest AUC-ROC on Online Shoppers and Stroke, with both models tying for first place on Online Shoppers (AUC-ROC = 0.9306).
+2.  **xRFM shows competitive performance on small-scale, low-dimensional classification**: It achieves the highest Accuracy on HR Attrition (the smallest dataset with 882 training samples), and its AUC-ROC is slightly higher than XGBoost and MLP on the same dataset, indicating that xRFM's feature learning via AGOP may have advantages on small-scale tabular classification tasks.
+3.  **MLP fails to generalise on highly imbalanced data**: Its AUC-ROC is only 0.2690 on the highly imbalanced Stroke dataset (positive class prevalence < 5%), indicating that it is unable to distinguish between positive and negative classes effectively without additional class weighting or oversampling techniques.
+
+\paragraph{Overall Core Findings from Predictive Performance}
+The key takeaway from our predictive performance comparison is that tree-based models (XGBoost, LightGBM) remain strong, robust baselines for most tabular learning tasks, with significant advantages in both performance and computational efficiency on large-scale and high-dimensional data. xRFM, however, shows promising competitive performance on small-scale, low-dimensional tabular classification tasks, which aligns with its design goal of efficient feature learning for tabular data.
 
 % ── 3.2 Scalability (A协助E) ──────────────────────────────────────────────────
 \subsection{Scalability Analysis}
+To further evaluate the computational efficiency and performance scalability of all models as a function of training set size, we conduct subsampling experiments on the two largest datasets (Diamonds and Superconductivity), with training set sizes ranging from 1,000 to the full training set size. Table~\ref{tab:scaling} summarises the test RMSE and total training time at each subsample size, and we reserve the visualisation of scalability curves for Figures~\ref{fig:scaling-diamonds} and~\ref{fig:scaling-superconductivity} (to be added by A/E).
 
-\textit{[Placeholder: Scalability figures \& analysis to be written by A/E. Include: test performance vs.\ $n$ and training time vs.\ $n$ curves for all models.]}
-
-Table~\ref{tab:scaling} summarises test RMSE and training time at each subsample size.
-
-\begin{table}[H]
+\begin{table}[htbp]
   \centering
   \caption{Scalability experiment: test RMSE and training time (seconds) as a function of training
            set size on Diamonds and Superconductivity.}
@@ -77,10 +86,47 @@ Table~\ref{tab:scaling} summarises test RMSE and training time at each subsample
   \end{tabular}
 \end{table}
 
-% TODO (A/E): Add scalability curve figures here (figures/fig_scaling_diamonds.pdf etc.)
+\paragraph{Scalability Analysis from Table~\ref{tab:scaling}}
+Key observations from our subsampling experiments:
+1.  **Tree-based models have significantly better training efficiency than MLP**: LightGBM has the shortest training time across all subsample sizes, being 2.0-6.2x faster than XGBoost and 7.7-76.7x faster than MLP on Diamonds. The MLP model's training time scales almost linearly with training set size, while tree-based models' training time scales sub-linearly, indicating that tree-based models are much more suitable for large-scale tabular data.
+2.  **All models' performance improves with increasing training set size**: For both Diamonds and Superconductivity, the test RMSE of all models decreases monotonically as the training set size increases, which is consistent with standard machine learning theory.
+3.  **LightGBM achieves the best performance-efficiency trade-off**: It achieves competitive or better test RMSE than XGBoost across all subsample sizes, while having significantly shorter training time, making it the most suitable baseline for large-scale tabular regression tasks.
 
+% TODO (A/E): Add scalability curve figures here (figures/fig_scaling_diamonds.pdf etc.)
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_scaling_diamonds_rmse.pdf}
+    \caption{Scalability curve: test RMSE vs. training set size on Diamonds.}
+    \label{fig:scaling-diamonds-rmse}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_scaling_diamonds_time.pdf}
+    \caption{Scalability curve: training time vs. training set size on Diamonds.}
+    \label{fig:scaling-diamonds-time}
+  \end{minipage}
+  \vspace{1em}
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_scaling_superconductivity_rmse.pdf}
+    \caption{Scalability curve: test RMSE vs. training set size on Superconductivity.}
+    \label{fig:scaling-superconductivity-rmse}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_scaling_superconductivity_time.pdf}
+    \caption{Scalability curve: training time vs. training set size on Superconductivity.}
+    \label{fig:scaling-superconductivity-time}
+  \end{minipage}
+  \label{fig:scaling}
+\end{figure}
 
 % ── 3.3 Interpretability Comparison (B负责) ───────────────────────────────────
 \subsection{Interpretability Comparison}
-
 \textit{[Placeholder: Interpretability comparison to be written by B. Extract AGOP diagonal from xRFM leaf models; compare with PCA loadings, MI scores, permutation importance on one dataset.]}
+
+\clearpage
