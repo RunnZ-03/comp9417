@@ -21,3 +21,5 @@
 \contentsline {subsection}{\numberline {4.2}XGBoost and LightGBM: Performance and Efficiency}{7}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}MLP: Performance and Scalability Limitations}{7}{subsection.4.3}%
 \contentsline {section}{\numberline {5}Conclusion}{8}{section.5}%
+\contentsline {section}{\numberline {A}AGOP-Based Splitting Criterion: Scratch Implementation}{9}{appendix.A}%
+\contentsline {paragraph}{Verification.}{9}{section*.13}%

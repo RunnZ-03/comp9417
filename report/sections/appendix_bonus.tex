@@ -1,0 +1,45 @@
+% ── Appendix: Bonus ───────────────────────────────────────────────────────────
+
+\section{AGOP-Based Splitting Criterion: Scratch Implementation}
+\label{app:bonus}
+
+The xRFM tree selects the split direction at each node as the leading
+eigenvector $v_1$ of the AGOP $G_f = \mathbb{E}_x[\nabla f(x)\nabla
+f(x)^\top]$~\citep{beaglehole2025xrfm}.  We implement this criterion from
+scratch using Ridge regression ($f(x)=w^\top x+b$, $\alpha=10^{-3}$).  For a
+linear model the gradient is constant so the AGOP simplifies to
+$G_f = ww^\top$, giving the closed-form diagonal $[G_f]_{ii}=w_i^2$ and split
+direction $v_1 = w/\|w\|$.  The optimal threshold $t^*$ is found by scanning
+30 candidate quantiles of $v_1^\top X$ and picking the one that minimises
+weighted target variance.  The full implementation is in
+\texttt{bonus/agop\_split.py}.
+
+\paragraph{Verification.}
+We use a synthetic dataset ($n=300$, $d=10$) with $y=3x_0-2x_1+\varepsilon$,
+so the ground-truth signal features are $\{x_0,\,x_1\}$.  We compare the
+scratch AGOP diagonal $w_i^2$ against a numerical AGOP diagonal computed by
+finite-difference gradients of the fitted xRFM predictor (black-box use only).
+
+\begin{table}[H]
+  \centering
+  \caption{AGOP diagonal on the synthetic dataset. Noise features $x_2$–$x_9$
+           score $\le 0.03$ (scratch) and $\le 0.30$ (xRFM).}
+  \label{tab:bonus-agop}
+  \small
+  \begin{tabular}{lcc}
+    \toprule
+    Feature & Scratch $w_i^2$ & xRFM numerical \\
+    \midrule
+    $x_0$ (coef.\ $+3$) & 9.23 & 13.03 \\
+    $x_1$ (coef.\ $-2$) & 3.93 &  5.28 \\
+    $x_2$–$x_9$ (noise) & $\le 0.03$ & $\le 0.30$ \\
+    \midrule
+    Top-2 identified & $\{x_0,x_1\}$ & $\{x_0,x_1\}$ \\
+    Cosine similarity & \multicolumn{2}{c}{\textbf{0.9985}} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Both methods identify $\{x_0,x_1\}$ correctly (overlap 2/2, cosine similarity
+0.9985), confirming that the scratch criterion recovers the same split direction
+as the xRFM library.
