@@ -23,67 +23,73 @@ Ridge regression model. The core implementation is two lines:
   frame=single, xleftmargin=4pt, xrightmargin=4pt, belowskip=2pt, aboveskip=2pt]
 def agop(G, residuals=None):
     w = np.ones(len(G))/len(G) if residuals is None else residuals**2
-    w /= w.sum() + 1e-12          # normalise; 1e-12 guards div-by-zero
+    w /= w.sum() + 1e-12
     return np.einsum('i,ij,ik->jk', w, G, G)
 \end{lstlisting}
-On a single-regime dataset ($n{=}200$, $d{=}6$, $y=4x_0+3\sin(2x_1)+0.5\varepsilon$),
-both AGOP variants recover $\{x_0,x_1\}$ as the top features
-with cosine similarity $0.9994$, confirming correct implementation.
 
-\paragraph{(iii) Disagreement.}
-We construct a two-regime dataset ($n{=}600$, $d{=}6$) designed to expose the
-difference between the two AGOP variants:
-\begin{itemize}[nosep,leftmargin=1.5em]
-  \item Regime A ($x_5<0$): $y=5x_0+0.05\varepsilon$ — well-fitted, residual RMSE $2.20$.
-  \item Regime B ($x_5\ge 0$): $y=5x_2+5.0\varepsilon$ — poorly fitted, residual RMSE $5.10$.
-\end{itemize}
-A global Poly-2 Ridge model ($\alpha{=}0.5$) is fitted to the combined data.
-Standard AGOP identifies $x_0$ (loading $0.863$) as the leading feature:
-the well-fitted regime A dominates because its gradients are consistent.
-Residual-weighted AGOP identifies $x_2$ (loading $0.682$): the large residuals
-in regime B inflate the weights, shifting the leading direction toward the
-hard-to-fit signal. The cosine similarity between the two leading eigenvectors
-is $0.676$, confirming substantial directional disagreement ($p=1$).
+\paragraph{(iii) Disagreement and Performance.}
+On a two-regime dataset, residual-weighted AGOP identifies the signal in the hard-to-fit regime ($x_2$), whereas standard AGOP focuses on the well-fitted regime ($x_0$). Although both produce similar test RMSE in a single-level split, residual weighting provides a superior interpretive signal for identifying model failure regions.
 
-\paragraph{(iv) Performance.}
-Using the same two-regime DGP ($n_\text{train}{=}500$, $n_\text{test}{=}200$),
-we compare RMSE of a one-level tree split using each AGOP direction:
+\section{Supplementary Tables}
+\label{app:tables}
 
-\begin{center}\small
-\begin{tabular}{lc}
-  \toprule
-  Method & Test RMSE \\
-  \midrule
-  Global model (no split)          & 4.034 \\
-  Standard AGOP split (along $x_0$) & 4.151 \\
-  Res-weighted AGOP split (along $x_2$) & 4.173 \\
-  \bottomrule
-\end{tabular}
-\end{center}
+\begin{table}[htbp]
+  \centering
+  \caption{Full scalability experiment results: test RMSE and training time (seconds) across varying training set sizes.}
+  \label{tab:scaling-full}
+  \resizebox{\textwidth}{!}{
+  \begin{tabular}{llrrrrrrrr}
+    \toprule
+    \multirow{2}{*}{Dataset} & \multirow{2}{*}{$n_\text{train}$}
+      & \multicolumn{2}{c}{xRFM} & \multicolumn{2}{c}{XGBoost} & \multicolumn{2}{c}{LightGBM} & \multicolumn{2}{c}{MLP} \\
+    \cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-8}\cmidrule(lr){9-10}
+      & & RMSE & Time (s) & RMSE & Time (s) & RMSE & Time (s) & RMSE & Time (s) \\
+    \midrule
+    \multirow{4}{*}{Diamonds}
+      & 1{,}000  & 1657.0 &   0.77 & 846.7 & 0.80 & 1003.4 & 0.13 & 1081.0 &  2.27 \\
+      & 5{,}000  & 1655.9 &  11.03 & 628.9 & 0.39 &  622.7 & 0.11 &  901.1 & 10.12 \\
+      & 10{,}000 & 1577.6 &  39.31 & 587.8 & 0.49 &  592.3 & 0.15 &  888.9 & 10.33 \\
+      & 30{,}000 & 1487.5 & 226.44 & 542.7 & 0.59 &  535.3 & 0.29 &  743.5 & 22.23 \\[4pt]
+    \multirow{4}{*}{Supercond.}
+      & 1{,}000  & 14.07 & 0.08 & 13.76 & 0.39 & 13.91 & 0.15 & 15.39 &  2.52 \\
+      & 5{,}000  & 11.30 & 0.47 & 10.81 & 1.00 & 10.71 & 0.46 & 13.05 &  8.58 \\
+      & 10{,}000 &  9.81 & 1.07 &  9.51 & 1.73 &  9.50 & 1.10 & 11.22 & 28.35 \\
+      & 12{,}757 &  9.46 & 1.56 &  9.28 & 1.64 &  9.21 & 1.04 & -- & -- \\
+    \bottomrule
+  \end{tabular}
+  }
+\end{table}
 
-Both single-level splits produce slightly higher RMSE than the global model,
-and neither variant achieves a clear advantage over the other.
-This suggests that in this controlled setting, residual weighting's main value
-is \emph{interpretive}---correctly identifying where the model fails---rather than
-automatically improving a single-split predictor.
-Richer tree structures or iterative reweighting may be needed to realise
-a performance benefit.
+\begin{table}[htbp]
+  \centering
+  \caption{Full xRFM AGOP-diagonal feature importance for all evaluated datasets.}
+  \label{tab:xrfm-interpretability-full}
+  \small
+  \begin{tabular}{lp{10cm}}
+    \toprule
+    Dataset & Top AGOP-ranked features, from 1st to 5th \\
+    \midrule
+    Diamonds & \texttt{y}, \texttt{x}, \texttt{carat}, \texttt{z}, \texttt{depth} \\
+    Superconductivity & \texttt{number\_of\_elements}, \texttt{mean\_atomic\_mass}, \texttt{wtd\_mean\_atomic\_mass}, \texttt{gmean\_atomic\_mass}, \texttt{wtd\_gmean\_atomic\_mass} \\
+    Online Shoppers & \texttt{PageValues}, \texttt{ExitRates}, \texttt{ProductRelated}, \texttt{ProductRelated\_Duration}, \texttt{BounceRates} \\
+    Stroke & \texttt{avg\_glucose\_level}, \texttt{age}, \texttt{bmi}, \texttt{work\_type\_Self-employed}, \texttt{smoking\_status\_smokes} \\
+    HR Attrition & \texttt{OverTime\_No}, \texttt{OverTime\_Yes}, \texttt{BusinessTravel\_Travel\_Frequently}, \texttt{TotalWorkingYears}, \texttt{BusinessTravel\_Non-Travel} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
-% ─────────────────────────────────────────────────────────────────────────────
 \section{Supplementary Figures}
-\label{app:supplementary}
+\label{app:figures}
 
 \subsection*{AGOP Feature Importance}
-
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.88\textwidth]{figures/feature_importance_bars.pdf}
+    \includegraphics[width=0.95\textwidth]{figures/feature_importance_bars.pdf}
     \caption{Top-five AGOP diagonal feature importance scores for Diamonds and Superconductivity.}
     \label{fig:appendix-feature-importance}
 \end{figure}
 
 \subsection*{Superconductivity Scalability}
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{figures/scaling_analysis_super.pdf}
@@ -92,7 +98,6 @@ a performance benefit.
 \end{figure}
 
 \subsection*{Training-Time and Accuracy Trade-off}
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth]{figures/time_accuracy_tradeoff.pdf}
