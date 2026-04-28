@@ -98,15 +98,16 @@ The interpretability advantage of xRFM comes from its AGOP-derived feature impor
   \centering
   \caption{xRFM AGOP-diagonal feature importance extracted from the trained models.}
   \label{tab:xrfm-interpretability}
-  \begin{tabular}{ll}
+  \small
+  \begin{tabular}{lp{10cm}}
     \toprule
-    Dataset & Top AGOP-ranked features \\
+    Dataset & Top AGOP-ranked features (1st–5th) \\
     \midrule
-    Diamonds & \texttt{num\_\_y}, \texttt{num\_\_x}, \texttt{num\_\_carat}, \texttt{num\_\_z}, \texttt{num\_\_depth} \\
-    Superconductivity & \texttt{num\_\_number\_of\_elements}, \texttt{num\_\_mean\_atomic\_mass}, \texttt{num\_\_wtd\_mean\_atomic\_mass}, \texttt{num\_\_gmean\_atomic\_mass}, \texttt{num\_\_wtd\_gmean\_atomic\_mass} \\
-    Online Shoppers & \texttt{num\_\_PageValues}, \texttt{num\_\_ExitRates}, \texttt{num\_\_ProductRelated}, \texttt{num\_\_ProductRelated\_Duration}, \texttt{num\_\_BounceRates} \\
-    Stroke & \texttt{num\_\_avg\_glucose\_level}, \texttt{num\_\_age}, \texttt{num\_\_bmi}, \texttt{cat\_\_work\_type\_Self-employed}, \texttt{cat\_\_smoking\_status\_smokes} \\
-    HR Attrition & \texttt{cat\_\_OverTime\_No}, \texttt{cat\_\_OverTime\_Yes}, \texttt{cat\_\_BusinessTravel\_Travel\_Frequently}, \texttt{num\_\_TotalWorkingYears}, \texttt{cat\_\_BusinessTravel\_Non-Travel} \\
+    Diamonds & \texttt{y}, \texttt{x}, \texttt{carat}, \texttt{z}, \texttt{depth} \\
+    Superconductivity & \texttt{number\_of\_elements}, \texttt{mean\_atomic\_mass}, \texttt{wtd\_mean\_atomic\_mass}, \texttt{gmean\_atomic\_mass}, \texttt{wtd\_gmean\_atomic\_mass} \\
+    Online Shoppers & \texttt{PageValues}, \texttt{ExitRates}, \texttt{ProductRelated}, \texttt{ProductRelated\_Duration}, \texttt{BounceRates} \\
+    Stroke & \texttt{avg\_glucose\_level}, \texttt{age}, \texttt{bmi}, \texttt{work\_type\_Self-employed}, \texttt{smoking\_status\_smokes} \\
+    HR Attrition & \texttt{OverTime\_No}, \texttt{OverTime\_Yes}, \texttt{BusinessTravel\_Travel\_Frequently}, \texttt{TotalWorkingYears}, \texttt{BusinessTravel\_Non-Travel} \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -119,18 +120,19 @@ Table~\ref{tab:interpretability-methods} compares AGOP diagonal importance with 
   \centering
   \caption{Conceptual comparison of interpretability methods used for tabular features.}
   \label{tab:interpretability-methods}
+  \small
   \begin{tabular}{llll}
     \toprule
     Method & Supervised? & Model-specific? & Main interpretation \\
     \midrule
-    AGOP diagonal & Yes & Yes & Sensitivity of xRFM prediction to each feature \\
-    PCA loadings & No & No & Directions explaining input variance \\
-    Mutual information & Yes & No & Univariate statistical dependence with target \\
-    Permutation importance & Yes & Model-agnostic & Test-performance drop after feature shuffle \\
+    AGOP diagonal          & Yes & Yes            & Sensitivity of xRFM to each feature \\
+    PCA loadings           & No  & No             & Directions of maximum input variance \\
+    Mutual information     & Yes & No             & Univariate dependence with target \\
+    Permutation importance & Yes & Model-agnostic & Performance drop after feature shuffle \\
     \bottomrule
   \end{tabular}
 \end{table}
 
 Compared with PCA, AGOP is more directly connected to prediction because it is computed from gradients of the learned function rather than from input covariance alone. Compared with MI, AGOP can reflect the behaviour of a multivariate model, whereas MI is typically calculated feature by feature. Compared with permutation importance, AGOP is cheaper to extract after model training, but permutation importance has a clearer link to performance degradation. Therefore, the AGOP diagonal is best interpreted as an internal explanation of xRFM's learned feature geometry rather than a universal ground-truth ranking of feature importance.
 
-\clearpage
+

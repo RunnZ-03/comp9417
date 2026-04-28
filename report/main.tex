@@ -46,9 +46,12 @@
 % ── Document ──────────────────────────────────────────────────────────────────
 \begin{document}
 
+\pagenumbering{gobble}
 \maketitle
 \tableofcontents
 \newpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
 
 % ── Sections ──────────────────────────────────────────────────────────────────
 \input{sections/01_introduction}
