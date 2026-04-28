@@ -3,12 +3,12 @@
 \section{Supplementary Experiments and Figures}
 \label{app:supplementary}
 
-This appendix provides supplementary material for the main empirical analysis. It includes an additional AGOP-based splitting verification and extended figures for feature importance, scalability, and performance-efficiency trade-offs. These materials support the main findings in Sections~3 and~4 but are not required for understanding the core report.
+This appendix provides supplementary material for the main empirical analysis. It includes an additional AGOP-based splitting verification and supplementary figures for AGOP feature importance, Superconductivity scalability, and performance-efficiency trade-offs. These materials support the main findings in Sections~3 and~4 but are not required for understanding the core report.
 
 \subsection{AGOP-Based Splitting Criterion: Scratch Implementation}
 \label{app:agop-split}
 
-The xRFM algorithm selects a split direction at each internal node using the Average Gradient Outer Product (AGOP). In the original xRFM formulation, the leading eigenvector of the AGOP provides a supervised direction in input space that is relevant to prediction~\citep{beaglehole2025xrfm}. To better understand this mechanism, we implemented a simplified AGOP-based splitting criterion from scratch using ridge regression.
+The xRFM algorithm selects split directions using the Average Gradient Outer Product (AGOP). In the original xRFM formulation, the AGOP provides a supervised direction in input space that is relevant to prediction~\citep{beaglehole2025xrfm}. To better understand this mechanism, we implemented a simplified AGOP-based splitting criterion from scratch using ridge regression.
 
 For a linear prediction model
 \[
@@ -32,7 +32,7 @@ which provide coordinate-wise feature importance scores. The leading eigenvector
 v_1 = \frac{w}{\|w\|}.
 \]
 
-In our scratch implementation, the threshold $t^*$ is selected by scanning candidate quantiles of the projection $v_1^\top X$ and choosing the threshold that minimises the weighted target variance after splitting. This simplified implementation is not intended to replace the official xRFM library; rather, it verifies the intuition that AGOP-based directions can recover prediction-relevant coordinates.
+In our scratch implementation, the threshold $t^*$ is selected by scanning candidate quantiles of the projection $v_1^\top X$ and choosing the threshold that minimises the weighted target variance after splitting. This simplified implementation is not intended to replace the official xRFM library. Instead, it verifies the intuition that AGOP-based directions can recover prediction-relevant coordinates.
 
 \paragraph{Synthetic verification.}
 We construct a synthetic dataset with $n=300$ and $d=10$, where the target is generated as
@@ -69,21 +69,21 @@ Figure~\ref{fig:appendix-feature-importance} visualises the top-five AGOP diagon
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{figures/feature_importance_bars.pdf}
+    \includegraphics[width=0.88\textwidth]{figures/feature_importance_bars.pdf}
     \caption{Top-five AGOP diagonal feature importance scores for Diamonds and Superconductivity.}
     \label{fig:appendix-feature-importance}
 \end{figure}
 
-\subsection{Extended Scalability Analysis}
-\label{app:extended-scaling}
+\subsection{Supplementary Superconductivity Scalability Analysis}
+\label{app:superconductivity-scaling}
 
-Figure~\ref{fig:appendix-scaling-2x2} extends the scalability analysis by showing both Diamonds and Superconductivity. For Diamonds, xRFM exhibits a large increase in training time as the training size grows, while its RMSE improves only gradually. In contrast, XGBoost and LightGBM achieve much lower RMSE with substantially shorter training time. For Superconductivity, xRFM behaves more competitively: its RMSE decreases steadily with more training data and remains close to the tree-based models at full training size.
+The main Results section includes the Diamonds scalability curve because Diamonds is the largest dataset in our experiments and directly satisfies the large-dataset subsampling requirement. Figure~\ref{fig:appendix-super-scaling} adds the corresponding Superconductivity scalability curve. The Superconductivity results show that xRFM's RMSE decreases steadily as the training size grows and remains close to XGBoost and LightGBM at full training size, while its training time remains far lower than MLP.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{figures/scaling_analysis_2x2.pdf}
-    \caption{Extended scalability analysis for Diamonds and Superconductivity. The plots compare test RMSE and training time as functions of training-set size.}
-    \label{fig:appendix-scaling-2x2}
+    \includegraphics[width=0.9\textwidth]{figures/scaling_analysis_super.pdf}
+    \caption{Supplementary scalability analysis on the Superconductivity dataset, showing test RMSE and training time as functions of training-set size.}
+    \label{fig:appendix-super-scaling}
 \end{figure}
 
 \subsection{Training-Time and Accuracy Trade-off}
@@ -93,10 +93,10 @@ Figure~\ref{fig:appendix-time-accuracy} shows the trade-off between training tim
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{figures/time_accuracy_tradeoff.pdf}
+    \includegraphics[width=0.95\textwidth]{figures/time_accuracy_tradeoff.pdf}
     \caption{Training-time and predictive-performance trade-off for Diamonds and Superconductivity. Lower RMSE and lower training time indicate a better efficiency-performance trade-off.}
     \label{fig:appendix-time-accuracy}
 \end{figure}
 
 \paragraph{Appendix summary.}
-The supplementary results reinforce the main conclusions of the report. AGOP provides interpretable feature rankings that are often aligned with domain intuition, especially for numerical predictors. However, meaningful AGOP feature rankings do not guarantee superior predictive performance. The extended scalability and trade-off plots show that xRFM is competitive on Superconductivity but struggles on Diamonds, where boosted-tree methods achieve much better accuracy-efficiency trade-offs.
+The supplementary results reinforce the main conclusions of the report. AGOP provides interpretable feature rankings that are often aligned with domain intuition, especially for numerical predictors. However, meaningful AGOP feature rankings do not guarantee superior predictive performance. The supplementary scalability and trade-off plots show that xRFM is competitive on Superconductivity but struggles on Diamonds, where boosted-tree methods achieve a better accuracy-efficiency trade-off.

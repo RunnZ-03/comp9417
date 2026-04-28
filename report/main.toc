@@ -15,17 +15,17 @@
 \contentsline {paragraph}{Classification tasks.}{3}{section*.7}%
 \contentsline {subsection}{\numberline {3.2}Scalability Analysis}{4}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Interpretability Comparison}{5}{subsection.3.3}%
-\contentsline {section}{\numberline {4}Discussion}{6}{section.4}%
-\contentsline {subsection}{\numberline {4.1}xRFM: When Feature Learning Helps and When It Does Not}{6}{subsection.4.1}%
+\contentsline {section}{\numberline {4}Discussion}{7}{section.4}%
+\contentsline {subsection}{\numberline {4.1}xRFM: When Feature Learning Helps and When It Does Not}{7}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}XGBoost and LightGBM: Performance and Efficiency}{7}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}MLP: Performance and Scalability Limitations}{7}{subsection.4.3}%
 \contentsline {section}{\numberline {5}Conclusion}{7}{section.5}%
-\contentsline {section}{Appendix}{8}{section*.13}%
-\contentsline {section}{\numberline {A}Supplementary Experiments and Figures}{8}{appendix.A}%
-\contentsline {subsection}{\numberline {A.1}AGOP-Based Splitting Criterion: Scratch Implementation}{8}{subsection.A.1}%
-\contentsline {paragraph}{Synthetic verification.}{8}{section*.14}%
-\contentsline {subsection}{\numberline {A.2}Additional AGOP Feature Importance Visualisation}{9}{subsection.A.2}%
-\contentsline {subsection}{\numberline {A.3}Extended Scalability Analysis}{9}{subsection.A.3}%
-\contentsline {subsection}{\numberline {A.4}Training-Time and Accuracy Trade-off}{10}{subsection.A.4}%
-\contentsline {paragraph}{Appendix summary.}{11}{section*.19}%
-\contentsline {section}{References}{12}{section*.20}%
+\contentsline {section}{Appendix}{9}{section*.14}%
+\contentsline {section}{\numberline {A}Supplementary Experiments and Figures}{9}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}AGOP-Based Splitting Criterion: Scratch Implementation}{9}{subsection.A.1}%
+\contentsline {paragraph}{Synthetic verification.}{9}{section*.15}%
+\contentsline {subsection}{\numberline {A.2}Additional AGOP Feature Importance Visualisation}{10}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.3}Supplementary Superconductivity Scalability Analysis}{10}{subsection.A.3}%
+\contentsline {subsection}{\numberline {A.4}Training-Time and Accuracy Trade-off}{11}{subsection.A.4}%
+\contentsline {paragraph}{Appendix summary.}{11}{section*.20}%
+\contentsline {section}{References}{12}{section*.21}%
