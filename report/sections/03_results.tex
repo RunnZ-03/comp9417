@@ -46,7 +46,7 @@ For Online Shoppers and Stroke, XGBoost and LightGBM obtain the strongest AUC-RO
 
 Table~\ref{tab:timing} reports training time and per-sample inference time for all models. The timing results show that xRFM can be efficient on smaller datasets, but becomes very expensive on Diamonds. In contrast, LightGBM and XGBoost remain consistently fast.
 
-\begin{table}[H]
+\begin{table}[htbp]
   \centering
   \caption{Training time (s) and inference time per sample ($\mu$s) for all models. Each cell shows Train\,/\,Infer.}
   \label{tab:timing}
@@ -68,38 +68,11 @@ Table~\ref{tab:timing} reports training time and per-sample inference time for a
 
 \subsection{Scalability Analysis}
 
-To evaluate scalability, we run subsampling experiments on Diamonds and Superconductivity. Table~\ref{tab:scaling} reports RMSE and training time at different training sizes. Figure~\ref{fig:scaling} visualises the Diamonds scalability curves.
+Scalability experiments (detailed in Table~\ref{tab:scaling-full}, Appendix~\ref{app:tables}) reveal a significant efficiency gap between models. As visualised in Figure~\ref{fig:scaling}, xRFM exhibits near-quadratic time complexity on the Diamonds dataset, where training time increases exponentially with marginal RMSE gains (reaching 226.44s at $n=30{,}000$). In contrast, GBDT baselines maintain sub-second training times even at full scale. 
 
-\begin{table}[H]
-  \centering
-  \caption{Scalability experiment: test RMSE and training time (seconds) as a function of training set size. Dash (--) indicates configurations not run.}
-  \label{tab:scaling}
-  \resizebox{\textwidth}{!}{
-  \begin{tabular}{llrrrrrrrr}
-    \toprule
-    \multirow{2}{*}{Dataset} & \multirow{2}{*}{$n_\text{train}$}
-      & \multicolumn{2}{c}{xRFM} & \multicolumn{2}{c}{XGBoost} & \multicolumn{2}{c}{LightGBM} & \multicolumn{2}{c}{MLP} \\
-    \cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-8}\cmidrule(lr){9-10}
-      & & RMSE & Time (s) & RMSE & Time (s) & RMSE & Time (s) & RMSE & Time (s) \\
-    \midrule
-    \multirow{4}{*}{Diamonds}
-      & 1{,}000  & 1657.0 &   0.77 & 846.7 & 0.80 & 1003.4 & 0.13 & 1081.0 &  2.27 \\
-      & 5{,}000  & 1655.9 &  11.03 & 628.9 & 0.39 &  622.7 & 0.11 &  901.1 & 10.12 \\
-      & 10{,}000 & 1577.6 &  39.31 & 587.8 & 0.49 &  592.3 & 0.15 &  888.9 & 10.33 \\
-      & 30{,}000 & 1487.5 & 226.44 & 542.7 & 0.59 &  535.3 & 0.29 &  743.5 & 22.23 \\[4pt]
-    \multirow{4}{*}{Supercond.}
-      & 1{,}000  & 14.07 & 0.08 & 13.76 & 0.39 & 13.91 & 0.15 & 15.39 &  2.52 \\
-      & 5{,}000  & 11.30 & 0.47 & 10.81 & 1.00 & 10.71 & 0.46 & 13.05 &  8.58 \\
-      & 10{,}000 &  9.81 & 1.07 &  9.51 & 1.73 &  9.50 & 1.10 & 11.22 & 28.35 \\
-      & 12{,}757 &  9.46 & 1.56 &  9.28 & 1.64 &  9.21 & 1.04 & -- & -- \\
-    \bottomrule
-  \end{tabular}
-  }
-\end{table}
+However, xRFM scales more effectively on the purely numerical Superconductivity dataset, nearly matching GBDT performance. This divergence confirms that xRFM's AGOP-based reweighting is better suited for continuous high-dimensional inputs than for mixed-type data with sharp categorical thresholds.
 
-On Diamonds, xRFM shows a clear scalability limitation. Its training time increases from 0.77s to 226.44s as $n_\text{train}$ grows from 1{,}000 to 30{,}000, while RMSE only improves from 1657.0 to 1487.5. In contrast, LightGBM reaches 535.3 RMSE at 30{,}000 training samples while training in less than one second. On Superconductivity, xRFM scales more favourably: its RMSE improves from 14.07 to 9.46 and remains close to XGBoost and LightGBM at full size. This contrast suggests that xRFM is better suited to fully numerical, high-dimensional regression than to large mixed-type datasets with strong threshold and categorical effects.
-
-\begin{figure}[H]
+\begin{figure}[htbp]
   \centering
   \includegraphics[width=\textwidth]{figures/scaling_analysis.pdf}
   \caption{Scalability analysis on the Diamonds dataset, comparing test RMSE (left) and training time (right) across varying training set sizes.}
@@ -108,29 +81,11 @@ On Diamonds, xRFM shows a clear scalability limitation. Its training time increa
 
 \subsection{Interpretability Comparison}
 
-Table~\ref{tab:xrfm-interpretability} lists the top-five AGOP-ranked features extracted from each trained xRFM model. These results show that the AGOP diagonal often highlights meaningful variables: physical size for Diamonds, behavioural value for Online Shoppers, health risk factors for Stroke, and work-intensity indicators for HR Attrition.
+AGOP-diagonal rankings (detailed in Table~\ref{tab:xrfm-interpretability-full}, Appendix~\ref{app:tables}) align closely with domain knowledge across all tasks, identifying physical dimensions for Diamonds and health risk factors like glucose and age for Stroke. 
 
-\begin{table}[H]
-  \centering
-  \caption{xRFM AGOP-diagonal feature importance extracted from the trained models.}
-  \label{tab:xrfm-interpretability}
-  \small
-  \begin{tabular}{lp{10cm}}
-    \toprule
-    Dataset & Top AGOP-ranked features, from 1st to 5th \\
-    \midrule
-    Diamonds & \texttt{y}, \texttt{x}, \texttt{carat}, \texttt{z}, \texttt{depth} \\
-    Superconductivity & \texttt{number\_of\_elements}, \texttt{mean\_atomic\_mass}, \texttt{wtd\_mean\_atomic\_mass}, \texttt{gmean\_atomic\_mass}, \texttt{wtd\_gmean\_atomic\_mass} \\
-    Online Shoppers & \texttt{PageValues}, \texttt{ExitRates}, \texttt{ProductRelated}, \texttt{ProductRelated\_Duration}, \texttt{BounceRates} \\
-    Stroke & \texttt{avg\_glucose\_level}, \texttt{age}, \texttt{bmi}, \texttt{work\_type\_Self-employed}, \texttt{smoking\_status\_smokes} \\
-    HR Attrition & \texttt{OverTime\_No}, \texttt{OverTime\_Yes}, \texttt{BusinessTravel\_Travel\_Frequently}, \texttt{TotalWorkingYears}, \texttt{BusinessTravel\_Non-Travel} \\
-    \bottomrule
-  \end{tabular}
-\end{table}
+To answer whether AGOP agrees with other feature-importance methods, we perform a detailed comparison on the Diamonds dataset (Table~\ref{tab:diamonds-feature-importance} and Figure~\ref{fig:diamonds-feature-importance-comparison}). 
 
-To answer whether AGOP agrees with other feature-importance methods, we perform a detailed comparison on the Diamonds dataset. Table~\ref{tab:diamonds-feature-importance} compares AGOP diagonal importance against PCA loadings, mutual information, and permutation importance on the same data.
-
-\begin{table}[H]
+\begin{table}[htbp]
   \centering
   \caption{Feature-importance comparison on the Diamonds dataset.}
   \label{tab:diamonds-feature-importance}
@@ -147,15 +102,13 @@ To answer whether AGOP agrees with other feature-importance methods, we perform 
   \end{tabular}
 \end{table}
 
-Figure~\ref{fig:diamonds-feature-importance-comparison} visualises the same comparison. It shows that AGOP, mutual information, and permutation importance agree on the importance of physical size-related variables, while permutation importance gives relatively more weight to some categorical quality variables.
-
-\begin{figure}[H]
+\begin{figure}[htbp]
   \centering
   \includegraphics[width=0.95\textwidth]{figures/diamonds_feature_importance_comparison.pdf}
   \caption{Feature-importance comparison on the Diamonds dataset using AGOP diagonal scores, PCA loadings, mutual information, and permutation importance.}
   \label{fig:diamonds-feature-importance-comparison}
 \end{figure}
 
-The empirical comparison partly supports the theoretical argument made in Section~2.1. AGOP is supervised and model-specific, so it should identify features that the learned xRFM function is sensitive to. On Diamonds, AGOP ranks \texttt{y}, \texttt{x}, \texttt{carat}, and \texttt{z} among the most important features, which agrees with mutual information and permutation importance that physical size and carat weight are central predictors of diamond price. PCA also ranks \texttt{x}, \texttt{y}, \texttt{z}, and \texttt{carat} highly, but this is expected because these variables dominate input variance rather than necessarily target relevance.
+The empirical comparison partly supports the theoretical argument made in Section~2.1. AGOP successfully identifies continuous features (\texttt{y}, \texttt{x}, \texttt{carat}) that the learned xRFM function is highly sensitive to, agreeing with mutual information. However, permutation importance assigns additional weight to categorical quality features (e.g., \texttt{color\_I}) that AGOP downplays. 
 
-The main divergence is that permutation importance assigns additional importance to categorical quality features such as \texttt{color\_I}, while AGOP focuses more heavily on continuous size-related coordinates. This difference is informative: AGOP reflects the sensitivity structure of the fitted xRFM model, whereas permutation importance directly measures test-performance degradation after feature corruption. A surprising finding is that AGOP produces intuitively meaningful feature rankings even though xRFM performs poorly on Diamonds compared with XGBoost and LightGBM. This suggests that interpretability and predictive accuracy are not equivalent. AGOP can identify sensible prediction-relevant directions, but the xRFM prediction pipeline may still be less effective than boosted trees at modelling sharp axis-aligned thresholds and categorical interactions in this dataset.
+This suggests that while AGOP identifies sensible predictive directions, its rankings do not guarantee overall accuracy. On Diamonds, despite identifying relevant size features, xRFM's RMSE remains nearly three times higher than tree-based models. Interpretability and predictive power are decoupled here: AGOP highlights the sensitivity of the fitted model, but the xRFM pipeline itself struggles to capture sharp axis-aligned thresholds and categorical interactions as effectively as boosted trees.
