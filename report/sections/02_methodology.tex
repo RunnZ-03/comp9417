@@ -4,14 +4,17 @@
 
 \subsection{xRFM: Algorithm and Theoretical Background}
 
-xRFM is a tabular feature-learning model based on the Average Gradient Outer Product (AGOP)~\citep{beaglehole2025xrfm,radhakrishnan2024mechanism}. For a learned prediction function $f:\mathbb{R}^{d}\rightarrow\mathbb{R}$, the AGOP is defined as
+xRFM is a tabular feature-learning model based on the Average Gradient Outer Product (AGOP)~\citep{beaglehole2025xrfm,radhakrishnan2024mechanism}. For a trained prediction function $f:\mathbb{R}^{d}\rightarrow\mathbb{R}$, the AGOP is defined as
 \begin{equation}
-    G_f=\mathbb{E}_{x}\!\left[\nabla f(x)\nabla f(x)^{\top}\right],
+    G_f=\mathbb{E}_{x}\!\left[\nabla f(x)\nabla f(x)^{\top}\right] \in \mathbb{R}^{d\times d}.
     \label{eq:agop}
 \end{equation}
-where $\nabla f(x)$ measures the sensitivity of the prediction to each input feature. Large diagonal values of $G_f$ indicate features that strongly affect the learned function. In this project, we use the diagonal AGOP setting because it is cheaper than storing the full $d\times d$ matrix and gives direct feature-level importance scores.
+The diagonal entry $[G_f]_{ii}=\mathbb{E}_x[(\partial f/\partial x_i)^2]$ is the expected squared partial derivative with respect to feature $i$: a large value indicates rapid change in the model output along coordinate $i$ (important feature); a small value indicates near-insensitivity. The full $G_f$ supports two interpretability strategies: its \emph{diagonal} gives coordinate-wise importance scores for each feature, while its \emph{top eigenvectors} identify multivariate directions in input space along which the model varies most, potentially capturing signal invisible to any single coordinate. We use diagonal AGOP in our experiments as it is cheaper to store and sufficient for feature-level rankings.
 
-xRFM iteratively fits a base model, estimates AGOP, reweights the feature space, and refits to focus learning on task-relevant directions.
+Compared with alternative methods, AGOP is supervised and model-specific: it reflects the gradient geometry of the fitted function, unlike PCA which only uses input covariance~\citep{pearson1901pca}. Mutual information measures marginal feature–target dependence but not the model's multivariate sensitivity~\citep{kraskov2004estimating}. Permutation importance is model-agnostic but measures post-hoc performance degradation rather than learned geometry~\citep{fisher2019all}. AGOP is extracted as a by-product of training and directly summarises which directions the learned model relies on.
+
+\paragraph{Training pipeline.}
+xRFM builds a binary tree over the training data. At each node, a base model $f$ is fitted to the local data partition and its AGOP $G_f$ is computed. The leading eigenvector $v_1$ of $G_f$ defines the split direction; the threshold $t^*$ minimises weighted target variance along the projection $v_1^\top x$. Each leaf fits a local random Fourier feature kernel machine with the feature metric reweighted by $G_f$. For inference on a new point $x^*$, the tree is traversed via $v_k^\top x^* \leq t_k$ at each internal node, and the leaf model produces the final prediction. The dominant training cost is AGOP computation: $O(nd)$ per node for a linear approximation, giving total complexity $O(nd\cdot 2^D)$ for tree depth $D$~\citep{beaglehole2025xrfm}. This addresses the fundamental limitation of standard kernel machines on tabular data — that a global Euclidean metric treats all features equally — by adaptively reweighting feature space at each tree node.
 
 \subsection{Experimental Design}
 

@@ -44,6 +44,28 @@ LightGBM achieves the lowest RMSE on both regression datasets. xRFM is close on 
 \paragraph{Classification tasks.}
 XGBoost and LightGBM achieve the best AUC-ROC on Online Shoppers and Stroke. xRFM's strongest result is HR Attrition, where it achieves the highest accuracy (0.8673), suggesting a modest advantage in small-sample settings. MLP has notably low AUC on Stroke (0.269), reflecting sensitivity to class imbalance.
 
+Table~\ref{tab:timing} reports training time and per-sample inference time for all models and datasets.
+
+\begin{table}[H]
+  \centering
+  \caption{Training time (s) and inference time per sample ($\mu$s) for all models. Each cell shows Train\,/\,Infer.}
+  \label{tab:timing}
+  \small
+  \resizebox{\textwidth}{!}{
+  \begin{tabular}{lrrrr}
+    \toprule
+    Dataset & xRFM & XGBoost & LightGBM & MLP \\
+    \midrule
+    Diamonds           & 246.5\,s / 69.8\,$\mu$s & 1.4\,s / 1.9\,$\mu$s & 0.8\,s / 1.9\,$\mu$s & 26.8\,s / 0.9\,$\mu$s \\
+    Superconductivity  & 1.6\,s / 1.0\,$\mu$s   & 3.4\,s / 2.1\,$\mu$s & 1.9\,s / 7.6\,$\mu$s & 34.3\,s / 0.8\,$\mu$s \\
+    Online Shoppers    & 0.7\,s / 0.8\,$\mu$s   & 0.2\,s / 1.4\,$\mu$s & 0.3\,s / 1.6\,$\mu$s & 2.1\,s / 0.8\,$\mu$s  \\
+    Stroke             & 0.3\,s / 1.1\,$\mu$s   & 0.1\,s / 1.1\,$\mu$s & 0.1\,s / 2.0\,$\mu$s & 0.4\,s / 1.0\,$\mu$s  \\
+    HR Attrition       & 0.1\,s / 3.2\,$\mu$s   & 0.1\,s / 3.0\,$\mu$s & 0.1\,s / 7.5\,$\mu$s & 0.4\,s / 2.2\,$\mu$s  \\
+    \bottomrule
+  \end{tabular}
+  }
+\end{table}
+
 \subsection{Scalability Analysis}
 
 To evaluate scalability, we run subsampling experiments on Diamonds and Superconductivity. Table~\ref{tab:scaling} reports RMSE and training time at different training sizes. Figure~\ref{fig:scaling} visualises the Diamonds scalability curves.

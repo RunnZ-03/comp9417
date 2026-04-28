@@ -5,70 +5,80 @@
 \citation{grinsztajn2022tree,holzmuller2024better}
 \citation{beaglehole2025xrfm,radhakrishnan2024mechanism}
 \citation{beaglehole2025xrfm,radhakrishnan2024mechanism}
-\citation{hamidieh2018data,sakar2019real,fedesoriano2021stroke}
+\citation{pearson1901pca}
+\citation{kraskov2004estimating}
+\citation{fisher2019all}
+\citation{beaglehole2025xrfm}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2}Methodology}{1}{section.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}xRFM: Algorithm and Theoretical Background}{1}{subsection.2.1}\protected@file@percent }
 \newlabel{eq:agop}{{1}{1}{xRFM: Algorithm and Theoretical Background}{equation.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Experimental Design}{1}{subsection.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Datasets}{1}{subsubsection.2.2.1}\protected@file@percent }
-\citation{chen2016xgboost,ke2017lightgbm,holzmuller2024better}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Dataset statistics. $n_\text  {train}$, $n_\text  {val}$, and $n_\text  {test}$ denote the sizes of the training, validation, and test splits respectively; $d$ is the number of features after preprocessing.}}{2}{table.caption.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training pipeline.}{1}{section*.2}\protected@file@percent }
+\citation{hamidieh2018data,sakar2019real,fedesoriano2021stroke}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Experimental Design}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Datasets}{2}{subsubsection.2.2.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Dataset statistics. $n_\text  {train}$, $n_\text  {val}$, and $n_\text  {test}$ denote the sizes of the training, validation, and test splits respectively; $d$ is the number of features after preprocessing.}}{2}{table.caption.3}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:datasets}{{1}{2}{Dataset statistics. $n_\text {train}$, $n_\text {val}$, and $n_\text {test}$ denote the sizes of the training, validation, and test splits respectively; $d$ is the number of features after preprocessing}{table.caption.2}{}}
+\newlabel{tab:datasets}{{1}{2}{Dataset statistics. $n_\text {train}$, $n_\text {val}$, and $n_\text {test}$ denote the sizes of the training, validation, and test splits respectively; $d$ is the number of features after preprocessing}{table.caption.3}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Preprocessing and Splitting}{2}{subsubsection.2.2.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}Evaluation Metrics}{2}{subsubsection.2.2.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.4}xRFM Configuration}{2}{subsubsection.2.2.4}\protected@file@percent }
 \newlabel{sec:xrfm-config}{{2.2.4}{2}{xRFM Configuration}{subsubsection.2.2.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces xRFM configuration used in the experiments.}}{2}{table.caption.3}\protected@file@percent }
-\newlabel{tab:xrfm-config}{{2}{2}{xRFM configuration used in the experiments}{table.caption.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.5}XGBoost and LightGBM Configuration}{2}{subsubsection.2.2.5}\protected@file@percent }
-\newlabel{sec:gbdt-config}{{2.2.5}{2}{XGBoost and LightGBM Configuration}{subsubsection.2.2.5}{}}
+\citation{chen2016xgboost,ke2017lightgbm,holzmuller2024better}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces xRFM configuration used in the experiments.}}{3}{table.caption.4}\protected@file@percent }
+\newlabel{tab:xrfm-config}{{2}{3}{xRFM configuration used in the experiments}{table.caption.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.5}XGBoost and LightGBM Configuration}{3}{subsubsection.2.2.5}\protected@file@percent }
+\newlabel{sec:gbdt-config}{{2.2.5}{3}{XGBoost and LightGBM Configuration}{subsubsection.2.2.5}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.6}MLP Configuration}{3}{subsubsection.2.2.6}\protected@file@percent }
 \newlabel{sec:mlp-config}{{2.2.6}{3}{MLP Configuration}{subsubsection.2.2.6}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Results}{3}{section.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Predictive Performance}{3}{subsection.3.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Test-set performance of all models. \textbf  {Bold} indicates best result per dataset and metric. RMSE is lower-better; Accuracy and AUC are higher-better.}}{3}{table.caption.4}\protected@file@percent }
-\newlabel{tab:main-results}{{3}{3}{Test-set performance of all models. \textbf {Bold} indicates best result per dataset and metric. RMSE is lower-better; Accuracy and AUC are higher-better}{table.caption.4}{}}
-\@writefile{toc}{\contentsline {paragraph}{Regression tasks.}{3}{section*.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Classification tasks.}{3}{section*.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Scalability Analysis}{3}{subsection.3.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Scalability experiment: test RMSE and training time (seconds) as a function of training set size. Dash (--) indicates configurations not run.}}{4}{table.caption.7}\protected@file@percent }
-\newlabel{tab:scaling}{{4}{4}{Scalability experiment: test RMSE and training time (seconds) as a function of training set size. Dash (--) indicates configurations not run}{table.caption.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Scalability analysis on the Diamonds dataset, comparing test RMSE (left) and training time (right) across varying training set sizes.}}{4}{figure.caption.8}\protected@file@percent }
-\newlabel{fig:scaling}{{1}{4}{Scalability analysis on the Diamonds dataset, comparing test RMSE (left) and training time (right) across varying training set sizes}{figure.caption.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Interpretability Comparison}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Regression tasks.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Classification tasks.}{3}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Test-set performance of all models. \textbf  {Bold} indicates best result per dataset and metric. RMSE is lower-better; Accuracy and AUC are higher-better.}}{4}{table.caption.5}\protected@file@percent }
+\newlabel{tab:main-results}{{3}{4}{Test-set performance of all models. \textbf {Bold} indicates best result per dataset and metric. RMSE is lower-better; Accuracy and AUC are higher-better}{table.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Training time (s) and inference time per sample ($\mu $s) for all models. Each cell shows Train\,/\,Infer.}}{4}{table.caption.8}\protected@file@percent }
+\newlabel{tab:timing}{{4}{4}{Training time (s) and inference time per sample ($\mu $s) for all models. Each cell shows Train\,/\,Infer}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Scalability Analysis}{4}{subsection.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Scalability experiment: test RMSE and training time (seconds) as a function of training set size. Dash (--) indicates configurations not run.}}{4}{table.caption.9}\protected@file@percent }
+\newlabel{tab:scaling}{{5}{4}{Scalability experiment: test RMSE and training time (seconds) as a function of training set size. Dash (--) indicates configurations not run}{table.caption.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Scalability analysis on the Diamonds dataset, comparing test RMSE (left) and training time (right) across varying training set sizes.}}{5}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:scaling}{{1}{5}{Scalability analysis on the Diamonds dataset, comparing test RMSE (left) and training time (right) across varying training set sizes}{figure.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Interpretability Comparison}{5}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces xRFM AGOP-diagonal feature importance extracted from the trained models.}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:xrfm-interpretability}{{6}{5}{xRFM AGOP-diagonal feature importance extracted from the trained models}{table.caption.11}{}}
 \citation{chen2016xgboost,ke2017lightgbm}
 \citation{grinsztajn2022tree}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces xRFM AGOP-diagonal feature importance extracted from the trained models.}}{5}{table.caption.9}\protected@file@percent }
-\newlabel{tab:xrfm-interpretability}{{5}{5}{xRFM AGOP-diagonal feature importance extracted from the trained models}{table.caption.9}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Conceptual comparison of interpretability methods for tabular features.}}{5}{table.caption.10}\protected@file@percent }
-\newlabel{tab:interpretability-methods}{{6}{5}{Conceptual comparison of interpretability methods for tabular features}{table.caption.10}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{5}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}xRFM: When Feature Learning Helps and When It Does Not}{5}{subsection.4.1}\protected@file@percent }
 \citation{holzmuller2024better}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Conceptual comparison of interpretability methods for tabular features.}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:interpretability-methods}{{7}{6}{Conceptual comparison of interpretability methods for tabular features}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{6}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}xRFM: When Feature Learning Helps and When It Does Not}{6}{subsection.4.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}XGBoost and LightGBM: Performance and Efficiency}{6}{subsection.4.2}\protected@file@percent }
 \newlabel{sec:gbdt-discussion}{{4.2}{6}{XGBoost and LightGBM: Performance and Efficiency}{subsection.4.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}MLP: Performance and Scalability Limitations}{6}{subsection.4.3}\protected@file@percent }
 \newlabel{sec:mlp-discussion}{{4.3}{6}{MLP: Performance and Scalability Limitations}{subsection.4.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{6}{section.5}\protected@file@percent }
 \citation{beaglehole2025xrfm}
-\@writefile{toc}{\contentsline {section}{Appendix}{7}{section*.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {A}AGOP-Based Splitting Criterion: Scratch Implementation}{7}{appendix.A}\protected@file@percent }
-\newlabel{app:bonus}{{A}{7}{AGOP-Based Splitting Criterion: Scratch Implementation}{appendix.A}{}}
-\@writefile{toc}{\contentsline {paragraph}{Verification.}{7}{section*.12}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces AGOP diagonal on the synthetic dataset. Noise features $x_2$–$x_9$ score $\le 0.03$ (scratch) and $\le 0.30$ (xRFM).}}{7}{table.caption.13}\protected@file@percent }
-\newlabel{tab:bonus-agop}{{7}{7}{AGOP diagonal on the synthetic dataset. Noise features $x_2$–$x_9$ score $\le 0.03$ (scratch) and $\le 0.30$ (xRFM)}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {section}{Appendix}{8}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}AGOP-Based Splitting Criterion: Scratch Implementation}{8}{appendix.A}\protected@file@percent }
+\newlabel{app:bonus}{{A}{8}{AGOP-Based Splitting Criterion: Scratch Implementation}{appendix.A}{}}
+\@writefile{toc}{\contentsline {paragraph}{Verification.}{8}{section*.14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces AGOP diagonal on the synthetic dataset. Noise features $x_2$–$x_9$ score $\le 0.03$ (scratch) and $\le 0.30$ (xRFM).}}{8}{table.caption.15}\protected@file@percent }
+\newlabel{tab:bonus-agop}{{8}{8}{AGOP diagonal on the synthetic dataset. Noise features $x_2$–$x_9$ score $\le 0.03$ (scratch) and $\le 0.30$ (xRFM)}{table.caption.15}{}}
 \bibstyle{plainnat}
 \bibdata{sections/references}
 \bibcite{beaglehole2025xrfm}{{1}{2025}{{Beaglehole et~al.}}{{Beaglehole, Holzm{\"u}ller, Radhakrishnan, and Belkin}}}
 \bibcite{chen2016xgboost}{{2}{2016}{{Chen and Guestrin}}{{}}}
 \bibcite{fedesoriano2021stroke}{{3}{2021}{{fedesoriano}}{{}}}
-\bibcite{grinsztajn2022tree}{{4}{2022}{{Grinsztajn et~al.}}{{Grinsztajn, Oyallon, and Varoquaux}}}
-\bibcite{hamidieh2018data}{{5}{2018}{{Hamidieh}}{{}}}
-\bibcite{holzmuller2024better}{{6}{2024}{{Holzm{\"u}ller et~al.}}{{Holzm{\"u}ller, Grinsztajn, and Steinwart}}}
-\bibcite{ke2017lightgbm}{{7}{2017}{{Ke et~al.}}{{Ke, Meng, Finley, Wang, Chen, Ma, Ye, and Liu}}}
-\bibcite{radhakrishnan2024mechanism}{{8}{2024}{{Radhakrishnan et~al.}}{{Radhakrishnan, Beaglehole, Pandit, and Belkin}}}
-\bibcite{sakar2019real}{{9}{2019}{{Sakar et~al.}}{{Sakar, Polat, Katircioglu, and Kastro}}}
-\@writefile{toc}{\contentsline {section}{References}{8}{section*.14}\protected@file@percent }
-\gdef \@abspage@last{9}
+\bibcite{fisher2019all}{{4}{2019}{{Fisher et~al.}}{{Fisher, Rudin, and Dominici}}}
+\bibcite{grinsztajn2022tree}{{5}{2022}{{Grinsztajn et~al.}}{{Grinsztajn, Oyallon, and Varoquaux}}}
+\bibcite{hamidieh2018data}{{6}{2018}{{Hamidieh}}{{}}}
+\bibcite{holzmuller2024better}{{7}{2024}{{Holzm{\"u}ller et~al.}}{{Holzm{\"u}ller, Grinsztajn, and Steinwart}}}
+\bibcite{ke2017lightgbm}{{8}{2017}{{Ke et~al.}}{{Ke, Meng, Finley, Wang, Chen, Ma, Ye, and Liu}}}
+\bibcite{kraskov2004estimating}{{9}{2004}{{Kraskov et~al.}}{{Kraskov, St{\"o}gbauer, and Grassberger}}}
+\bibcite{pearson1901pca}{{10}{1901}{{Pearson}}{{}}}
+\bibcite{radhakrishnan2024mechanism}{{11}{2024}{{Radhakrishnan et~al.}}{{Radhakrishnan, Beaglehole, Pandit, and Belkin}}}
+\bibcite{sakar2019real}{{12}{2019}{{Sakar et~al.}}{{Sakar, Polat, Katircioglu, and Kastro}}}
+\@writefile{toc}{\contentsline {section}{References}{9}{section*.16}\protected@file@percent }
+\gdef \@abspage@last{10}

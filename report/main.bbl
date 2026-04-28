@@ -1,4 +1,4 @@
-\begin{thebibliography}{9}
+\begin{thebibliography}{12}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -24,6 +24,13 @@ Tianqi Chen and Carlos Guestrin.
 \newblock Stroke prediction dataset, 2021.
 \newblock URL
   \url{https://www.kaggle.com/fedesoriano/stroke-prediction-dataset}.
+
+\bibitem[Fisher et~al.(2019)Fisher, Rudin, and Dominici]{fisher2019all}
+Aaron Fisher, Cynthia Rudin, and Francesca Dominici.
+\newblock All models are wrong, but many are useful: Learning a variable's
+  importance by studying an entire class of prediction models simultaneously.
+\newblock \emph{Journal of Machine Learning Research}, 20\penalty0
+  (177):\penalty0 1--81, 2019.
 
 \bibitem[Grinsztajn et~al.(2022)Grinsztajn, Oyallon, and
   Varoquaux]{grinsztajn2022tree}
@@ -54,6 +61,18 @@ Guolin Ke, Qi~Meng, Thomas Finley, Taifeng Wang, Wei Chen, Weidong Ma, Qiwei
 \newblock Lightgbm: A highly efficient gradient boosting decision tree.
 \newblock In \emph{Advances in Neural Information Processing Systems},
   volume~30, 2017.
+
+\bibitem[Kraskov et~al.(2004)Kraskov, St{\"o}gbauer, and
+  Grassberger]{kraskov2004estimating}
+Alexander Kraskov, Harald St{\"o}gbauer, and Peter Grassberger.
+\newblock Estimating mutual information.
+\newblock \emph{Physical Review E}, 69\penalty0 (6):\penalty0 066138, 2004.
+
+\bibitem[Pearson(1901)]{pearson1901pca}
+Karl Pearson.
+\newblock On lines and planes of closest fit to systems of points in space.
+\newblock \emph{The London, Edinburgh, and Dublin Philosophical Magazine and
+  Journal of Science}, 2\penalty0 (11):\penalty0 559--572, 1901.
 
 \bibitem[Radhakrishnan et~al.(2024)Radhakrishnan, Beaglehole, Pandit, and
   Belkin]{radhakrishnan2024mechanism}
