@@ -1,71 +1,79 @@
-% Appendix: Supplementary Experiments and Figures
+% Appendix: Bonus and Supplementary Material
 
-\section{Supplementary Experiments and Figures}
+\section{Bonus: Residual-Weighted AGOP}
+\label{app:bonus}
+
+\paragraph{(i) Justification.}
+Standard AGOP weights all samples equally ($G_f = \tfrac{1}{n}\textstyle\sum_i \nabla f(x_i)\nabla f(x_i)^\top$).
+Points with large residuals $r_i = y_i - f(x_i)$ indicate regions where the model fails.
+Upweighting by $\varphi(r_i)=r_i^2$ shifts the AGOP toward directions of high model error,
+providing a more focused signal for guided tree splits.
+
+\paragraph{(ii) Implementation.}
+The residual-weighted AGOP is defined as
+\begin{equation}
+  \mathrm{AGOP}_{\mathrm{res}}(f)
+  = \frac{\displaystyle\sum_{i=1}^{n} r_i^2\,\nabla f(x_i)\nabla f(x_i)^\top}
+         {\displaystyle\sum_{i=1}^{n} r_i^2}.
+  \label{eq:agop-res}
+\end{equation}
+Gradients are estimated by forward finite differences ($\varepsilon=10^{-3}$) on a degree-2
+Ridge regression model. The core implementation is two lines:
+\begin{lstlisting}[language=Python, basicstyle=\ttfamily\small,
+  frame=single, xleftmargin=4pt, xrightmargin=4pt, belowskip=2pt, aboveskip=2pt]
+def agop(G, residuals=None):
+    w = np.ones(len(G))/len(G) if residuals is None else residuals**2
+    w /= w.sum() + 1e-12          # normalise; 1e-12 guards div-by-zero
+    return np.einsum('i,ij,ik->jk', w, G, G)
+\end{lstlisting}
+On a single-regime dataset ($n{=}200$, $d{=}6$, $y=4x_0+3\sin(2x_1)+0.5\varepsilon$),
+both AGOP variants recover $\{x_0,x_1\}$ as the top features
+with cosine similarity $0.9994$, confirming correct implementation.
+
+\paragraph{(iii) Disagreement.}
+We construct a two-regime dataset ($n{=}600$, $d{=}6$) designed to expose the
+difference between the two AGOP variants:
+\begin{itemize}[nosep,leftmargin=1.5em]
+  \item Regime A ($x_5<0$): $y=5x_0+0.05\varepsilon$ — well-fitted, residual RMSE $2.20$.
+  \item Regime B ($x_5\ge 0$): $y=5x_2+5.0\varepsilon$ — poorly fitted, residual RMSE $5.10$.
+\end{itemize}
+A global Poly-2 Ridge model ($\alpha{=}0.5$) is fitted to the combined data.
+Standard AGOP identifies $x_0$ (loading $0.863$) as the leading feature:
+the well-fitted regime A dominates because its gradients are consistent.
+Residual-weighted AGOP identifies $x_2$ (loading $0.682$): the large residuals
+in regime B inflate the weights, shifting the leading direction toward the
+hard-to-fit signal. The cosine similarity between the two leading eigenvectors
+is $0.676$, confirming substantial directional disagreement ($p=1$).
+
+\paragraph{(iv) Performance.}
+Using the same two-regime DGP ($n_\text{train}{=}500$, $n_\text{test}{=}200$),
+we compare RMSE of a one-level tree split using each AGOP direction:
+
+\begin{center}\small
+\begin{tabular}{lc}
+  \toprule
+  Method & Test RMSE \\
+  \midrule
+  Global model (no split)          & 4.034 \\
+  Standard AGOP split (along $x_0$) & 4.151 \\
+  Res-weighted AGOP split (along $x_2$) & 4.173 \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+Both single-level splits produce slightly higher RMSE than the global model,
+and neither variant achieves a clear advantage over the other.
+This suggests that in this controlled setting, residual weighting's main value
+is \emph{interpretive}---correctly identifying where the model fails---rather than
+automatically improving a single-split predictor.
+Richer tree structures or iterative reweighting may be needed to realise
+a performance benefit.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Supplementary Figures}
 \label{app:supplementary}
 
-This appendix provides supplementary material for the main empirical analysis. It includes an additional AGOP-based splitting verification and supplementary figures for AGOP feature importance, Superconductivity scalability, and performance-efficiency trade-offs. These materials support the main findings in Sections~3 and~4 but are not required for understanding the core report.
-
-\subsection{AGOP-Based Splitting Criterion: Scratch Implementation}
-\label{app:agop-split}
-
-The xRFM algorithm selects split directions using the Average Gradient Outer Product (AGOP). In the original xRFM formulation, the AGOP provides a supervised direction in input space that is relevant to prediction~\citep{beaglehole2025xrfm}. To better understand this mechanism, we implemented a simplified AGOP-based splitting criterion from scratch using ridge regression.
-
-For a linear prediction model
-\[
-f(x) = w^\top x + b,
-\]
-the gradient is constant:
-\[
-\nabla f(x) = w.
-\]
-Therefore, the AGOP reduces to
-\[
-G_f = \mathbb{E}_x\left[\nabla f(x)\nabla f(x)^\top\right]
-    = ww^\top.
-\]
-The diagonal entries are
-\[
-[G_f]_{ii}=w_i^2,
-\]
-which provide coordinate-wise feature importance scores. The leading eigenvector of $G_f$ is proportional to $w$, so the split direction is
-\[
-v_1 = \frac{w}{\|w\|}.
-\]
-
-In our scratch implementation, the threshold $t^*$ is selected by scanning candidate quantiles of the projection $v_1^\top X$ and choosing the threshold that minimises the weighted target variance after splitting. This simplified implementation is not intended to replace the official xRFM library. Instead, it verifies the intuition that AGOP-based directions can recover prediction-relevant coordinates.
-
-\paragraph{Synthetic verification.}
-We construct a synthetic dataset with $n=300$ and $d=10$, where the target is generated as
-\[
-y = 3x_0 - 2x_1 + \varepsilon.
-\]
-Thus, the true relevant features are $x_0$ and $x_1$, while $x_2$ to $x_9$ are noise variables. Table~\ref{tab:appendix-agop-synthetic} compares the scratch AGOP diagonal with a numerical AGOP estimate obtained from the fitted xRFM predictor.
-
-\begin{table}[H]
-  \centering
-  \caption{AGOP diagonal on the synthetic dataset. Noise features $x_2$--$x_9$ receive low scores under both methods.}
-  \label{tab:appendix-agop-synthetic}
-  \small
-  \begin{tabular}{lcc}
-    \toprule
-    Feature & Scratch $w_i^2$ & xRFM numerical AGOP \\
-    \midrule
-    $x_0$ (coefficient $+3$) & 9.23 & 13.03 \\
-    $x_1$ (coefficient $-2$) & 3.93 & 5.28 \\
-    $x_2$--$x_9$ (noise) & $\leq 0.03$ & $\leq 0.30$ \\
-    \midrule
-    Top-2 identified & $\{x_0,x_1\}$ & $\{x_0,x_1\}$ \\
-    Cosine similarity & \multicolumn{2}{c}{\textbf{0.9985}} \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-Both methods correctly identify $x_0$ and $x_1$ as the top two features. The high cosine similarity indicates that the scratch implementation recovers nearly the same feature direction as the numerical AGOP estimate. This supports the interpretation of the AGOP diagonal as a coordinate-wise feature relevance measure.
-
-\subsection{Additional AGOP Feature Importance Visualisation}
-\label{app:feature-importance-bars}
-
-Figure~\ref{fig:appendix-feature-importance} visualises the top-five AGOP diagonal features for Diamonds and Superconductivity. For Diamonds, AGOP emphasises physical size and weight-related variables such as \texttt{y}, \texttt{x}, \texttt{carat}, \texttt{z}, and \texttt{depth}. For Superconductivity, the top AGOP features are related to the number of elements and atomic-mass statistics. These rankings are consistent with the interpretation that AGOP highlights coordinates to which the learned xRFM prediction function is most sensitive.
+\subsection*{AGOP Feature Importance}
 
 \begin{figure}[H]
     \centering
@@ -74,29 +82,20 @@ Figure~\ref{fig:appendix-feature-importance} visualises the top-five AGOP diagon
     \label{fig:appendix-feature-importance}
 \end{figure}
 
-\subsection{Supplementary Superconductivity Scalability Analysis}
-\label{app:superconductivity-scaling}
-
-The main Results section includes the Diamonds scalability curve because Diamonds is the largest dataset in our experiments and directly satisfies the large-dataset subsampling requirement. Figure~\ref{fig:appendix-super-scaling} adds the corresponding Superconductivity scalability curve. The Superconductivity results show that xRFM's RMSE decreases steadily as the training size grows and remains close to XGBoost and LightGBM at full training size, while its training time remains far lower than MLP.
+\subsection*{Superconductivity Scalability}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{figures/scaling_analysis_super.pdf}
-    \caption{Supplementary scalability analysis on the Superconductivity dataset, showing test RMSE and training time as functions of training-set size.}
+    \caption{Scalability on Superconductivity: test RMSE and training time vs.\ training-set size.}
     \label{fig:appendix-super-scaling}
 \end{figure}
 
-\subsection{Training-Time and Accuracy Trade-off}
-\label{app:time-accuracy-tradeoff}
-
-Figure~\ref{fig:appendix-time-accuracy} shows the trade-off between training time and predictive error. A better model should ideally appear closer to the lower-left region, indicating both low RMSE and low training time. On Diamonds, LightGBM and XGBoost dominate the trade-off, while xRFM is both slower and less accurate. On Superconductivity, xRFM is closer to the boosted-tree baselines, suggesting that its feature-learning mechanism may be more suitable for fully numerical high-dimensional regression than for large mixed-type regression.
+\subsection*{Training-Time and Accuracy Trade-off}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth]{figures/time_accuracy_tradeoff.pdf}
-    \caption{Training-time and predictive-performance trade-off for Diamonds and Superconductivity. Lower RMSE and lower training time indicate a better efficiency-performance trade-off.}
+    \caption{Training-time vs.\ predictive-error trade-off on Diamonds and Superconductivity.}
     \label{fig:appendix-time-accuracy}
 \end{figure}
-
-\paragraph{Appendix summary.}
-The supplementary results reinforce the main conclusions of the report. AGOP provides interpretable feature rankings that are often aligned with domain intuition, especially for numerical predictors. However, meaningful AGOP feature rankings do not guarantee superior predictive performance. The supplementary scalability and trade-off plots show that xRFM is competitive on Superconductivity but struggles on Diamonds, where boosted-tree methods achieve a better accuracy-efficiency trade-off.

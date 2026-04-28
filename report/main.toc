@@ -21,11 +21,10 @@
 \contentsline {subsection}{\numberline {4.3}MLP: Performance and Scalability Limitations}{7}{subsection.4.3}%
 \contentsline {section}{\numberline {5}Conclusion}{7}{section.5}%
 \contentsline {section}{Appendix}{9}{section*.14}%
-\contentsline {section}{\numberline {A}Supplementary Experiments and Figures}{9}{appendix.A}%
-\contentsline {subsection}{\numberline {A.1}AGOP-Based Splitting Criterion: Scratch Implementation}{9}{subsection.A.1}%
-\contentsline {paragraph}{Synthetic verification.}{9}{section*.15}%
-\contentsline {subsection}{\numberline {A.2}Additional AGOP Feature Importance Visualisation}{10}{subsection.A.2}%
-\contentsline {subsection}{\numberline {A.3}Supplementary Superconductivity Scalability Analysis}{10}{subsection.A.3}%
-\contentsline {subsection}{\numberline {A.4}Training-Time and Accuracy Trade-off}{11}{subsection.A.4}%
-\contentsline {paragraph}{Appendix summary.}{11}{section*.20}%
-\contentsline {section}{References}{12}{section*.21}%
+\contentsline {section}{\numberline {A}Bonus: Residual-Weighted AGOP}{9}{appendix.A}%
+\contentsline {paragraph}{(i) Justification.}{9}{section*.15}%
+\contentsline {paragraph}{(ii) Implementation.}{9}{section*.16}%
+\contentsline {paragraph}{(iii) Disagreement.}{9}{section*.17}%
+\contentsline {paragraph}{(iv) Performance.}{9}{section*.18}%
+\contentsline {section}{\numberline {B}Supplementary Figures}{10}{appendix.B}%
+\contentsline {section}{References}{11}{section*.25}%
