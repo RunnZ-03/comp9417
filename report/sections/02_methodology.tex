@@ -11,13 +11,13 @@ xRFM is a tabular feature-learning model based on the Average Gradient Outer Pro
 \end{equation}
 where $\nabla f(x)$ measures the sensitivity of the prediction to each input feature. Large diagonal values of $G_f$ indicate features that strongly affect the learned function. In this project, we use the diagonal AGOP setting because it is cheaper than storing the full $d\times d$ matrix and gives direct feature-level importance scores.
 
-The key intuition is that AGOP provides a supervised view of feature relevance. PCA identifies high-variance input directions without using the target variable~\citep{pearson1901pca}; mutual information measures feature-target dependence mostly at the individual-feature level~\citep{kraskov2004estimating}; and permutation importance measures post-hoc test-performance degradation~\citep{fisher2019all}. By contrast, AGOP is derived from the gradients of the fitted model, so it reflects the directions that the prediction function actually uses. xRFM iteratively fits a base model, estimates AGOP, reweights the feature space, and refits the model to focus learning on task-relevant directions.
+xRFM iteratively fits a base model, estimates AGOP, reweights the feature space, and refits to focus learning on task-relevant directions.
 
 \subsection{Experimental Design}
 
 \subsubsection{Datasets}
 
-We evaluate xRFM and the baseline models on five public tabular datasets covering regression and binary classification tasks. These datasets vary in sample size, dimensionality, feature type, and class imbalance, allowing us to examine predictive performance, scalability, and interpretability under different tabular conditions~\citep{hamidieh2018data,sakar2019real,fedesoriano2021stroke}. Table~\ref{tab:datasets} summarises the final data statistics after preprocessing.
+Five public tabular datasets (Table~\ref{tab:datasets}) are used, spanning regression and binary classification, small and large sample sizes, and mixed feature types~\citep{hamidieh2018data,sakar2019real,fedesoriano2021stroke}.
 
 \begin{table}[H]
   \centering
@@ -38,11 +38,11 @@ We evaluate xRFM and the baseline models on five public tabular datasets coverin
 
 \subsubsection{Preprocessing and Splitting}
 
-All experiments use a fixed random seed of 42 and a 60/20/20 train-validation-test split. Missing numerical values are imputed using the median, while missing categorical values are replaced with a constant \texttt{Missing} label. Numerical features are standardised using z-score normalisation, and categorical features are transformed using one-hot encoding. The final encoded feature matrix is used consistently across xRFM, XGBoost, LightGBM, and MLP to avoid data-processing differences between models.
+All experiments use seed 42 and a 60/20/20 split. Numerical features are z-score normalised and categorical features are one-hot encoded; missing values are median/constant imputed. The same encoded matrix is used across all four models.
 
 \subsubsection{Evaluation Metrics}
 
-For regression tasks, we report Root Mean Squared Error (RMSE), where lower values indicate better predictive accuracy. For binary classification tasks, we report accuracy and AUC-ROC. AUC-ROC is especially important for the imbalanced classification datasets because it evaluates ranking ability across thresholds. We also record total training time and per-sample inference time to compare computational efficiency.
+Regression tasks are evaluated with RMSE; binary classification tasks with accuracy and AUC-ROC. Training and inference time are also recorded.
 
 \subsubsection{xRFM Configuration}
 \label{sec:xrfm-config}

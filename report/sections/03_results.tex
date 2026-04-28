@@ -39,13 +39,10 @@ Table~\ref{tab:main-results} reports the final held-out test performance across 
 \end{table}
 
 \paragraph{Regression tasks.}
-For Diamonds and Superconductivity, the tree-based baselines achieve the strongest predictive results. LightGBM obtains the lowest RMSE on both regression datasets, consistent with prior evidence that boosted trees remain highly competitive on tabular data~\citep{grinsztajn2022tree,holzmuller2024better}. xRFM is close to XGBoost and LightGBM on Superconductivity, with RMSE 9.454 compared with 9.302 and 9.209 respectively. However, xRFM performs poorly on Diamonds, where its RMSE of 1496.72 is much higher than LightGBM's 535.99. This indicates that AGOP-based feature learning does not automatically guarantee strong performance on large mixed-type regression datasets.
+LightGBM achieves the lowest RMSE on both regression datasets. xRFM is close on Superconductivity (9.454 vs.\ 9.209) but far behind on Diamonds (1496.72 vs.\ 535.99), indicating that AGOP-based feature learning does not automatically generalise to large mixed-type regression.
 
 \paragraph{Classification tasks.}
-For Online Shoppers and Stroke, XGBoost and LightGBM obtain the best AUC-ROC values. xRFM remains competitive on Online Shoppers, reaching AUC 0.9018, but it is below the boosted-tree models. On HR Attrition, xRFM achieves the highest accuracy (0.8673), although LightGBM has the highest AUC (0.7886). This suggests that xRFM may be useful in small-sample classification settings, but its ranking performance is not consistently superior to tree ensembles.
-
-\paragraph{Overall pattern.}
-The main result is that XGBoost and LightGBM are the most reliable general-purpose tabular models in this benchmark. xRFM shows selective strength on small-data classification and high-dimensional numerical regression, but it is not consistently better than boosted trees. MLP is weaker overall, especially on imbalanced classification where high accuracy does not necessarily correspond to high AUC.
+XGBoost and LightGBM achieve the best AUC-ROC on Online Shoppers and Stroke. xRFM's strongest result is HR Attrition, where it achieves the highest accuracy (0.8673), suggesting a modest advantage in small-sample settings. MLP has notably low AUC on Stroke (0.269), reflecting sensitivity to class imbalance.
 
 \subsection{Scalability Analysis}
 
@@ -78,9 +75,7 @@ To evaluate scalability, we run subsampling experiments on Diamonds and Supercon
   }
 \end{table}
 
-On Diamonds, xRFM shows a clear scalability limitation. Its training time increases from 0.77s at $n=1{,}000$ to 226.44s at $n=30{,}000$, while RMSE only improves from 1657.0 to 1487.5. In contrast, LightGBM reaches 535.3 RMSE at $n=30{,}000$ while training in less than one second. This shows that xRFM's AGOP-based feature-learning step can become expensive on large mixed-type tabular data.
-
-On Superconductivity, xRFM performs more competitively. As $n_\text{train}$ increases from 1{,}000 to 12{,}757, its RMSE improves from 14.07 to 9.46, close to XGBoost and LightGBM. Its training time also remains moderate. This contrast suggests that xRFM may be better suited to fully numerical and high-dimensional regression than to large mixed-type datasets with strong threshold effects.
+On Diamonds, xRFM's training time grows from 0.77s to 226.44s as $n$ increases from 1{,}000 to 30{,}000, while its RMSE only improves from 1657.0 to 1487.5; LightGBM reaches 535.3 in under one second. On Superconductivity, xRFM scales more favourably, improving from 14.07 to 9.46 RMSE over the same range and remaining within 2.7\% of LightGBM at full size. This contrast suggests xRFM is better suited to fully numerical, high-dimensional regression than to large mixed-type datasets with strong threshold effects.
 
 \begin{figure}[H]
   \centering
@@ -91,7 +86,7 @@ On Superconductivity, xRFM performs more competitively. As $n_\text{train}$ incr
 
 \subsection{Interpretability Comparison}
 
-The interpretability advantage of xRFM comes from AGOP-derived feature importance. In our implementation, feature importance is extracted by reading the learned AGOP matrix or diagonal values from the trained xRFM model and ranking features by their scores. Table~\ref{tab:xrfm-interpretability} summarises the top-five AGOP-ranked features for each dataset.
+Table~\ref{tab:xrfm-interpretability} lists the top-five AGOP-ranked features extracted from each trained xRFM model.
 
 \begin{table}[H]
   \centering
@@ -111,7 +106,7 @@ The interpretability advantage of xRFM comes from AGOP-derived feature importanc
   \end{tabular}
 \end{table}
 
-The AGOP rankings are generally interpretable. For Diamonds, xRFM highlights physical size and weight-related features such as $x$, $y$, $z$, and carat, which are plausible drivers of price. For Online Shoppers, \texttt{PageValues} is ranked first, matching the intuition that commercially valuable pages are strongly related to purchase intention. For Stroke, glucose level, age, and BMI appear as the top numerical features, which are meaningful risk-related variables. For HR Attrition, overtime and business-travel indicators dominate, suggesting that xRFM identifies work-intensity features as important predictors.
+The AGOP rankings are broadly interpretable: physical size variables for Diamonds, \texttt{PageValues} for Online Shoppers, glucose/age/BMI for Stroke, and overtime indicators for HR Attrition all align with domain knowledge.
 
 Table~\ref{tab:interpretability-methods} compares AGOP diagonal importance with PCA, mutual information, and permutation importance. These methods answer different questions. AGOP measures which features the learned xRFM function is sensitive to; PCA measures high-variance input directions; mutual information measures feature-target dependence; and permutation importance measures how much test performance drops when a feature is shuffled.
 
@@ -132,7 +127,4 @@ Table~\ref{tab:interpretability-methods} compares AGOP diagonal importance with 
   \end{tabular}
 \end{table}
 
-\paragraph{Does the empirical comparison support the theory?}
-Overall, the feature-importance results partly support the theoretical argument in Section~2.1. AGOP is supervised and model-specific, so it should highlight features that directly influence the learned prediction function. This is supported by the results: Diamonds highlights size-related variables, Online Shoppers highlights \texttt{PageValues}, Stroke highlights glucose level and age, and HR Attrition highlights overtime and business travel. These rankings are more prediction-oriented than PCA, which only explains input variance.
-
-However, the results also reveal an important limitation. Meaningful AGOP rankings do not necessarily imply strong predictive performance. The clearest example is Diamonds: AGOP identifies sensible size-related features, but xRFM still performs much worse than XGBoost and LightGBM. This is surprising because the interpretability output appears reasonable while the predictive accuracy remains weak. One likely explanation is that boosted trees capture axis-aligned thresholds and categorical interactions more efficiently, whereas xRFM's gradient-based feature reweighting does not fully exploit these structures in the Diamonds dataset. Therefore, the empirical interpretability results support the idea that AGOP can provide useful feature explanations, but they also challenge the assumption that better learned feature directions automatically produce better tabular prediction.
+Notably, meaningful AGOP rankings do not imply strong predictive performance: on Diamonds, AGOP identifies sensible size-related features, yet xRFM's RMSE is nearly three times higher than LightGBM's. This suggests that boosted trees capture axis-aligned thresholds more efficiently than AGOP reweighting, and that interpretability and accuracy can be decoupled.
