@@ -25,38 +25,37 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}Evaluation Metrics}{4}{subsubsection.2.2.3}\protected@file@percent }
 \citation{pedregosa2011scikit,paszke2019pytorch}
 \citation{holzmuller2024better}
+\citation{ke2017lightgbm}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.4}xRFM Configuration}{5}{subsubsection.2.2.4}\protected@file@percent }
 \newlabel{sec:xrfm-config}{{2.2.4}{5}{xRFM Configuration}{subsubsection.2.2.4}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces xRFM configuration used in the experiments.}}{5}{table.caption.3}\protected@file@percent }
 \newlabel{tab:xrfm-config}{{2}{5}{xRFM configuration used in the experiments}{table.caption.3}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.5}XGBoost and LightGBM Configuration}{5}{subsubsection.2.2.5}\protected@file@percent }
 \newlabel{sec:gbdt-config}{{2.2.5}{5}{XGBoost and LightGBM Configuration}{subsubsection.2.2.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.6}MLP Configuration}{5}{subsubsection.2.2.6}\protected@file@percent }
+\newlabel{sec:mlp-config}{{2.2.6}{5}{MLP Configuration}{subsubsection.2.2.6}{}}
 \citation{grinsztajn2022tree,holzmuller2024better}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Hyperparameter configuration for XGBoost and LightGBM baselines.}}{6}{table.caption.4}\protected@file@percent }
-\newlabel{tab:gbdt-hyperparams}{{3}{6}{Hyperparameter configuration for XGBoost and LightGBM baselines}{table.caption.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.6}MLP Configuration}{6}{subsubsection.2.2.6}\protected@file@percent }
-\newlabel{sec:mlp-config}{{2.2.6}{6}{MLP Configuration}{subsubsection.2.2.6}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Hyperparameter configuration for the MLP baseline.}}{6}{table.caption.5}\protected@file@percent }
-\newlabel{tab:mlp-hyperparams}{{4}{6}{Hyperparameter configuration for the MLP baseline}{table.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Hyperparameter configuration for the MLP baseline.}}{6}{table.caption.4}\protected@file@percent }
+\newlabel{tab:mlp-hyperparams}{{3}{6}{Hyperparameter configuration for the MLP baseline}{table.caption.4}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Results}{6}{section.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Predictive Performance}{6}{subsection.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Test-set performance of all models. \textbf  {Bold} indicates best result per dataset and metric. RMSE is lower-better; Accuracy and AUC are higher-better.}}{6}{table.caption.5}\protected@file@percent }
+\newlabel{tab:main-results}{{4}{6}{Test-set performance of all models. \textbf {Bold} indicates best result per dataset and metric. RMSE is lower-better; Accuracy and AUC are higher-better}{table.caption.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Regression tasks.}{6}{section*.6}\protected@file@percent }
 \citation{grinsztajn2022tree,holzmuller2024better,hollmann2025tabpfn}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Test-set performance of all models. \textbf  {Bold} indicates best result per dataset and metric. RMSE is lower-better; Accuracy and AUC are higher-better.}}{7}{table.caption.6}\protected@file@percent }
-\newlabel{tab:main-results}{{5}{7}{Test-set performance of all models. \textbf {Bold} indicates best result per dataset and metric. RMSE is lower-better; Accuracy and AUC are higher-better}{table.caption.6}{}}
-\@writefile{toc}{\contentsline {paragraph}{Regression tasks.}{7}{section*.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Binary classification tasks.}{7}{section*.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Overall performance pattern.}{7}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Binary classification tasks.}{7}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Overall performance pattern.}{7}{section*.8}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Scalability Analysis}{7}{subsection.3.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Scalability experiment: test RMSE and training time (seconds) as a function of training set size. Dash (--) indicates configurations not run.}}{8}{table.caption.10}\protected@file@percent }
-\newlabel{tab:scaling}{{6}{8}{Scalability experiment: test RMSE and training time (seconds) as a function of training set size. Dash (--) indicates configurations not run}{table.caption.10}{}}
-\@writefile{toc}{\contentsline {paragraph}{Scalability observations.}{8}{section*.11}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Scalability analysis on the Diamonds dataset, comparing test RMSE (left) and training time (right) across varying training set sizes.}}{8}{figure.caption.12}\protected@file@percent }
-\newlabel{fig:scaling}{{1}{8}{Scalability analysis on the Diamonds dataset, comparing test RMSE (left) and training time (right) across varying training set sizes}{figure.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Scalability experiment: test RMSE and training time (seconds) as a function of training set size. Dash (--) indicates configurations not run.}}{7}{table.caption.9}\protected@file@percent }
+\newlabel{tab:scaling}{{5}{7}{Scalability experiment: test RMSE and training time (seconds) as a function of training set size. Dash (--) indicates configurations not run}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Scalability observations.}{7}{section*.10}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Scalability analysis on the Diamonds dataset, comparing test RMSE (left) and training time (right) across varying training set sizes.}}{8}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:scaling}{{1}{8}{Scalability analysis on the Diamonds dataset, comparing test RMSE (left) and training time (right) across varying training set sizes}{figure.caption.11}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Interpretability Comparison}{8}{subsection.3.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces xRFM AGOP-diagonal feature importance extracted from the trained models.}}{9}{table.caption.13}\protected@file@percent }
-\newlabel{tab:xrfm-interpretability}{{7}{9}{xRFM AGOP-diagonal feature importance extracted from the trained models}{table.caption.13}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Conceptual comparison of interpretability methods used for tabular features.}}{9}{table.caption.14}\protected@file@percent }
-\newlabel{tab:interpretability-methods}{{8}{9}{Conceptual comparison of interpretability methods used for tabular features}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces xRFM AGOP-diagonal feature importance extracted from the trained models.}}{8}{table.caption.12}\protected@file@percent }
+\newlabel{tab:xrfm-interpretability}{{6}{8}{xRFM AGOP-diagonal feature importance extracted from the trained models}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Conceptual comparison of interpretability methods used for tabular features.}}{9}{table.caption.13}\protected@file@percent }
+\newlabel{tab:interpretability-methods}{{7}{9}{Conceptual comparison of interpretability methods used for tabular features}{table.caption.13}{}}
 \citation{beaglehole2025xrfm,radhakrishnan2024mechanism}
 \citation{friedman2001greedy,breiman2001random,chen2016xgboost,ke2017lightgbm}
 \citation{grinsztajn2022tree,holzmuller2024better}

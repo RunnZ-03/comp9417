@@ -7,14 +7,14 @@
 \contentsline {subsubsection}{\numberline {2.2.3}Evaluation Metrics}{4}{subsubsection.2.2.3}%
 \contentsline {subsubsection}{\numberline {2.2.4}xRFM Configuration}{5}{subsubsection.2.2.4}%
 \contentsline {subsubsection}{\numberline {2.2.5}XGBoost and LightGBM Configuration}{5}{subsubsection.2.2.5}%
-\contentsline {subsubsection}{\numberline {2.2.6}MLP Configuration}{6}{subsubsection.2.2.6}%
+\contentsline {subsubsection}{\numberline {2.2.6}MLP Configuration}{5}{subsubsection.2.2.6}%
 \contentsline {section}{\numberline {3}Results}{6}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Predictive Performance}{6}{subsection.3.1}%
-\contentsline {paragraph}{Regression tasks.}{7}{section*.7}%
-\contentsline {paragraph}{Binary classification tasks.}{7}{section*.8}%
-\contentsline {paragraph}{Overall performance pattern.}{7}{section*.9}%
+\contentsline {paragraph}{Regression tasks.}{6}{section*.6}%
+\contentsline {paragraph}{Binary classification tasks.}{7}{section*.7}%
+\contentsline {paragraph}{Overall performance pattern.}{7}{section*.8}%
 \contentsline {subsection}{\numberline {3.2}Scalability Analysis}{7}{subsection.3.2}%
-\contentsline {paragraph}{Scalability observations.}{8}{section*.11}%
+\contentsline {paragraph}{Scalability observations.}{7}{section*.10}%
 \contentsline {subsection}{\numberline {3.3}Interpretability Comparison}{8}{subsection.3.3}%
 \contentsline {section}{\numberline {4}Discussion}{10}{section.4}%
 \contentsline {subsection}{\numberline {4.1}xRFM: When Feature Learning Helps and When It Does Not}{10}{subsection.4.1}%

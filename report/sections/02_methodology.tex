@@ -105,26 +105,7 @@ When running on GPU, the code reduces the number of xRFM fit iterations to $3$ a
 \subsubsection{XGBoost and LightGBM Configuration}
 \label{sec:gbdt-config}
 
-Both models are trained via the scikit-learn API following strong-default settings from the literature~\citep{holzmuller2024better}: 1{,}000 boosting rounds, learning rate $\eta=0.05$, row/column subsample $0.8$, and early stopping with patience 20 on validation loss. XGBoost uses max depth~6; LightGBM uses \texttt{num\_leaves=31} to reflect its leaf-wise growth strategy. Table~\ref{tab:gbdt-hyperparams} summarises the full configuration.
-
-\begin{table}[H]
-  \centering
-  \caption{Hyperparameter configuration for XGBoost and LightGBM baselines.}
-  \label{tab:gbdt-hyperparams}
-  \begin{tabular}{lcc}
-    \toprule
-    Hyperparameter          & XGBoost   & LightGBM \\
-    \midrule
-    Max boosting rounds     & 1{,}000   & 1{,}000 \\
-    Learning rate $\eta$    & 0.05      & 0.05 \\
-    Max depth               & 6         & -- \\
-    Num leaves              & --        & 31 \\
-    Row subsample           & 0.8       & 0.8 \\
-    Column subsample        & 0.8       & 0.8 \\
-    Early stopping patience & 20        & 20 \\
-    \bottomrule
-  \end{tabular}
-\end{table}
+Both models are trained via the scikit-learn API following strong-default settings~\citep{holzmuller2024better}: 1{,}000 boosting rounds, $\eta=0.05$, row/column subsample~0.8, and early stopping patience~20 on validation loss. XGBoost uses max depth~6; LightGBM uses \texttt{num\_leaves=31} to match its leaf-wise growth strategy~\citep{ke2017lightgbm}.
 
 \subsubsection{MLP Configuration}
 \label{sec:mlp-config}

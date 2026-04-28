@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.28)  28 APR 2026 03:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.25)  28 APR 2026 14:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -615,7 +615,7 @@ Overfull \hbox (32.54971pt too wide) in paragraph at lines 86--103
  []
 
 [5]) (./sections/03_results.tex [6] [7]
-<figures/scaling_analysis.pdf, id=230, 1011.78pt x 361.35pt>
+<figures/scaling_analysis.pdf, id=232, 1011.78pt x 361.35pt>
 File: figures/scaling_analysis.pdf Graphic file (type pdf)
 <use figures/scaling_analysis.pdf>
 Package pdftex.def Info: figures/scaling_analysis.pdf  used on input line 88.
@@ -625,33 +625,29 @@ Overfull \hbox (359.7402pt too wide) in paragraph at lines 101--112
  [][] 
  []
 
-[8 <./figures/scaling_analysis.pdf>]
+
 Overfull \hbox (64.09323pt too wide) in paragraph at lines 122--132
  [][] 
  []
 
-[9]) (./sections/04_discussion.tex) (./sections/05_conclusion.tex [10
+[8 <./figures/scaling_analysis.pdf>] [9]) (./sections/04_discussion.tex)
+(./sections/05_conclusion.tex [10
 
-] [11])
-(./main.bbl [12
+] [11]) (./main.bbl [12
 
 ]) [13] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 57D9D5844F1DB4D90BB2DDCA536FCDC5;3501.
  ) 
 Here is how much of TeX's memory you used:
- 17145 strings out of 469006
- 270552 string characters out of 5454813
- 731907 words of memory out of 5000000
- 45422 multiletter control sequences out of 15000+600000
+ 17143 strings out of 469006
+ 270514 string characters out of 5454813
+ 730813 words of memory out of 5000000
+ 45421 multiletter control sequences out of 15000+600000
  640215 words of font info for 140 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
  75i,15n,79p,1019b,600s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -669,10 +665,10 @@ e1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts
 nts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2026basic/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2026basic/texmf
 -dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (13 pages, 243872 bytes).
+Output written on main.pdf (13 pages, 243578 bytes).
 PDF statistics:
- 431 PDF objects out of 1000 (max. 8388607)
- 329 compressed objects within 4 object streams
- 71 named destinations out of 1000 (max. 500000)
+ 432 PDF objects out of 1000 (max. 8388607)
+ 330 compressed objects within 4 object streams
+ 70 named destinations out of 1000 (max. 500000)
  23198 words of extra memory for PDF output out of 24883 (max. 10000000)
 
