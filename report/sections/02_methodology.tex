@@ -4,20 +4,20 @@
 
 \subsection{xRFM: Algorithm and Theoretical Background}
 
-xRFM learns task-relevant feature directions by iteratively estimating the Average Gradient Outer Product (AGOP)~\citep{beaglehole2025xrfm,radhakrishnan2024mechanism}. For a trained model $f:\mathbb{R}^{d}\rightarrow\mathbb{R}$, the AGOP is
+xRFM is a tabular feature-learning model based on the Average Gradient Outer Product (AGOP)~\citep{beaglehole2025xrfm,radhakrishnan2024mechanism}. For a learned prediction function $f:\mathbb{R}^{d}\rightarrow\mathbb{R}$, the AGOP is defined as
 \begin{equation}
-    G_f = \mathbb{E}_{x}\!\left[\nabla f(x)\nabla f(x)^{\top}\right] \in \mathbb{R}^{d\times d},
+    G_f=\mathbb{E}_{x}\!\left[\nabla f(x)\nabla f(x)^{\top}\right],
     \label{eq:agop}
 \end{equation}
-where large diagonal entries of $G_f$ indicate features to which $f$ is most sensitive. Unlike PCA (unsupervised input-variance directions~\citep{pearson1901pca}), mutual information (univariate target dependence~\citep{kraskov2004estimating}), or permutation importance (post-hoc performance drop~\citep{fisher2019all}), AGOP captures supervised, multivariate sensitivity arising directly from the model's gradients. The diagonal entries provide coordinate-wise feature importance; the leading eigenvectors reveal task-relevant linear combinations of inputs.
+where $\nabla f(x)$ measures the sensitivity of the prediction to each input feature. Large diagonal values of $G_f$ indicate features that strongly affect the learned function. In this project, we use the diagonal AGOP setting because it is cheaper than storing the full $d\times d$ matrix and gives direct feature-level importance scores.
 
-The xRFM training pipeline iterates: (1) fit a kernel/random-feature model on the current feature space; (2) estimate $G_f$ from training gradients; (3) reweight the feature space by $G_f$ to focus on predictive directions; repeat for a fixed number of iterations. Inference routes a new point $x^*$ through the learned adaptive tree to the appropriate leaf model. We use diagonal AGOP (\texttt{use\_diag=True}) throughout to reduce memory cost from $O(d^2)$ to $O(d)$ while preserving feature-level interpretability.
+The key intuition is that AGOP provides a supervised view of feature relevance. PCA identifies high-variance input directions without using the target variable~\citep{pearson1901pca}; mutual information measures feature-target dependence mostly at the individual-feature level~\citep{kraskov2004estimating}; and permutation importance measures post-hoc test-performance degradation~\citep{fisher2019all}. By contrast, AGOP is derived from the gradients of the fitted model, so it reflects the directions that the prediction function actually uses. xRFM iteratively fits a base model, estimates AGOP, reweights the feature space, and refits the model to focus learning on task-relevant directions.
 
 \subsection{Experimental Design}
 
 \subsubsection{Datasets}
 
-We evaluate on five publicly available tabular datasets (Table~\ref{tab:datasets}) covering two regression and three binary classification tasks, with $n$ ranging from 882 to 32{,}365 training examples, $d$ up to 81 features, and both pure-numerical and mixed feature types~\citep{hamidieh2018data,sakar2019real,fedesoriano2021stroke}.
+We evaluate xRFM and the baseline models on five public tabular datasets covering regression and binary classification tasks. These datasets vary in sample size, dimensionality, feature type, and class imbalance, allowing us to examine predictive performance, scalability, and interpretability under different tabular conditions~\citep{hamidieh2018data,sakar2019real,fedesoriano2021stroke}. Table~\ref{tab:datasets} summarises the final data statistics after preprocessing.
 
 \begin{table}[H]
   \centering
@@ -36,20 +36,18 @@ We evaluate on five publicly available tabular datasets (Table~\ref{tab:datasets
   \end{tabular}
 \end{table}
 
-\subsubsection{Data Preprocessing and Splitting Strategy}
+\subsubsection{Preprocessing and Splitting}
 
-To maintain fairness and consistency across all experiments, all random seeds were fixed at 42 for reproducibility. For each dataset, we applied a strict 60/20/20 split for the training, validation, and test sets. Missing values were imputed using the column-wise median for numerical features and the constant \texttt{Missing} for categorical features. Numerical features were standardised using z-score normalisation, and categorical features were transformed using one-hot encoding. The processed features were concatenated into a single numerical array before being passed to all models, ensuring compatibility with xRFM's AGOP computations and with the baseline models.
+All experiments use a fixed random seed of 42 and a 60/20/20 train-validation-test split. Missing numerical values are imputed using the median, while missing categorical values are replaced with a constant \texttt{Missing} label. Numerical features are standardised using z-score normalisation, and categorical features are transformed using one-hot encoding. The final encoded feature matrix is used consistently across xRFM, XGBoost, LightGBM, and MLP to avoid data-processing differences between models.
 
 \subsubsection{Evaluation Metrics}
 
-Regression tasks are evaluated by RMSE (lower is better); classification tasks by accuracy and AUC-ROC, where AUC is preferred under class imbalance. We also record training time and per-sample inference time for all models. All hyperparameters are selected on the validation set; test metrics are computed once on the held-out test set.
+For regression tasks, we report Root Mean Squared Error (RMSE), where lower values indicate better predictive accuracy. For binary classification tasks, we report accuracy and AUC-ROC. AUC-ROC is especially important for the imbalanced classification datasets because it evaluates ranking ability across thresholds. We also record total training time and per-sample inference time to compare computational efficiency.
 
 \subsubsection{xRFM Configuration}
 \label{sec:xrfm-config}
 
-The xRFM model was implemented using the Python \texttt{xrfm} package and trained through the shared project pipeline. The training script initialises the model as \texttt{xRFM(use\_diag=True, device=DEVICE)}, where \texttt{DEVICE} is set to CUDA when available and CPU otherwise. The diagonal setting was selected because it substantially reduces the memory cost of AGOP estimation while producing feature-level importance values. The project code also fixes NumPy and PyTorch random seeds at 42, which improves reproducibility across repeated runs~\citep{pedregosa2011scikit,paszke2019pytorch}.
-
-When running on GPU, the code reduces the number of xRFM fit iterations to $3$ and sets \texttt{M\_batch\_size=128}. This setting was used as a practical compromise between computational cost and model quality. All xRFM models were fitted on the training split, monitored using the validation split, and evaluated once on the held-out test split. For classification tasks, the code used predicted class labels for accuracy and attempted to use \texttt{predict\_proba} scores for AUC-ROC. For regression tasks, predictions were evaluated directly using RMSE. Feature importance was extracted from the learned model by reading the AGOP matrix or diagonal values from the internal xRFM tree model and ranking features by their AGOP-derived scores.
+The xRFM experiments use the Python \texttt{xrfm} package through the shared project training pipeline. The model is initialised as \texttt{xRFM(use\_diag=True, device=DEVICE)}, where \texttt{DEVICE} is CUDA if available and CPU otherwise. On GPU, the training script sets the number of fit iterations to $3$ and \texttt{M\_batch\_size=128} to control memory cost. Feature importance is extracted by reading the learned AGOP matrix or diagonal values from the trained xRFM model and ranking features by their AGOP-derived scores.
 
 \begin{table}[H]
   \centering
@@ -60,13 +58,12 @@ When running on GPU, the code reduces the number of xRFM fit iterations to $3$ a
     Component & Setting \\
     \midrule
     Model & \texttt{xRFM} \\
-    AGOP mode & Diagonal AGOP (\texttt{use\_diag=True}) \\
+    AGOP mode & Diagonal AGOP, \texttt{use\_diag=True} \\
     Device & CUDA if available; otherwise CPU \\
     Random seed & 42 \\
     GPU fit iterations & 3 \\
     GPU AGOP batch size & 128 \\
-    Input representation & Standardised numerical features and one-hot encoded categorical features \\
-    Evaluation split & 60/20/20 train/validation/test split \\
+    Data split & 60/20/20 train/validation/test \\
     Regression metric & RMSE \\
     Classification metrics & Accuracy and AUC-ROC \\
     Interpretability output & Top features ranked by AGOP diagonal score \\
@@ -77,9 +74,9 @@ When running on GPU, the code reduces the number of xRFM fit iterations to $3$ a
 \subsubsection{XGBoost and LightGBM Configuration}
 \label{sec:gbdt-config}
 
-Both models are trained via the scikit-learn API following strong-default settings~\citep{holzmuller2024better}: 1{,}000 boosting rounds, $\eta=0.05$, row/column subsample~0.8, and early stopping patience~20 on validation loss. XGBoost uses max depth~6; LightGBM uses \texttt{num\_leaves=31} to match its leaf-wise growth strategy~\citep{ke2017lightgbm}.
+XGBoost and LightGBM are trained through the scikit-learn API using strong default settings from recent tabular benchmarking work~\citep{chen2016xgboost,ke2017lightgbm,holzmuller2024better}. Both use 1{,}000 maximum boosting rounds, learning rate $\eta=0.05$, row and column subsampling of 0.8, and early stopping with patience 20 on the validation set. XGBoost uses maximum tree depth 6, while LightGBM uses \texttt{num\_leaves=31}.
 
 \subsubsection{MLP Configuration}
 \label{sec:mlp-config}
 
-The MLP baseline uses a two-hidden-layer network of sizes $(128, 64)$ with ReLU activations, trained with Adam ($\eta=0.001$, batch size 256, max 500 epochs) and early stopping with patience~20 on validation loss. All features are z-score standardised; classification outputs use softmax probabilities for AUC computation.
+The MLP baseline uses a two-hidden-layer network with hidden sizes $(128,64)$ and ReLU activation. It is trained with Adam, learning rate 0.001, batch size 256, maximum 500 iterations, and early stopping with patience 20. Input features are standardised before training. For classification tasks, predicted probabilities are used for AUC-ROC calculation.
