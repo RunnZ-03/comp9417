@@ -35,37 +35,52 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Predictive Performance}{3}{subsection.3.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Regression tasks.}{3}{section*.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Classification tasks.}{3}{section*.7}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Test-set performance of all models. \textbf  {Bold} indicates best result per dataset and metric. RMSE is lower-better; Accuracy and AUC are higher-better.}}{4}{table.caption.5}\protected@file@percent }
-\newlabel{tab:main-results}{{3}{4}{Test-set performance of all models. \textbf {Bold} indicates best result per dataset and metric. RMSE is lower-better; Accuracy and AUC are higher-better}{table.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Test-set performance of all models. \textbf  {Bold} indicates the best result per dataset and metric. RMSE is lower-better; Accuracy and AUC are higher-better.}}{4}{table.caption.5}\protected@file@percent }
+\newlabel{tab:main-results}{{3}{4}{Test-set performance of all models. \textbf {Bold} indicates the best result per dataset and metric. RMSE is lower-better; Accuracy and AUC are higher-better}{table.caption.5}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Training time (s) and inference time per sample ($\mu $s) for all models. Each cell shows Train\,/\,Infer.}}{4}{table.caption.8}\protected@file@percent }
 \newlabel{tab:timing}{{4}{4}{Training time (s) and inference time per sample ($\mu $s) for all models. Each cell shows Train\,/\,Infer}{table.caption.8}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Scalability Analysis}{4}{subsection.3.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Scalability experiment: test RMSE and training time (seconds) as a function of training set size. Dash (--) indicates configurations not run.}}{4}{table.caption.9}\protected@file@percent }
-\newlabel{tab:scaling}{{5}{4}{Scalability experiment: test RMSE and training time (seconds) as a function of training set size. Dash (--) indicates configurations not run}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Scalability experiment: test RMSE and training time (seconds) as a function of training set size. Dash (--) indicates configurations not run.}}{5}{table.caption.9}\protected@file@percent }
+\newlabel{tab:scaling}{{5}{5}{Scalability experiment: test RMSE and training time (seconds) as a function of training set size. Dash (--) indicates configurations not run}{table.caption.9}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Scalability analysis on the Diamonds dataset, comparing test RMSE (left) and training time (right) across varying training set sizes.}}{5}{figure.caption.10}\protected@file@percent }
 \newlabel{fig:scaling}{{1}{5}{Scalability analysis on the Diamonds dataset, comparing test RMSE (left) and training time (right) across varying training set sizes}{figure.caption.10}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Interpretability Comparison}{5}{subsection.3.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces xRFM AGOP-diagonal feature importance extracted from the trained models.}}{5}{table.caption.11}\protected@file@percent }
-\newlabel{tab:xrfm-interpretability}{{6}{5}{xRFM AGOP-diagonal feature importance extracted from the trained models}{table.caption.11}{}}
 \citation{chen2016xgboost,ke2017lightgbm}
-\citation{grinsztajn2022tree}
-\citation{holzmuller2024better}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Conceptual comparison of interpretability methods for tabular features.}}{6}{table.caption.12}\protected@file@percent }
-\newlabel{tab:interpretability-methods}{{7}{6}{Conceptual comparison of interpretability methods for tabular features}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces xRFM AGOP-diagonal feature importance extracted from the trained models.}}{6}{table.caption.11}\protected@file@percent }
+\newlabel{tab:xrfm-interpretability}{{6}{6}{xRFM AGOP-diagonal feature importance extracted from the trained models}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Feature-importance comparison on the Diamonds dataset.}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:diamonds-feature-importance}{{7}{6}{Feature-importance comparison on the Diamonds dataset}{table.caption.12}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{6}{section.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}xRFM: When Feature Learning Helps and When It Does Not}{6}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}XGBoost and LightGBM: Performance and Efficiency}{6}{subsection.4.2}\protected@file@percent }
-\newlabel{sec:gbdt-discussion}{{4.2}{6}{XGBoost and LightGBM: Performance and Efficiency}{subsection.4.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}MLP: Performance and Scalability Limitations}{6}{subsection.4.3}\protected@file@percent }
-\newlabel{sec:mlp-discussion}{{4.3}{6}{MLP: Performance and Scalability Limitations}{subsection.4.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{6}{section.5}\protected@file@percent }
+\citation{grinsztajn2022tree}
+\citation{holzmuller2024better}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}XGBoost and LightGBM: Performance and Efficiency}{7}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:gbdt-discussion}{{4.2}{7}{XGBoost and LightGBM: Performance and Efficiency}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}MLP: Performance and Scalability Limitations}{7}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:mlp-discussion}{{4.3}{7}{MLP: Performance and Scalability Limitations}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{7}{section.5}\protected@file@percent }
 \citation{beaglehole2025xrfm}
 \@writefile{toc}{\contentsline {section}{Appendix}{8}{section*.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {A}AGOP-Based Splitting Criterion: Scratch Implementation}{8}{appendix.A}\protected@file@percent }
-\newlabel{app:bonus}{{A}{8}{AGOP-Based Splitting Criterion: Scratch Implementation}{appendix.A}{}}
-\@writefile{toc}{\contentsline {paragraph}{Verification.}{8}{section*.14}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces AGOP diagonal on the synthetic dataset. Noise features $x_2$–$x_9$ score $\le 0.03$ (scratch) and $\le 0.30$ (xRFM).}}{8}{table.caption.15}\protected@file@percent }
-\newlabel{tab:bonus-agop}{{8}{8}{AGOP diagonal on the synthetic dataset. Noise features $x_2$–$x_9$ score $\le 0.03$ (scratch) and $\le 0.30$ (xRFM)}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Supplementary Experiments and Figures}{8}{appendix.A}\protected@file@percent }
+\newlabel{app:supplementary}{{A}{8}{Supplementary Experiments and Figures}{appendix.A}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}AGOP-Based Splitting Criterion: Scratch Implementation}{8}{subsection.A.1}\protected@file@percent }
+\newlabel{app:agop-split}{{A.1}{8}{AGOP-Based Splitting Criterion: Scratch Implementation}{subsection.A.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Synthetic verification.}{8}{section*.14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces AGOP diagonal on the synthetic dataset. Noise features $x_2$--$x_9$ receive low scores under both methods.}}{8}{table.caption.15}\protected@file@percent }
+\newlabel{tab:appendix-agop-synthetic}{{8}{8}{AGOP diagonal on the synthetic dataset. Noise features $x_2$--$x_9$ receive low scores under both methods}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Additional AGOP Feature Importance Visualisation}{9}{subsection.A.2}\protected@file@percent }
+\newlabel{app:feature-importance-bars}{{A.2}{9}{Additional AGOP Feature Importance Visualisation}{subsection.A.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Top-five AGOP diagonal feature importance scores for Diamonds and Superconductivity.}}{9}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:appendix-feature-importance}{{2}{9}{Top-five AGOP diagonal feature importance scores for Diamonds and Superconductivity}{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Extended Scalability Analysis}{9}{subsection.A.3}\protected@file@percent }
+\newlabel{app:extended-scaling}{{A.3}{9}{Extended Scalability Analysis}{subsection.A.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Extended scalability analysis for Diamonds and Superconductivity. The plots compare test RMSE and training time as functions of training-set size.}}{10}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:appendix-scaling-2x2}{{3}{10}{Extended scalability analysis for Diamonds and Superconductivity. The plots compare test RMSE and training time as functions of training-set size}{figure.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}Training-Time and Accuracy Trade-off}{10}{subsection.A.4}\protected@file@percent }
+\newlabel{app:time-accuracy-tradeoff}{{A.4}{10}{Training-Time and Accuracy Trade-off}{subsection.A.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Training-time and predictive-performance trade-off for Diamonds and Superconductivity. Lower RMSE and lower training time indicate a better efficiency-performance trade-off.}}{10}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:appendix-time-accuracy}{{4}{10}{Training-time and predictive-performance trade-off for Diamonds and Superconductivity. Lower RMSE and lower training time indicate a better efficiency-performance trade-off}{figure.caption.18}{}}
+\@writefile{toc}{\contentsline {paragraph}{Appendix summary.}{11}{section*.19}\protected@file@percent }
 \bibstyle{plainnat}
 \bibdata{sections/references}
 \bibcite{beaglehole2025xrfm}{{1}{2025}{{Beaglehole et~al.}}{{Beaglehole, Holzm{\"u}ller, Radhakrishnan, and Belkin}}}
@@ -80,5 +95,5 @@
 \bibcite{pearson1901pca}{{10}{1901}{{Pearson}}{{}}}
 \bibcite{radhakrishnan2024mechanism}{{11}{2024}{{Radhakrishnan et~al.}}{{Radhakrishnan, Beaglehole, Pandit, and Belkin}}}
 \bibcite{sakar2019real}{{12}{2019}{{Sakar et~al.}}{{Sakar, Polat, Katircioglu, and Kastro}}}
-\@writefile{toc}{\contentsline {section}{References}{9}{section*.16}\protected@file@percent }
-\gdef \@abspage@last{10}
+\@writefile{toc}{\contentsline {section}{References}{12}{section*.20}\protected@file@percent }
+\gdef \@abspage@last{13}
