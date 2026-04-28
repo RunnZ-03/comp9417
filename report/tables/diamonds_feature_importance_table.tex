@@ -1,0 +1,16 @@
+\begin{table}[H]
+  \centering
+  \caption{Feature-importance comparison on the Diamonds dataset.}
+  \label{tab:diamonds-feature-importance}
+  \small
+  \begin{tabular}{ll}
+    \toprule
+    Method & Top ranked features \\
+    \midrule
+    AGOP diagonal & \texttt{num\_\_y}, \texttt{num\_\_x}, \texttt{num\_\_carat}, \texttt{num\_\_z}, \texttt{num\_\_depth} \\
+    PCA loading & \texttt{num\_\_x}, \texttt{num\_\_y}, \texttt{num\_\_z}, \texttt{num\_\_carat}, \texttt{num\_\_table} \\
+    Mutual information & \texttt{num\_\_carat}, \texttt{num\_\_x}, \texttt{num\_\_y}, \texttt{num\_\_z}, \texttt{cat\_\_clarity\_SI1} \\
+    Permutation importance & \texttt{num\_\_carat}, \texttt{num\_\_y}, \texttt{num\_\_x}, \texttt{num\_\_z}, \texttt{cat\_\_color\_I} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
