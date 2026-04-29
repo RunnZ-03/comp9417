@@ -4,4 +4,3 @@
 
 We replicated xRFM and compared it with XGBoost, LightGBM, and MLP across five tabular datasets under a unified experimental pipeline. Tree-based GBDTs remain the strongest general-purpose baselines: LightGBM and XGBoost lead on accuracy and training speed across nearly all settings. xRFM shows selective promise — competitive on Superconductivity and best accuracy on HR Attrition — but underperforms substantially on Diamonds and scales poorly there, indicating that AGOP feature learning is not universally superior to tree splitting on large mixed-type data. AGOP-diagonal rankings are broadly interpretable and align with domain knowledge, though meaningful rankings do not guarantee predictive strength. Future work should address categorical variable handling, AGOP approximation efficiency, and hyperparameter tuning for diverse tabular settings.
 
-\clearpage

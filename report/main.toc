@@ -11,20 +11,17 @@
 \contentsline {subsubsection}{\numberline {2.2.6}MLP Configuration}{3}{subsubsection.2.2.6}%
 \contentsline {section}{\numberline {3}Results}{3}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Predictive Performance}{3}{subsection.3.1}%
-\contentsline {paragraph}{Regression tasks.}{3}{section*.6}%
-\contentsline {paragraph}{Classification tasks.}{4}{section*.7}%
 \contentsline {subsection}{\numberline {3.2}Scalability Analysis}{4}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Interpretability Comparison}{5}{subsection.3.3}%
-\contentsline {section}{\numberline {4}Discussion}{5}{section.4}%
-\contentsline {subsection}{\numberline {4.1}xRFM: When Feature Learning Helps and When It Does Not}{5}{subsection.4.1}%
+\contentsline {section}{\numberline {4}Discussion}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}xRFM: When Feature Learning Helps and When It Does Not}{6}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}XGBoost and LightGBM: Performance and Efficiency}{6}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}MLP: Performance and Scalability Limitations}{6}{subsection.4.3}%
 \contentsline {section}{\numberline {5}Conclusion}{6}{section.5}%
-\contentsline {section}{Appendix}{8}{section*.12}%
-\contentsline {section}{\numberline {A}Bonus: Residual-Weighted AGOP}{8}{appendix.A}%
-\contentsline {paragraph}{(i) Justification.}{8}{section*.13}%
-\contentsline {paragraph}{(ii) Implementation.}{8}{section*.14}%
-\contentsline {paragraph}{(iii) Disagreement and Performance.}{8}{section*.15}%
-\contentsline {section}{\numberline {B}Supplementary Tables}{8}{appendix.B}%
-\contentsline {section}{\numberline {C}Supplementary Figures}{9}{appendix.C}%
-\contentsline {section}{References}{11}{section*.24}%
+\contentsline {section}{Appendix}{6}{section*.11}%
+\contentsline {section}{\numberline {A}Bonus: Residual-Weighted AGOP}{7}{appendix.A}%
+\contentsline {paragraph}{(i) Justification.}{7}{section*.12}%
+\contentsline {paragraph}{(ii) Implementation.}{7}{section*.13}%
+\contentsline {paragraph}{(iii) Disagreement and Performance.}{7}{section*.14}%
+\contentsline {section}{\numberline {B}Supplementary Figures}{8}{appendix.B}%
+\contentsline {section}{References}{10}{section*.23}%
