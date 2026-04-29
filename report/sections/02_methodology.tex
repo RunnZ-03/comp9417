@@ -82,4 +82,4 @@ XGBoost and LightGBM are trained through the scikit-learn API using strong defau
 \subsubsection{MLP Configuration}
 \label{sec:mlp-config}
 
-The MLP baseline uses a two-hidden-layer network with hidden sizes $(128,64)$ and ReLU activation. It is trained with Adam, learning rate 0.001, batch size 256, maximum 500 iterations, and early stopping with patience 20. Input features are standardised before training. For classification tasks, predicted probabilities are used for AUC-ROC calculation.
+The MLP model uses a two-hidden-layer network with hidden sizes $(128,64)$ and ReLU activation function. The model is trained using the Adam optimizer with a learning rate of 0.001, a batch size of 256, a maximum of 500 iterations, and an early stopping mechanism with a patience of 20. Input features are standardised before training. For classification tasks, predicted probabilities are used to calculate the AUC-ROC.
